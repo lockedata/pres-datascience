@@ -5,6 +5,7 @@ warnings_are_errors: false
 install:
   - R -e 'install.packages("remotes")'
   - Rscript -e 'remotes::install_github("hadley/devtools")'
+  - Rscript -e 'remotes::install_github("lockedata/revealjs")'
   - R -e 'devtools::install_deps(dep = T)'
   - R CMD build --no-build-vignettes --no-manual .
   - R CMD check --no-build-vignettes --no-manual  *tar.gz
