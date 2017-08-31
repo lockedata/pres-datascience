@@ -1,0 +1,194 @@
+---
+title: "Reproducible logistic regression models"
+author: "Steph Locke (@SteffLocke)"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_document: 
+    code_folding: show
+    number_sections: yes
+    toc: yes
+    toc_float: true
+    toc_depth: 2
+---
+
+
+
+# Logistic regression {.tabset}
+We uses a logistic regression to be able to use our simple linear regression methods against categorical data.
+
+## Linear Regression
+In a linear regression, the data we are trying to predict might look like:
+```{r rnorm, echo=FALSE}
+library(ggplot2)
+y_n<-rnorm(1000,100,25)
+qplot(y_n, binwidth=5)
+```
+
+## Binomial class
+In a logistic regression, the data looks like:
+```{r rbinom, echo=FALSE}
+y_b<-rbinom(1000,size = 1, prob = .89)
+qplot(y_b, binwidth=.1)
+```
+
+## Probability
+Trying to plot a standard regression would result in lots of error, instead we need to do something to make the results of a linear regression to put values closer to the two binomial outcomes.
+
+We could use the probability of a given outcome as this gives us a range of values.
+
+```{r probs}
+prob_y<-seq(0,1, by=.001)
+qplot(prob_y,prob_y)
+```
+
+
+The trouble with probabilities is they must be within 0 and 1 to make any sense and it would be tough to bind a linear regression to this range.
+
+
+## Odds
+To bust out of this range, we could use odds, the probability of something happening versus it not happening to create a more dispersed value.
+
+```{r odds}
+odds_y<- prob_y/(1-prob_y)
+qplot(prob_y,odds_y)
+```
+
+
+Using odds allows us to exceed 1, but there's still no negative values allowed. Additionally, the relationship is distribution of values is difficult to model linearly.
+
+## Logit
+To be able to get both a positive and a negative range of values allowed, we can take the log of the odds.
+
+```{r logodds}
+qplot(prob_y, log(odds_y))
+```
+
+This now gives us a strong dispersal of values into positive and negative ranges, with a distribution much more suited to a linear regression model.
+
+We can take a nuanced probabilistic approach to values, or simply say if the logit is positive, we predict the outcome 1, if not the outcome 0.
+
+## Transforming logits
+To get back to a probability from a logit (or vice versa) is pretty simple but I wrote some helper functions in the package optiRum to facilitate this.
+
+```{r logittransform}
+library(optiRum)
+
+logits     <- -4:4
+odds       <- logit.odd(logits)
+probs      <- odd.prob(odds)
+pred_class <- logits>=0
+
+knitr::kable(data.frame(logits,odds,probs,pred_class))
+```
+
+```{r transformcode}
+prob.odd
+odd.logit
+logit.odd
+odd.prob
+```
+
+# Analysis workflow
+- Understand the problem
+- Gather some data
+- Clean the data
+- Clean the data some more
+- Exploration and visualisation
+- Feature Reduction
+- Feature Engineering
+- (Depending on models) Feature Selection
+- Candidate models builds
+- Evaluate models
+- In-depth evaluation of selected model
+- Productionising
+
+# Sources of change in analysis {.tabset}
+
+## Exercise
+What sort of things can alter the results of a piece of analysis?
+
+## Answers
+- Changes in data
+- Changes in code behaviours
+- Changes in behaviours in dependencies
+- Randomness
+
+# Accounting for change {.tabset}
+
+## Exercise
+What sort of things can we do to prevent changes creeping into our analysis that stop it from being "deterministic"?
+
+## Answers
+- Checksums to flag if anything has changed
+- Keeping a seperate copy of data
+- Keeping dependencies the same over time
+- Source control
+- Unit testing and validating code
+- `set.seed`
+
+# GLM step-by-step -- Project setup {.tabset}
+
+## Project checklist
+- Git
+- Project options
+    + No Rdata or history!
+    + Insert spaces for tabs
+- Packrat
+    +`packrat::init()`
+- Folder structure
+    + data
+    + processeddata
+    + analysis
+    + outputs
+    + docs
+- DESCRIPTION
+- LICENSE
+- .Rbuildignore
+- README.Rmd
+- Makefile
+    + [Karl Broman on Makefiles](http://kbroman.org/minimal_make/)
+- .travis.yml
+
+## Travis setup 
+- [Travis CI](https://travis-ci.org)
+- [Travis ref](https://docs.travis-ci.com/user/languages/r/)
+
+## Github setup
+
+# GLM step-by-step -- Data {.tabset}
+- Source
+- Verification steps
+- Multiple outputs?
+  + Main report
+  + Supplementary data quality report
+  + Shiny?
+
+# GLM step-by-step -- Data processing{.tabset}
+- Cleaning steps
+- Sampling
+- Feature scaling
+- Univariate analysis
+- Bivariate analysis
+
+# GLM step-by-step -- Candidate models{.tabset}
+- Feature selection
+- Various glm* models
+
+# GLM step-by-step -- Evaluation{.tabset}
+- Scaling sample
+- Single model evaluation techniques
+- Comparing multiple models
+- Cross-validation
+
+# GLM step-by-step -- Model selection{.tabset}
+- Using evaluation metrics to select best model
+- Presenting model
+- In-depth evaluation of best model
+
+# GLM step-by-step -- Supplementary materials{.tabset}
+- Data lineage 
+- Data quality
+- Feature analysis in-depth
+- Candidate model evaluations
+- Code
+- Reproducibility info
