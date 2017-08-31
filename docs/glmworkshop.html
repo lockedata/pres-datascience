@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Steph Locke (@SteffLocke)">
+  <meta name="dcterms.date" content="2017-08-31">
+  <title>Reproducible logistic regression models</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="glmworkshop_files/revealjs/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+  </style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="glmworkshop_files/revealjs/css/theme/lockedata.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'glmworkshop_files/revealjs/css/print/pdf.css' : 'glmworkshop_files/revealjs/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="glmworkshop_files/revealjs/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Reproducible logistic regression models</h1>
+  <p class="author">Steph Locke (<span class="citation" data-cites="SteffLocke">@SteffLocke</span>)</p>
+  <p class="date">2017-08-31</p>
+</section>
+
+<section><section id="logistic-regression" class="titleslide slide level1 tabset"><h1>Logistic regression</h1></section><section id="linear-regression" class="slide level2">
+<h1>Linear Regression</h1>
+<p>In a linear regression, the data we are trying to predict might look like: <img src="glmworkshop_files/figure-revealjs/rnorm-1.png" width="768" /></p>
+</section><section id="binomial-class" class="slide level2">
+<h1>Binomial class</h1>
+<p>In a logistic regression, the data looks like: <img src="glmworkshop_files/figure-revealjs/rbinom-1.png" width="768" /></p>
+</section><section id="probability" class="slide level2">
+<h1>Probability</h1>
+<p>Trying to plot a standard regression would result in lots of error, instead we need to do something to make the results of a linear regression to put values closer to the two binomial outcomes.</p>
+<p>We could use the probability of a given outcome as this gives us a range of values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prob_y&lt;-<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>, <span class="dt">by=</span>.<span class="dv">001</span>)
+<span class="kw">qplot</span>(prob_y,prob_y)</code></pre></div>
+<p><img src="glmworkshop_files/figure-revealjs/probs-1.png" width="768" /></p>
+<p>The trouble with probabilities is they must be within 0 and 1 to make any sense and it would be tough to bind a linear regression to this range.</p>
+</section><section id="odds" class="slide level2">
+<h1>Odds</h1>
+<p>To bust out of this range, we could use odds, the probability of something happening versus it not happening to create a more dispersed value.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">odds_y&lt;-<span class="st"> </span>prob_y/(<span class="dv">1</span>-prob_y)
+<span class="kw">qplot</span>(prob_y,odds_y)</code></pre></div>
+<p><img src="glmworkshop_files/figure-revealjs/odds-1.png" width="768" /></p>
+<p>Using odds allows us to exceed 1, but there’s still no negative values allowed. Additionally, the relationship is distribution of values is difficult to model linearly.</p>
+</section><section id="logit" class="slide level2">
+<h1>Logit</h1>
+<p>To be able to get both a positive and a negative range of values allowed, we can take the log of the odds.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(prob_y, <span class="kw">log</span>(odds_y))</code></pre></div>
+<p><img src="glmworkshop_files/figure-revealjs/logodds-1.png" width="768" /></p>
+<p>This now gives us a strong dispersal of values into positive and negative ranges, with a distribution much more suited to a linear regression model.</p>
+<p>We can take a nuanced probabilistic approach to values, or simply say if the logit is positive, we predict the outcome 1, if not the outcome 0.</p>
+</section><section id="transforming-logits" class="slide level2">
+<h1>Transforming logits</h1>
+<p>To get back to a probability from a logit (or vice versa) is pretty simple but I wrote some helper functions in the package optiRum to facilitate this.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(optiRum)
+
+logits     &lt;-<span class="st"> </span>-<span class="dv">4</span>:<span class="dv">4</span>
+odds       &lt;-<span class="st"> </span><span class="kw">logit.odd</span>(logits)
+probs      &lt;-<span class="st"> </span><span class="kw">odd.prob</span>(odds)
+pred_class &lt;-<span class="st"> </span>logits&gt;=<span class="dv">0</span>
+
+knitr::<span class="kw">kable</span>(<span class="kw">data.frame</span>(logits,odds,probs,pred_class))</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">logits</th>
+<th style="text-align: right;">odds</th>
+<th style="text-align: right;">probs</th>
+<th style="text-align: left;">pred_class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-4</td>
+<td style="text-align: right;">0.0183156</td>
+<td style="text-align: right;">0.0179862</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-3</td>
+<td style="text-align: right;">0.0497871</td>
+<td style="text-align: right;">0.0474259</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-2</td>
+<td style="text-align: right;">0.1353353</td>
+<td style="text-align: right;">0.1192029</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0.3678794</td>
+<td style="text-align: right;">0.2689414</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: right;">0.5000000</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2.7182818</td>
+<td style="text-align: right;">0.7310586</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">7.3890561</td>
+<td style="text-align: right;">0.8807971</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">20.0855369</td>
+<td style="text-align: right;">0.9525741</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">54.5981500</td>
+<td style="text-align: right;">0.9820138</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prob.odd</code></pre></div>
+<pre><code>## function (prob) 
+## {
+##     prob/(1 - prob)
+## }
+## &lt;environment: namespace:optiRum&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">odd.logit</code></pre></div>
+<pre><code>## function (odds) 
+## {
+##     log(odds)
+## }
+## &lt;environment: namespace:optiRum&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logit.odd</code></pre></div>
+<pre><code>## function (logit) 
+## {
+##     exp(logit)
+## }
+## &lt;environment: namespace:optiRum&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">odd.prob</code></pre></div>
+<pre><code>## function (odds) 
+## {
+##     odds/(1 + odds)
+## }
+## &lt;environment: namespace:optiRum&gt;</code></pre>
+</section></section>
+<section><section id="analysis-workflow" class="titleslide slide level1"><h1>Analysis workflow</h1></section></section>
+<section><section id="sources-of-change-in-analysis" class="titleslide slide level1 tabset"><h1>Sources of change in analysis</h1></section><section id="exercise" class="slide level2">
+<h1>Exercise</h1>
+<p>What sort of things can alter the results of a piece of analysis?</p>
+</section><section id="answers" class="slide level2">
+<h1>Answers</h1>
+<ul>
+<li>Changes in data</li>
+<li>Changes in code behaviours</li>
+<li>Changes in behaviours in dependencies</li>
+<li>Randomness</li>
+</ul>
+</section></section>
+<section><section id="accounting-for-change" class="titleslide slide level1 tabset"><h1>Accounting for change</h1></section><section id="exercise-1" class="slide level2">
+<h1>Exercise</h1>
+<p>What sort of things can we do to prevent changes creeping into our analysis that stop it from being “deterministic”?</p>
+</section><section id="answers-1" class="slide level2">
+<h1>Answers</h1>
+<ul>
+<li>Checksums to flag if anything has changed</li>
+<li>Keeping a seperate copy of data</li>
+<li>Keeping dependencies the same over time</li>
+<li>Source control</li>
+<li>Unit testing and validating code</li>
+<li><code>set.seed</code></li>
+</ul>
+</section></section>
+<section><section id="glm-step-by-step-project-setup" class="titleslide slide level1 tabset"><h1>GLM step-by-step – Project setup</h1></section><section id="project-checklist" class="slide level2">
+<h1>Project checklist</h1>
+<ul>
+<li>Git</li>
+<li>Project options
+<ul>
+<li>No Rdata or history!</li>
+<li>Insert spaces for tabs</li>
+</ul></li>
+<li>Packrat +<code>packrat::init()</code></li>
+<li>Folder structure
+<ul>
+<li>data</li>
+<li>processeddata</li>
+<li>analysis</li>
+<li>outputs</li>
+<li>docs</li>
+</ul></li>
+<li>DESCRIPTION</li>
+<li>LICENSE</li>
+<li>.Rbuildignore</li>
+<li>README.Rmd</li>
+<li>Makefile
+<ul>
+<li><a href="http://kbroman.org/minimal_make/">Karl Broman on Makefiles</a></li>
+</ul></li>
+<li>.travis.yml</li>
+</ul>
+</section><section id="travis-setup" class="slide level2">
+<h1>Travis setup</h1>
+<ul>
+<li><a href="https://travis-ci.org">Travis CI</a></li>
+<li><a href="https://docs.travis-ci.com/user/languages/r/">Travis ref</a></li>
+</ul>
+</section><section id="github-setup" class="slide level2">
+<h1>Github setup</h1>
+</section></section>
+<section><section id="glm-step-by-step-data" class="titleslide slide level1 tabset"><h1>GLM step-by-step – Data</h1></section></section>
+<section><section id="glm-step-by-step-data-processing" class="titleslide slide level1 tabset"><h1>GLM step-by-step – Data processing</h1></section></section>
+<section><section id="glm-step-by-step-candidate-models" class="titleslide slide level1 tabset"><h1>GLM step-by-step – Candidate models</h1></section></section>
+<section><section id="glm-step-by-step-evaluation" class="titleslide slide level1 tabset"><h1>GLM step-by-step – Evaluation</h1></section></section>
+<section><section id="glm-step-by-step-model-selection" class="titleslide slide level1 tabset"><h1>GLM step-by-step – Model selection</h1></section></section>
+<section><section id="glm-step-by-step-supplementary-materials" class="titleslide slide level1 tabset"><h1>GLM step-by-step – Supplementary materials</h1></section></section>
+    </div>
+  </div>
+
+  <script src="glmworkshop_files/revealjs/lib/js/head.min.js"></script>
+  <script src="glmworkshop_files/revealjs/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '1920',
+        height: '1080',
+        // Factor of the display size that should remain empty around the content
+        margin: '0.05',
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'glmworkshop_files/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'glmworkshop_files/revealjs/plugin/zoom-js/zoom.js', async: true },
+              { src: 'glmworkshop_files/revealjs/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
