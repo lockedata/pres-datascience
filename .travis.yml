@@ -2,8 +2,9 @@ language: r
 cache: packages
 latex: false
 warnings_are_errors: false
-install: 
+install:
   - R -e 'install.packages("devtools")'
+  - Rscript -e 'devtools::install_github("hadley/devtools")'
   - R -e 'devtools::install_deps(dep = T)'
   - R CMD build --no-build-vignettes --no-manual .
   - R CMD check --no-build-vignettes --no-manual  *tar.gz
