@@ -1,12 +1,22 @@
-Package: presstub
-Title: Presentation stub
+Package: presdatascience
+Title: Data Science talks
 Version: 0.1.0
 Authors@R: person("Steph", "Locke",   email="steph@itsalocke.com", role = c("aut", "cre"))
-Description: Basic repo template for presentations.
+Description: Data science talks
 Depends:
     R (>= 3.1.2)
 Imports: 
-    revealjs
+    revealjs,
+    ggplot2,
+    dplyr,
+    broom,
+    forcats,
+    caret,
+    optiRum,
+    vegalite,
+    DT,
+    readxl,
+    data.table
 Suggests:
     knitr
 Remotes: 
