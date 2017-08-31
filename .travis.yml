@@ -4,6 +4,7 @@ latex: false
 warnings_are_errors: false
 install:
   - R -e 'install.packages("remotes")'
+  - Rscript -e 'remotes::install_github("r-lib/remotes#103")'
   - Rscript -e 'remotes::install_github("hadley/devtools")'
   - Rscript -e 'remotes::install_github("lockedata/revealjs")'
   - R -e 'devtools::install_deps(dep = T)'
