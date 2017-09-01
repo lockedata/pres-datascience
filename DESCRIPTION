@@ -16,7 +16,8 @@ Imports:
     vegalite,
     DT,
     readxl,
-    data.table
+    data.table,
+    e1071
 Suggests:
     knitr
 Remotes: 
