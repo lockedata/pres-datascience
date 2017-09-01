@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Steph Locke">
+  <meta name="dcterms.date" content="2017-09-01">
+  <title>Logistic Regressions</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="logisticregressions_files/revealjs/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+  </style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="logisticregressions_files/revealjs/css/theme/lockedata.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'logisticregressions_files/revealjs/css/print/pdf.css' : 'logisticregressions_files/revealjs/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="logisticregressions_files/revealjs/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Logistic Regressions</h1>
+  <p class="author">Steph Locke</p>
+  <p class="date">2017-09-01</p>
+</section>
+
+<section><section id="welcome" class="titleslide slide level1"><h1>Welcome!</h1></section><section id="todays-aim" class="slide level2">
+<h1>Today’s aim</h1>
+<p>Understand what a logistic regression is, how to prepare data for a logistic regression, and how to evaluate a model.</p>
+</section></section>
+<section><section id="about-me" class="titleslide slide level1"><h1>About Me</h1></section><section id="locke-data" class="slide level2">
+<h1>Locke Data</h1>
+<p>Founded by Steph Locke (that’s me!), Locke Data is a data science consultancy focused on helping organisations get the most out of their data science resources. While we’re happy to do data science projects for you, we’d really like to set you up to do them yourself!</p>
+<p>Locke Data offers a broad range of services including:</p>
+<ul>
+<li>Data Science Readiness Reviews</li>
+<li>Training and mentoring programmes</li>
+<li>Independent audits and ethics reviews</li>
+<li>Recruitment assistance</li>
+</ul>
+<p>If you’d like more information about our services please get in touch via our website, <a href="https://itsalocke.com">itsalocke.com</a>.</p>
+</section><section id="steph-locke" class="slide level2">
+<h1>Steph Locke</h1>
+<p>I am a Microsoft Data Platform MVP with a decade of business intelligence and data science experience.</p>
+<p>Having worked in a variety of industries – including finance, utilities, insurance, and cyber-security – I’ve tackled a wide range of business challenges with data.</p>
+<p>However, I’m probably best known for my community activities; including presenting, training, blogging and speaking on panels and webinars.</p>
+<p>If you have any questions about today’s session, community activity, or data science in general, please get in touch via Locke Data, or my Twitter, <a href="https://twitter.com/stefflocke">@SteffLocke</a></p>
+</section></section>
+<section><section id="logistic-regression-theory" class="titleslide slide level1"><h1>Logistic regression theory</h1></section><section id="what-is-a-logistic-regression" class="slide level2">
+<h1>What is a logistic regression?</h1>
+<p>A logistic regression is a linear regression, applied to categorical outcomes by using a transformation function.</p>
+</section><section id="a-linear-regression" class="slide level2">
+<h1>A linear regression</h1>
+<p>A linear regression uses a <em>line of best fit</em> (the old <span class="math inline">\(y = mx + c\)</span>) over multiple variables to predict a continuous variable.</p>
+<p><img src="logisticregressions_files/figure-revealjs/xyc-1.svg" width="768" height="500px" /></p>
+</section><section id="why-do-we-need-a-transformation-function" class="slide level2">
+<h1>Why do we need a transformation function?</h1>
+<p>If you’re trying to predict whether someone survives (1) or dies (0), does it make sense to say they’re -0.2 alive, 0.5 alive, or 1.1 alive?</p>
+<p><img src="logisticregressions_files/figure-revealjs/rbinom-1.svg" width="768" height="500px" /><img src="logisticregressions_files/figure-revealjs/rbinom-2.svg" width="768" height="500px" /></p>
+</section><section id="what-can-we-measure-that-is-a-continuous-variable" class="slide level2">
+<h1>What can we measure that is a continuous variable?</h1>
+<p>We can measure the <em>probability</em> of someone surviving. This gives us data in the range <span class="math inline">\([ 0 , 1 ]\)</span> which is better, but still not our ideal of <span class="math inline">\([-\infty,+\infty]\)</span>.</p>
+<p><img src="logisticregressions_files/figure-revealjs/probs-1.svg" width="768" height="500px" /></p>
+</section><section id="how-can-we-transform-it-to-be-in-the-range-we-want" class="slide level2">
+<h1>How can we transform it to be in the range we want?</h1>
+The <em>odds</em> of something happening are the probability of it happening versus the probability of it not happening can help us.
+\begin{equation}
+\frac{p}{1-p}
+\end{equation}
+<p>As probability can never be less than 0 or greater than 1, we get a range between <span class="math inline">\([0,+\infty]\)</span>.</p>
+<p><img src="logisticregressions_files/figure-revealjs/oddsdist-1.svg" width="768" height="500px" /></p>
+</section><section id="how-can-allow-negative-values" class="slide level2">
+<h1>How can allow negative values?</h1>
+<p>The final step in this transformation is to take the log of the odds, which is commonly called the <em>logit</em>. This gets us to <span class="math inline">\([-\infty,+\infty]\)</span>.</p>
+<p><img src="logisticregressions_files/figure-revealjs/logitdist-1.svg" width="768" height="500px" /></p>
+</section><section id="interpreting-the-results" class="slide level2">
+<h1>Interpreting the results</h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">logits</th>
+<th style="text-align: right;">odds</th>
+<th style="text-align: right;">probs</th>
+<th style="text-align: left;">pred_class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-4</td>
+<td style="text-align: right;">0.0183156</td>
+<td style="text-align: right;">0.0179862</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-3</td>
+<td style="text-align: right;">0.0497871</td>
+<td style="text-align: right;">0.0474259</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-2</td>
+<td style="text-align: right;">0.1353353</td>
+<td style="text-align: right;">0.1192029</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0.3678794</td>
+<td style="text-align: right;">0.2689414</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0000000</td>
+<td style="text-align: right;">0.5000000</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2.7182818</td>
+<td style="text-align: right;">0.7310586</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">7.3890561</td>
+<td style="text-align: right;">0.8807971</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">20.0855369</td>
+<td style="text-align: right;">0.9525741</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">54.5981500</td>
+<td style="text-align: right;">0.9820138</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section><section id="logistic-regressions-in-r" class="titleslide slide level1"><h1>Logistic regressions in R</h1></section><section id="glm" class="slide level2">
+<h1><code>glm()</code></h1>
+<p>The glm function is used for performing logistic regressions. It can be used for other linear models too.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glm</span>(vs~<span class="st"> </span>mpg , <span class="dt">data=</span>mtcars, <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))
+## 
+## Call:  glm(formula = vs ~ mpg, family = binomial(link = &quot;logit&quot;), data = mtcars)
+## 
+## Coefficients:
+## (Intercept)          mpg  
+##     -8.8331       0.4304  
+## 
+## Degrees of Freedom: 31 Total (i.e. Null);  30 Residual
+## Null Deviance:       43.86 
+## Residual Deviance: 25.53     AIC: 29.53</code></pre></div>
+</section><section id="formula" class="slide level2">
+<h1>Formula</h1>
+<p>R uses a formula system for specifying a model.</p>
+<ul>
+<li>You put the outcome variable on the left</li>
+<li>A tilde (<code>~</code>) is used for saying “predicted by”</li>
+<li>Exclude an intercept term by adding <code>-1</code> to your formula</li>
+<li>You can use a <code>.</code> to predict by all other variables e.g. <code>y ~ .</code></li>
+<li>Use a <code>+</code> to provide multiple independent variables e.g. <code>y ~ a + b</code></li>
+<li>You can use a <code>:</code> to use the interaction of two variables e.g. <code>y ~ a:b</code></li>
+<li>You can use a <code>*</code> to use two variables and their interaction e.g. <code>y ~ a*b</code> (equivalent to <code>y ~ a + b + a:b</code>)</li>
+<li>You can construct features on the fly e.g. <code>y ~ log(x)</code> or use <code>I()</code> when adding values e.g. <code>y ~ I(a+b)</code></li>
+</ul>
+<p>For more info, check out <code>?formula</code></p>
+</section><section id="useful-parameters" class="slide level2">
+<h1>Useful parameters</h1>
+<ul>
+<li><code>na.action</code> can be set to amend the handling of missings in the data</li>
+<li><code>model</code>,<code>x</code>,<code>y</code> controls whether you get extra info about the model and data back. Setting these to <code>FALSE</code> saves space</li>
+</ul>
+</section><section id="functions-working-with-glm" class="slide level2">
+<h1>Functions working with <code>glm</code></h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">coefficients</td>
+<td style="text-align: left;">Extract coefficients</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">summary</td>
+<td style="text-align: left;">Output a basic summary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fitted</td>
+<td style="text-align: left;">Return the predicted values for the training data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">predict</td>
+<td style="text-align: left;">Predict some values for new data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">plot</td>
+<td style="text-align: left;">Produce some basic diagnostic plots</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">residuals</td>
+<td style="text-align: left;">Return the errors on predicted values for the training data</td>
+</tr>
+</tbody>
+</table>
+</section><section id="inputs" class="slide level2">
+<h1>Inputs</h1>
+<p>You can provide a glm with continuous and categorical variables.</p>
+<ul>
+<li class="fragment">Categorical variables get transformed into dummy variables</li>
+<li class="fragment">Continuous variables should ideally be scaled</li>
+</ul>
+</section></section>
+<section><section id="preparing-data" class="titleslide slide level1"><h1>Preparing data</h1></section><section id="exploration" class="slide level2">
+<h1>Exploration</h1>
+<p>Many ways to explore your data for outliers, patterns, issues etc.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)
+<span class="kw">featurePlot</span>(mtcarsVars, mtcarsOut)</code></pre></div>
+<p><img src="logisticregressions_files/figure-revealjs/unnamed-chunk-3-1.svg" width="768" height="500px" /></p>
+</section><section id="sampling" class="slide level2">
+<h1>Sampling</h1>
+<p>Commonly, we will take a training sample and a testing sample.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">77887</span>)
+trainRows&lt;-<span class="kw">createDataPartition</span>(mtcarsOut, <span class="dt">p=</span>.<span class="dv">7</span> , <span class="dt">list=</span><span class="ot">FALSE</span>)
+
+training_x&lt;-mtcarsVars[trainRows,]
+training_y&lt;-mtcarsOut[trainRows]
+
+testing_x&lt;-mtcarsVars[-trainRows,]
+testing_y&lt;-mtcarsOut[-trainRows]</code></pre></div>
+</section><section id="why-sample-before-processing" class="slide level2">
+<h1>Why sample <em>before</em> processing?</h1>
+<p>Sampling before scaling etc prevents information about the test data leaking into our model. By preventing such leaks we get a truer view of how well our model generalises later.</p>
+</section><section id="scaling-variables" class="slide level2">
+<h1>Scaling variables</h1>
+<ul>
+<li><strong>minmax</strong> Express numbers as a percentage of the maximum after subtracting the minimum. This results in range <span class="math inline">\([0,1]\)</span> for training data but can result in a different range in test data and, therefore, production!
+\begin{equation}
+\frac{x - min(x)}{max(x) - min(x)}
+\end{equation}</li>
+<li><strong>z-score</strong> Express numbers as the distance from the mean in standard deviations. This results in a range that’s notionally <span class="math inline">\([-\infty,+\infty]\)</span> and results will be in the same range in test data. \begin{equation} </li>
+</ul>
+<p>Perform z-score scaling in R with the <code>scale</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x&lt;-<span class="kw">rnorm</span>(<span class="dv">50</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">10</span>)
+x_s&lt;-<span class="kw">scale</span>(x, <span class="dt">center =</span> <span class="ot">TRUE</span>, <span class="dt">scale =</span> <span class="ot">TRUE</span>)
+<span class="kw">summary</span>(x_s)
+##        V1          
+##  Min.   :-2.47800  
+##  1st Qu.:-0.51156  
+##  Median :-0.02056  
+##  Mean   : 0.00000  
+##  3rd Qu.: 0.72480  
+##  Max.   : 2.75145</code></pre></div>
+</section><section id="scaling-variables-1" class="slide level2">
+<h1>Scaling variables</h1>
+<p>Use <code>caret</code> to scale multiple variables simultaneously and get a reusable scaling model for applying to test data, and eventually production data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">transformations&lt;-<span class="kw">preProcess</span>(training_x)
+scaledVars&lt;-<span class="kw">predict</span>(transformations,training_x)
+knitr::<span class="kw">kable</span>(<span class="kw">t</span>(<span class="kw">summary</span>(scaledVars)))</code></pre></div>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">mpg</td>
+<td style="text-align: left;">Min. :-1.6256</td>
+<td style="text-align: left;">1st Qu.:-0.7609</td>
+<td style="text-align: left;">Median :-0.1762</td>
+<td style="text-align: left;">Mean : 0.0000</td>
+<td style="text-align: left;">3rd Qu.: 0.5485</td>
+<td style="text-align: left;">Max. : 2.2450</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cyl</td>
+<td style="text-align: left;">Min. :-1.2291</td>
+<td style="text-align: left;">1st Qu.:-1.2291</td>
+<td style="text-align: left;">Median :-0.1418</td>
+<td style="text-align: left;">Mean : 0.0000</td>
+<td style="text-align: left;">3rd Qu.: 0.9455</td>
+<td style="text-align: left;">Max. : 0.9455</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">disp</td>
+<td style="text-align: left;">Min. :-1.3730</td>
+<td style="text-align: left;">1st Qu.:-0.8722</td>
+<td style="text-align: left;">Median : 0.2015</td>
+<td style="text-align: left;">Mean : 0.0000</td>
+<td style="text-align: left;">3rd Qu.: 0.8418</td>
+<td style="text-align: left;">Max. : 2.0043</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hp</td>
+<td style="text-align: left;">Min. :-1.35226</td>
+<td style="text-align: left;">1st Qu.:-0.75519</td>
+<td style="text-align: left;">Median :-0.02242</td>
+<td style="text-align: left;">Mean : 0.00000</td>
+<td style="text-align: left;">3rd Qu.: 0.38467</td>
+<td style="text-align: left;">Max. : 2.48799</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">drat</td>
+<td style="text-align: left;">Min. :-1.3944</td>
+<td style="text-align: left;">1st Qu.:-0.8474</td>
+<td style="text-align: left;">Median : 0.0989</td>
+<td style="text-align: left;">Mean : 0.0000</td>
+<td style="text-align: left;">3rd Qu.: 0.6198</td>
+<td style="text-align: left;">Max. : 2.3736</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wt</td>
+<td style="text-align: left;">Min. :-1.8341</td>
+<td style="text-align: left;">1st Qu.:-0.5987</td>
+<td style="text-align: left;">Median : 0.3213</td>
+<td style="text-align: left;">Mean : 0.0000</td>
+<td style="text-align: left;">3rd Qu.: 0.5562</td>
+<td style="text-align: left;">Max. : 2.3459</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">qsec</td>
+<td style="text-align: left;">Min. :-1.6263</td>
+<td style="text-align: left;">1st Qu.:-0.5026</td>
+<td style="text-align: left;">Median :-0.1018</td>
+<td style="text-align: left;">Mean : 0.0000</td>
+<td style="text-align: left;">3rd Qu.: 0.6703</td>
+<td style="text-align: left;">Max. : 2.5046</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">am</td>
+<td style="text-align: left;">Min. :-0.7142</td>
+<td style="text-align: left;">1st Qu.:-0.7142</td>
+<td style="text-align: left;">Median :-0.7142</td>
+<td style="text-align: left;">Mean : 0.0000</td>
+<td style="text-align: left;">3rd Qu.: 1.3392</td>
+<td style="text-align: left;">Max. : 1.3392</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gear</td>
+<td style="text-align: left;">Min. :-0.8462</td>
+<td style="text-align: left;">1st Qu.:-0.8462</td>
+<td style="text-align: left;">Median :-0.8462</td>
+<td style="text-align: left;">Mean : 0.0000</td>
+<td style="text-align: left;">3rd Qu.: 0.3702</td>
+<td style="text-align: left;">Max. : 1.5866</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">carb</td>
+<td style="text-align: left;">Min. :-1.0299</td>
+<td style="text-align: left;">1st Qu.:-0.4521</td>
+<td style="text-align: left;">Median :-0.4521</td>
+<td style="text-align: left;">Mean : 0.0000</td>
+<td style="text-align: left;">3rd Qu.: 0.7033</td>
+<td style="text-align: left;">Max. : 3.0142</td>
+</tr>
+</tbody>
+</table>
+</section><section id="things-to-check-for" class="slide level2">
+<h1>Things to check for</h1>
+<ul>
+<li>Correlated variables</li>
+<li>Low variance columns</li>
+</ul>
+<p><code>caret</code> is very useful for these</p>
+</section><section id="handling-missings" class="slide level2">
+<h1>Handling missings</h1>
+<p>Common methods for coping with missing data:</p>
+<ul>
+<li>Removing rows with missings
+<ul>
+<li>Con: reduces sample size</li>
+<li>Pro: use only complete data</li>
+</ul></li>
+<li>[Continuous variables only] Putting in a default value like mean
+<ul>
+<li>Con: tends to flatten model coefficient for variable</li>
+<li>Pro: simple to do</li>
+</ul></li>
+<li>Putting in a predicted value
+<ul>
+<li>Con: requires another set of data</li>
+<li>Pro: realistic values</li>
+</ul></li>
+<li>[Continuous variables only] Making variable a categorical with an explicit missing category
+<ul>
+<li>Con: information loss on continuous variables</li>
+<li>Pro: explicit modelling of missings</li>
+</ul></li>
+</ul>
+</section></section>
+<section><section id="building-models" class="titleslide slide level1"><h1>Building models</h1></section><section id="initial-models" class="slide level2">
+<h1>Initial models</h1>
+<p>I try to build some candidate models:</p>
+<ul>
+<li>All variables</li>
+<li>A few strongest variables</li>
+</ul>
+</section><section id="stepwise-selection" class="slide level2">
+<h1>Stepwise selection</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fullmodel&lt;-<span class="kw">glm</span>(training_y~<span class="st"> </span>., <span class="dt">data=</span>training_x, <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))
+steppedmodel&lt;-<span class="kw">step</span>(fullmodel, <span class="dt">direction=</span><span class="st">&quot;both&quot;</span>,<span class="dt">trace =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(steppedmodel)
+## 
+## Call:
+## glm(formula = training_y ~ wt + qsec, family = binomial(link = &quot;logit&quot;), 
+##     data = training_x)
+## 
+## Deviance Residuals: 
+##        Min          1Q      Median          3Q         Max  
+## -3.747e-05  -2.100e-08  -2.100e-08   2.100e-08   3.668e-05  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept)  -1150.82  949688.13  -0.001    0.999
+## wt             -57.98   55673.18  -0.001    0.999
+## qsec            74.94   58397.10   0.001    0.999
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 3.1492e+01  on 22  degrees of freedom
+## Residual deviance: 2.8881e-09  on 20  degrees of freedom
+## AIC: 6
+## 
+## Number of Fisher Scoring iterations: 25</code></pre></div>
+</section><section id="other-model-types" class="slide level2">
+<h1>Other model types</h1>
+<ul>
+<li>Different logistic regression variants like glmnet, gbm</li>
+<li>Different models like classification trees</li>
+</ul>
+</section><section id="others" class="slide level2">
+<h1>Others</h1>
+<ul>
+<li>You can also try with different loss or error functions</li>
+<li>You should try “common sense” models</li>
+</ul>
+</section></section>
+<section><section id="evaluating-glms" class="titleslide slide level1"><h1>Evaluating glms</h1></section><section id="broom" class="slide level2">
+<h1><code>broom</code></h1>
+<p>Use <code>broom</code> to make tidy versions of model outputs.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)
+
+<span class="co"># Coefficients</span>
+knitr::<span class="kw">kable</span>(<span class="kw">tidy</span>(steppedmodel))</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-1150.81869</td>
+<td style="text-align: right;">949688.13</td>
+<td style="text-align: right;">-0.0012118</td>
+<td style="text-align: right;">0.9990331</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wt</td>
+<td style="text-align: right;">-57.98390</td>
+<td style="text-align: right;">55673.18</td>
+<td style="text-align: right;">-0.0010415</td>
+<td style="text-align: right;">0.9991690</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">qsec</td>
+<td style="text-align: right;">74.94005</td>
+<td style="text-align: right;">58397.10</td>
+<td style="text-align: right;">0.0012833</td>
+<td style="text-align: right;">0.9989761</td>
+</tr>
+</tbody>
+</table>
+</section><section id="broom-1" class="slide level2">
+<h1><code>broom</code></h1>
+<p>Use <code>broom</code> to make tidy versions of model outputs.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Fitted data</span>
+knitr::<span class="kw">kable</span>(<span class="kw">head</span>(<span class="kw">augment</span>(steppedmodel)))
+## Warning: Deprecated: please use `purrr::possibly()` instead
+## Warning: Deprecated: please use `purrr::possibly()` instead
+## Warning: Deprecated: please use `purrr::possibly()` instead
+## Warning: Deprecated: please use `purrr::possibly()` instead
+## Warning: Deprecated: please use `purrr::possibly()` instead</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">.rownames</th>
+<th style="text-align: right;">training_y</th>
+<th style="text-align: right;">wt</th>
+<th style="text-align: right;">qsec</th>
+<th style="text-align: right;">.fitted</th>
+<th style="text-align: right;">.se.fit</th>
+<th style="text-align: right;">.resid</th>
+<th style="text-align: right;">.hat</th>
+<th style="text-align: right;">.sigma</th>
+<th style="text-align: right;">.cooksd</th>
+<th style="text-align: right;">.std.resid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Hornet 4 Drive</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.215</td>
+<td style="text-align: right;">19.44</td>
+<td style="text-align: right;">119.59772</td>
+<td style="text-align: right;">93130.23</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.90e-06</td>
+<td style="text-align: right;">1.23e-05</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hornet Sportabout</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3.440</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">-74.80359</td>
+<td style="text-align: right;">60604.06</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8.00e-07</td>
+<td style="text-align: right;">1.23e-05</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Valiant</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.460</td>
+<td style="text-align: right;">20.22</td>
+<td style="text-align: right;">163.84490</td>
+<td style="text-align: right;">128950.92</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3.70e-06</td>
+<td style="text-align: right;">1.23e-05</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Duster 360</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3.570</td>
+<td style="text-align: right;">15.84</td>
+<td style="text-align: right;">-170.77076</td>
+<td style="text-align: right;">132543.30</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3.90e-06</td>
+<td style="text-align: right;">1.23e-05</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Merc 240D</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.190</td>
+<td style="text-align: right;">20.00</td>
+<td style="text-align: right;">163.01374</td>
+<td style="text-align: right;">126134.55</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3.50e-06</td>
+<td style="text-align: right;">1.23e-05</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Merc 230</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.150</td>
+<td style="text-align: right;">22.90</td>
+<td style="text-align: right;">382.65926</td>
+<td style="text-align: right;">295784.32</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.94e-05</td>
+<td style="text-align: right;">1.23e-05</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</section><section id="broom-2" class="slide level2">
+<h1><code>broom</code></h1>
+<p>Use <code>broom</code> to make tidy versions of model outputs.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Key statistics</span>
+knitr::<span class="kw">kable</span>(<span class="kw">glance</span>(steppedmodel))</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">null.deviance</th>
+<th style="text-align: right;">df.null</th>
+<th style="text-align: right;">logLik</th>
+<th style="text-align: right;">AIC</th>
+<th style="text-align: right;">BIC</th>
+<th style="text-align: right;">deviance</th>
+<th style="text-align: right;">df.residual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">31.49235</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">9.406483</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">20</td>
+</tr>
+</tbody>
+</table>
+</section><section id="coefficients" class="slide level2">
+<h1>Coefficients</h1>
+<ul>
+<li>Are the coefficient signs in the right directions?</li>
+<li>How significant are they?</li>
+<li>How important are they?</li>
+</ul>
+</section><section id="key-metrics" class="slide level2">
+<h1>Key metrics</h1>
+<ul>
+<li><em>Residual deviance</em> is a measure of how much error is in the model, after considering all the variables in the model. The smaller the residual deviance, the better.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">deviance</span>(fullmodel)
+## [1] 4.780243e-10</code></pre></div>
+<ul>
+<li><em>Akaike’s information criterion (AIC)</em> is a measure of information captured by a model and penalises more variables over fewer variables. The smaller the AIC, the better.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(fullmodel)
+## [1] 22</code></pre></div>
+</section><section id="classification-rates" class="slide level2">
+<h1>Classification rates</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">training_pred&lt;-<span class="kw">ifelse</span>(<span class="kw">predict</span>(steppedmodel,training_x)&gt;<span class="dv">0</span>, <span class="st">&quot;1&quot;</span>,<span class="st">&quot;0&quot;</span>)
+<span class="kw">confusionMatrix</span>(training_pred,training_y)
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  0  1
+##          0 13  0
+##          1  0 10
+##                                      
+##                Accuracy : 1          
+##                  95% CI : (0.8518, 1)
+##     No Information Rate : 0.5652     
+##     P-Value [Acc &gt; NIR] : 2e-06      
+##                                      
+##                   Kappa : 1          
+##  Mcnemar&#39;s Test P-Value : NA         
+##                                      
+##             Sensitivity : 1.0000     
+##             Specificity : 1.0000     
+##          Pos Pred Value : 1.0000     
+##          Neg Pred Value : 1.0000     
+##              Prevalence : 0.5652     
+##          Detection Rate : 0.5652     
+##    Detection Prevalence : 0.5652     
+##       Balanced Accuracy : 1.0000     
+##                                      
+##        &#39;Positive&#39; Class : 0          
+## </code></pre></div>
+</section><section id="classification-rates-1" class="slide level2">
+<h1>Classification rates</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">testing_pred&lt;-<span class="kw">ifelse</span>(<span class="kw">predict</span>(fullmodel,testing_x)&gt;<span class="dv">0</span>, <span class="st">&quot;1&quot;</span>,<span class="st">&quot;0&quot;</span>)
+<span class="kw">confusionMatrix</span>(testing_pred,testing_y)
+## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction 0 1
+##          0 5 2
+##          1 0 2
+##                                           
+##                Accuracy : 0.7778          
+##                  95% CI : (0.3999, 0.9719)
+##     No Information Rate : 0.5556          
+##     P-Value [Acc &gt; NIR] : 0.1575          
+##                                           
+##                   Kappa : 0.5263          
+##  Mcnemar&#39;s Test P-Value : 0.4795          
+##                                           
+##             Sensitivity : 1.0000          
+##             Specificity : 0.5000          
+##          Pos Pred Value : 0.7143          
+##          Neg Pred Value : 1.0000          
+##              Prevalence : 0.5556          
+##          Detection Rate : 0.5556          
+##    Detection Prevalence : 0.7778          
+##       Balanced Accuracy : 0.7500          
+##                                           
+##        &#39;Positive&#39; Class : 0               
+## </code></pre></div>
+</section></section>
+<section><section id="conclusion" class="titleslide slide level1"><h1>Conclusion</h1></section><section id="followup" class="slide level2">
+<h1>Followup</h1>
+<ul>
+<li>Get the slides: stephlocke.info/Rtraining/logisticregressions.html</li>
+<li><span class="citation" data-cites="SteffLocke">@SteffLocke</span> &amp; <span class="citation" data-cites="LockeData">@LockeData</span></li>
+<li>itsalocke.com</li>
+</ul>
+</section><section id="thank-you" class="slide level2">
+<h1>Thank you!</h1>
+</section></section>
+    </div>
+  </div>
+
+  <script src="logisticregressions_files/revealjs/lib/js/head.min.js"></script>
+  <script src="logisticregressions_files/revealjs/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+        height: 1080,
+        // Factor of the display size that should remain empty around the content
+        margin: 0.05,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'logisticregressions_files/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'logisticregressions_files/revealjs/plugin/zoom-js/zoom.js', async: true },
+              { src: 'logisticregressions_files/revealjs/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
