@@ -10,10 +10,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="sample_files/revealjs/css/reveal.css">
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      .smallcaps{font-variant: small-caps;}
-  </style>
+  <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
@@ -51,7 +48,8 @@ code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Ann
 code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
-  <link rel="stylesheet" href="sample_files/revealjs/css/theme/lockedata.css" id="theme">
+  <link rel="stylesheet" href="sample_files/revealjs/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="lockedata.css"/>
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement( 'link' );
@@ -70,8 +68,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <section>
   <h1 class="title">Sample</h1>
-  <p class="author">Locke Data</p>
-  <p class="date">14 May 2017</p>
+  <h2 class="author">Locke Data</h2>
+  <h3 class="date">14 May 2017</h3>
 </section>
 
 <section id="r-markdown" class="slide level2">
@@ -124,7 +122,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
         dependencies: [
           { src: 'sample_files/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: 'sample_files/revealjs/plugin/zoom-js/zoom.js', async: true },
-              { src: 'sample_files/revealjs/plugin/notes/notes.js', async: true }
+          { src: 'sample_files/revealjs/plugin/notes/notes.js', async: true }
         ]
       });
     </script>

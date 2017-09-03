@@ -4,16 +4,13 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Steph Locke (@SteffLocke)">
-  <meta name="dcterms.date" content="2017-09-01">
+  <meta name="dcterms.date" content="2017-09-03">
   <title>Reproducible logistic regression models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="glmworkshop_files/revealjs/css/reveal.css">
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      .smallcaps{font-variant: small-caps;}
-  </style>
+  <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
@@ -51,7 +48,8 @@ code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Ann
 code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
-  <link rel="stylesheet" href="glmworkshop_files/revealjs/css/theme/lockedata.css" id="theme">
+  <link rel="stylesheet" href="glmworkshop_files/revealjs/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="lockedata.css"/>
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement( 'link' );
@@ -70,8 +68,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <section>
   <h1 class="title">Reproducible logistic regression models</h1>
-  <p class="author">Steph Locke (<span class="citation" data-cites="SteffLocke">@SteffLocke</span>)</p>
-  <p class="date">2017-09-01</p>
+  <h2 class="author">Steph Locke (<span class="citation" data-cites="SteffLocke">@SteffLocke</span>)</h2>
+  <h3 class="date">2017-09-03</h3>
 </section>
 
 <section><section id="logistic-regression" class="titleslide slide level1 tabset"><h1>Logistic regression</h1></section><section id="linear-regression" class="slide level2">
@@ -305,7 +303,7 @@ knitr::<span class="kw">kable</span>(<span class="kw">data.frame</span>(logits,o
         dependencies: [
           { src: 'glmworkshop_files/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: 'glmworkshop_files/revealjs/plugin/zoom-js/zoom.js', async: true },
-              { src: 'glmworkshop_files/revealjs/plugin/notes/notes.js', async: true }
+          { src: 'glmworkshop_files/revealjs/plugin/notes/notes.js', async: true }
         ]
       });
     </script>
