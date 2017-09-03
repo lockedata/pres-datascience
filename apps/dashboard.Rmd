@@ -1,0 +1,421 @@
+---
+title: "Stats 101"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(tidyr)
+library(shiny)
+library(DT)
+library(flexdashboard)
+library(ggplot2)
+library(ggthemes)
+library(hrbrthemes)
+library(googlesheets)
+library(skimr)
+library(modelr)
+library(ggbeeswarm)
+library(forcats)
+gs_auth("googlesheets_token.rds")
+
+getdata <- function() {
+  sheet<-gs_title("About you (Responses)")
+  df<-gs_read(sheet) 
+  names(df)<-c("id","focus", "age", "continent","happy","social")
+  df<- df %>% mutate(focus=fct_lump(focus,3),
+                     continent=fct_lump(continent,3),
+                     age=pmin(age,70))
+ # df<- tidyr::separate(df,social)
+  return(df)
+}
+
+```
+
+
+```{r}
+results <- reactive({
+  invalidateLater(30000, session)
+  getdata()
+  }
+)
+
+```
+
+Intro
+===================================== 
+
+
+Welcome!
+
+Please fill out [bit.ly/stats101survey](bit.ly/stats101survey)
+
+Agenda
+
+- Gathering data
+- Exploring it
+- Comparing groups
+- Predicting values
+
+About Me
+
+- Own a data science consultancy
+- Microsoft Data Platform MVP
+- Lots of community stuff
+- itsalocke.com
+- @stefflocke @lockedata
+
+![](https://itsalocke.com/img/ChibiSteph.svg)
+
+
+Data
+=====================================  
+All data
+-----------------------------------------------------------------------
+### Records
+```{r}
+renderValueBox({
+  p<-nrow(results())
+  valueBox(p,caption = "Records", icon="fa-hashtag",color = "primary")
+})
+```
+
+### Table
+
+```{r}
+renderDataTable({results()})
+```
+
+Tables
+=====================================  
+
+- **Mean** is the sum of all values divided by the number of values
+- **Standard deviation** is how far away you have to go from the mean to get most values
+
+### Normal
+
+```{r}
+ ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1)) + ylab("") +
+  scale_y_continuous(breaks = NULL)+ 
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    )
+```
+
+### Happy 
+
+```{r}
+renderDataTable({
+  results() %>% 
+    group_by(happy) %>% 
+    summarise(n=n(),median =median(age),mean = mean(age), sd=sd(age), min=min(age), max=max(age))
+}, options = list(
+  bPaginate = FALSE
+))
+```
+
+### Location
+
+```{r}
+renderDataTable({
+  results() %>% 
+    group_by(continent) %>% 
+    summarise(n=n(), mean = mean(age), sd=sd(age), min=min(age), max=max(age))
+}, options = list(
+  bPaginate = FALSE
+))
+```
+
+### Focus
+
+```{r}
+renderDataTable({
+  results() %>% 
+    group_by(focus) %>% 
+    summarise(n=n(), mean = mean(age), sd=sd(age), min=min(age), max=max(age))
+}, options = list(
+  bPaginate = FALSE
+))
+```
+
+Charts
+=====================================  
+
+Age
+-----------------------------------------------------------------------
+### Happy with job
+```{r}
+renderPlot({
+  ggplot(results(), aes(x = happy, y= age)) +
+    geom_boxplot(alpha=0, colour="grey")+
+    geom_beeswarm(colour = "#2165B6", size =3) + 
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    ) +
+    labs(x = "Happy", y = "Age",
+         title = "Age distribution  by happiness") 
+})
+```
+
+### Location
+```{r}
+renderPlot({
+  ggplot(results(), aes(x = continent, y= age)) +
+    geom_boxplot(alpha=0, colour="grey")+
+    geom_beeswarm(colour = "#2165B6", size =3) + 
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    ) +
+    labs(x = "Location", y = "Age",
+         title = "Age distribution  by location") 
+})
+```
+
+### Focus
+```{r}
+renderPlot({
+  ggplot(results(), aes(x = focus, y= age)) +
+    geom_boxplot(alpha=0, colour="grey")+
+    geom_beeswarm(colour = "#2165B6", size =3) + 
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    ) +
+    labs(x = "Focus", y = "Age",
+         title = "Age distribution by focus") 
+})
+```
+
+
+Are happy people older?
+=====================================  
+
+Job satisfaction
+-----------------------------------------------------------------------
+Hypothesis: People who are unhappy with their job have are younger than those who are happy with their job.
+
+A t-test takes two groups and determines how likely it is for the two values to be generated from the same data i.e. the two groups are not actually different. The smaller the result, the less likely the two groups are actually one group. You want a smaller value.
+
+
+### Age of happy people
+```{r}
+renderValueBox({
+  results() %>% 
+    filter( happy == "Yes") %>% 
+    summarise(mean=mean(age)) ->
+    yes.mean
+  p<-round(yes.mean$mean,1)
+  valueBox(p,caption = "Mean age of happy people", icon="fa-user",color = "primary")
+})
+```
+
+### Age of unhappy people
+```{r}
+renderValueBox({
+  results() %>% 
+    filter( happy == "No") %>% 
+    summarise(mean=mean(age)) ->
+    no.mean
+  p<-round(no.mean$mean,1)
+  valueBox(p,caption = "Mean age of unhappy people", icon="fa-user",color = "warning")
+})
+```
+
+### Are the mean's *really* different?
+```{r}
+renderValueBox({
+  p<-round(t.test(age ~ happy, results())$p.value , 3)
+  valueBox(p,caption = "Happiness T-Test", icon="fa-asterisk",color = ifelse(p<=0.05,"primary","danger"))
+})
+```
+
+Can we predict age?
+=====================================  
+
+### Setup
+Challenge: Based on the information provided, can we predict a person's age?
+
+What sort of things do we need to consider first?
+
+- Do we have sufficient volumes of data?
+- Is there extra information we can use?
+- Is there bias that will be reflected in our results?
+- Are there data quality issues or changes to data capture that could impact results?
+
+Then what?
+
+- What types of models could fit our challenge?
+- How will we evaluate whether we've got a good model?
+- How are we going to test our predictions?
+
+### Sampling
+
+We typically take some **training** data for building out model and some **testing** data for checking whether it works.
+
+```{r}
+sliderInput("sampleper", "Training percent",min = 0, max=100,value = 70, step =1)
+              
+```
+
+```{r}
+set.seed(888)
+sampled<-reactive({
+  tr<-input$sampleper/100
+  te<-1-tr
+  resample_partition(results(),
+                    c(train = tr,test = te ))
+})
+```
+
+### Training size
+```{r}
+renderValueBox({
+  p<-nrow(sampled()$train)
+  valueBox(p,caption = "Training", icon="fa-hashtag")
+})
+```
+
+### Testing size
+```{r}
+renderValueBox({
+  p<-nrow(sampled()$test)
+  valueBox(p,caption = "Testing", icon="fa-hashtag")
+})
+```
+
+### Candidate models
+We have a continuous variable that we're trying to predict. We have a lot of categorical variable inputs.
+
+The simplest model would be using the average -- whether **mean** or **median**.
+
+We can do a line of best fit model (known as linear regression).
+
+[setosa.io](http://setosa.io/ev/ordinary-least-squares-regression/)
+
+Another option is a decision tree since we have lots of categorical inputs.
+
+[r2d3.us](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
+
+### Using simple measures
+```{r}
+training<-reactive({sampled()$train})
+testing<-reactive({sampled()$test})
+```
+
+The median age is `r reactive({median(results()$age)})`.
+
+The mean age is `r reactive({round(mean(results()$age),1)})`.
+
+```{r}
+renderPlot({
+qplot(data=results(), x=age) + geom_vline(aes(xintercept = median(results()$age)), colour="blue")+ geom_vline(aes(xintercept = mean(results()$age)),colour="red")+
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    )
+})
+```
+
+```{r}
+renderPlot({
+qplot(data=results(), x=age) + geom_vline(aes(xintercept = median(results()$age)), colour="blue")+ geom_vline(aes(xintercept = mean(results()$age)),colour="red")+
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    )
+})
+```
+
+### Using a line of best fit
+If we used one variable to predict age, what would our predictions look like?
+
+### Age
+```{r}
+happymodel<-reactive({lm(age~happy, data=results())})
+
+```
+
+```{r}
+
+renderPlot({
+  happymodel<-lm(age~happy, data=results())
+results() %>% 
+  group_by(happy) %>%
+  summarise(n=n()) %>% 
+  add_predictions(happymodel(), "age") ->
+  preds
+ggplot(results(), aes(x=happy, y=age))+
+  geom_point()+
+  geom_point(data=preds, colour="blue", size=5)+
+   hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    )+
+    labs(x = "Happy", y = "Age",
+         title = "Age distribution  by happiness") 
+})
+```
+
+### Focus
+
+```{r}
+
+renderPlot({
+  happymodel<-lm(age~focus, data=results())
+results() %>% 
+  group_by(focus) %>%
+  summarise(n=n()) %>% 
+  add_predictions(happymodel, "age") ->
+  preds
+ggplot(results(), aes(x=focus, y=age))+
+  geom_point()+
+  geom_point(data=preds, colour="blue", size=5)+
+   hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    )+
+    labs(x = "Focus", y = "Age",
+         title = "Age distribution  by focus") 
+})
+```
+
+### All the things
+Combining multiple variables
+
+```{r}
+
+renderPlot({
+  happymodel<-lm(age~focus + age + continent, data=results())
+results() %>% 
+  group_by(focus, age, continent) %>%
+  summarise(n=n()) %>% 
+  add_predictions(happymodel, "age") ->
+  preds
+ggplot(results(), aes(x=age, y=age))+
+  geom_point()+
+  geom_point(data=preds, colour="blue", size=5)+
+   hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    )+
+    labs(x = "Age", y = "Age",
+         title = "Age distribution") 
+})
+```

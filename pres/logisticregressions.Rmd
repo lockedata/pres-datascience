@@ -4,7 +4,6 @@ author: "Steph Locke"
 date: "`r Sys.Date()`"
 output:
   revealjs::revealjs_presentation:
-    theme: lockedata
     reveal_options:
       height: 1080
       width: 1920
