@@ -1,5 +1,5 @@
 revealjs::revealjs_presentation:
-  self_contained: true
+  self_contained: false
   theme: default
   css: lockedata.css
   reveal_options:
