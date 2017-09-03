@@ -1,5 +1,4 @@
 language: r
-cache: packages
 latex: false
 warnings_are_errors: false
 install:
