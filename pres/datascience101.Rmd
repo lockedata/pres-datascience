@@ -138,8 +138,7 @@ ggplot(datasaurus_dozen,aes(x,y))+
 - Models are cattle not pets
 
 ### Next steps
-- Read BLAH [geni.us/]()
-- Check out BLAH
+- Check out [setosa.io](http://setosa.io/ev/ordinary-least-squares-regression/)
 
 # Evaluation
 ## Critical Success Factors
@@ -156,9 +155,7 @@ ggplot(datasaurus_dozen,aes(x,y))+
 ### Tips
 - Don't just rely on single metric
 
-### Next steps
-- Read BLAH [geni.us/]()
-- Check out BLAH
+
 
 # Operationalising
 ## Features
@@ -181,8 +178,8 @@ ggplot(datasaurus_dozen,aes(x,y))+
 - Operationalising a model often takes longer than the modelling exercise (at least initially)
 
 ### Next steps
-- Read BLAH [geni.us/]()
-- Check out BLAH
+- Check out R in SQL Server
+- Check out Azure ML
 
 # Monitoring
 ## Logging
@@ -201,9 +198,6 @@ ggplot(datasaurus_dozen,aes(x,y))+
 ### Tips
 - Plan for monitoring, don't make it an after-thought
 
-### Next steps
-- Read BLAH [geni.us/]()
-- Check out BLAH
 
 # Conclusion
 ## Process
