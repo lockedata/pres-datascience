@@ -151,7 +151,7 @@ label: unnamed-chunk-21
 
 output file: stats101.knit.md
 
-/usr/bin/pandoc +RTS -K512m -RTS stats101.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/stats101.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --include-in-header /tmp/Rtmp0JYf6e/rmarkdown-str29ae539c0706.html --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=stats101_files/revealjs --highlight-style pygments 
+/usr/bin/pandoc +RTS -K512m -RTS stats101.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/stats101.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --include-in-header /tmp/RtmpboV2Rt/rmarkdown-str463a4d99019a.html --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=stats101_files/reveal.js-3.3.0.1 --highlight-style pygments 
 
 Output created: docs/stats101.html
 
@@ -184,7 +184,7 @@ List of 1
 
 output file: sample.knit.md
 
-/usr/bin/pandoc +RTS -K512m -RTS sample.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/sample.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=sample_files/revealjs --highlight-style pygments 
+/usr/bin/pandoc +RTS -K512m -RTS sample.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/sample.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=sample_files/reveal.js-3.3.0.1 --highlight-style pygments 
 
 Output created: docs/sample.html
 
@@ -369,7 +369,7 @@ List of 1
 
 output file: logisticregressions.knit.md
 
-/usr/bin/pandoc +RTS -K512m -RTS logisticregressions.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/logisticregressions.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable height=1080 --variable width=1920 --variable margin=0.05 --css lockedata.css --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable revealjs-url=logisticregressions_files/revealjs --highlight-style pygments 
+/usr/bin/pandoc +RTS -K512m -RTS logisticregressions.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/logisticregressions.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable height=1080 --variable width=1920 --variable margin=0.05 --css lockedata.css --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable revealjs-url=logisticregressions_files/reveal.js-3.3.0.1 --highlight-style pygments 
 
 Output created: docs/logisticregressions.html
 
@@ -422,7 +422,7 @@ label: transformcode
 
 output file: glmworkshop.knit.md
 
-/usr/bin/pandoc +RTS -K512m -RTS glmworkshop.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/glmworkshop.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=glmworkshop_files/revealjs --highlight-style pygments 
+/usr/bin/pandoc +RTS -K512m -RTS glmworkshop.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/glmworkshop.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=glmworkshop_files/reveal.js-3.3.0.1 --highlight-style pygments 
 
 Output created: docs/glmworkshop.html
 
@@ -447,11 +447,11 @@ label: unnamed-chunk-1
 
 output file: datascience101.knit.md
 
-/usr/bin/pandoc +RTS -K512m -RTS datascience101.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/datascience101.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=datascience101_files/revealjs --highlight-style pygments 
+/usr/bin/pandoc +RTS -K512m -RTS datascience101.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/datascience101.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=datascience101_files/reveal.js-3.3.0.1 --highlight-style pygments 
 
 Output created: docs/datascience101.html
 There were 50 or more warnings (use warnings() to see the first 50)
 > 
 > proc.time()
    user  system elapsed 
- 23.274   0.654  24.092 
+ 15.157   0.496  15.673 

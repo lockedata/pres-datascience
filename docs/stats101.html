@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="stats101_files/revealjs/css/reveal.css"/>
+  <link rel="stylesheet" href="stats101_files/reveal.js-3.3.0.1/css/reveal.css"/>
 
 
 <style type="text/css">
@@ -50,7 +50,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="stats101_files/revealjs/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="stats101_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
 
 
   <!-- some tweaks to reveal css -->
@@ -520,8 +520,8 @@ results&lt;-basedata[Age&lt;<span class="dv">100</span>&amp;Age&gt;Experience,]<
 </section><section id="results" class="slide level2">
 <h1>Results</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT::<span class="kw">datatable</span>(results)</code></pre></div>
-<div id="htmlwidget-6acc4630c8679a12daae" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6acc4630c8679a12daae">{"x":{"style":"bootstrap","filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"],["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]],"container":"<table class=\"table table-striped table-hover\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Name<\/th>\n      <th>Age<\/th>\n      <th>Field<\/th>\n      <th>Experience<\/th>\n      <th>Attending Stats 101 with Steph Locke<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"lftir","columnDefs":[{"className":"dt-right","targets":[2,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-07092b966167859ea28b" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-07092b966167859ea28b">{"x":{"style":"bootstrap","filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"],["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]],"container":"<table class=\"table table-striped table-hover\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Name<\/th>\n      <th>Age<\/th>\n      <th>Field<\/th>\n      <th>Experience<\/th>\n      <th>Attending Stats 101 with Steph Locke<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"lftir","columnDefs":[{"className":"dt-right","targets":[2,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </section><section id="age-distribution" class="slide level2">
 <h1>Age Distribution</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(results)+ggopts+
@@ -535,8 +535,8 @@ results&lt;-basedata[Age&lt;<span class="dv">100</span>&amp;Age&gt;Experience,]<
 <span class="st">  </span><span class="kw">encode_x</span>(<span class="st">&quot;Experience&quot;</span>,<span class="st">&quot;quantitative&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;*&quot;</span>, <span class="st">&quot;quantitative&quot;</span>, <span class="dt">aggregate=</span><span class="st">&quot;count&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">bin_x</span>(<span class="dt">maxbins=</span><span class="dv">10</span>) %&gt;%<span class="st">  </span><span class="kw">mark_bar</span>()</code></pre></div>
-<div id="htmlwidget-f04bd7c99a09fa3ab4f0" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f04bd7c99a09fa3ab4f0">{"x":{"description":"","data":{"values":{"Name":["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],"Age":[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],"Field":["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],"Experience":[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"bar","encoding":{"color":{"legend":{"orient":"left"}},"x":{"field":"Experience","type":"quantitative","bin":{"maxbins":10}},"y":{"field":"*","type":"quantitative","aggregate":"count"}},"config":{"cell":{"width":700,"height":500}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7ca4030355135ed2ad49" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7ca4030355135ed2ad49">{"x":{"description":"","data":{"values":{"Name":["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],"Age":[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],"Field":["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],"Experience":[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"bar","encoding":{"color":{"legend":{"orient":"left"}},"x":{"field":"Experience","type":"quantitative","bin":{"maxbins":10}},"y":{"field":"*","type":"quantitative","aggregate":"count"}},"config":{"cell":{"width":700,"height":500}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section><section id="field-distribution" class="slide level2">
 <h1>Field Distribution</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vegalite %&gt;%
@@ -544,8 +544,8 @@ results&lt;-basedata[Age&lt;<span class="dv">100</span>&amp;Age&gt;Experience,]<
 <span class="st">  </span><span class="kw">encode_x</span>(<span class="st">&quot;Field&quot;</span>,<span class="st">&quot;ordinal&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;*&quot;</span>, <span class="st">&quot;quantitative&quot;</span>, <span class="dt">aggregate=</span><span class="st">&quot;count&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">mark_bar</span>()</code></pre></div>
-<div id="htmlwidget-cfc63c148f3d75d348ae" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cfc63c148f3d75d348ae">{"x":{"description":"","data":{"values":{"Name":["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],"Age":[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],"Field":["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],"Experience":[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"bar","encoding":{"color":{"legend":{"orient":"left"}},"x":{"field":"Field","type":"ordinal"},"y":{"field":"*","type":"quantitative","aggregate":"count"}},"config":{"cell":{"width":700,"height":500}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7a5375203d12d9b88f2f" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7a5375203d12d9b88f2f">{"x":{"description":"","data":{"values":{"Name":["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],"Age":[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],"Field":["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],"Experience":[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"bar","encoding":{"color":{"legend":{"orient":"left"}},"x":{"field":"Field","type":"ordinal"},"y":{"field":"*","type":"quantitative","aggregate":"count"}},"config":{"cell":{"width":700,"height":500}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section><section id="all-data" class="slide level2">
 <h1>All data</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vegalite %&gt;%
@@ -554,8 +554,8 @@ results&lt;-basedata[Age&lt;<span class="dv">100</span>&amp;Age&gt;Experience,]<
 <span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;quantitative&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">encode_color</span>(<span class="st">&quot;Field&quot;</span>, <span class="st">&quot;nominal&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">mark_point</span>()</code></pre></div>
-<div id="htmlwidget-6de30370ed987598cd0d" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6de30370ed987598cd0d">{"x":{"description":"","data":{"values":{"Name":["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],"Age":[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],"Field":["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],"Experience":[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"point","encoding":{"color":{"field":"Field","type":"nominal"},"x":{"field":"Experience","type":"quantitative"},"y":{"field":"Age","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-25da60db26c5f8818ac0" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-25da60db26c5f8818ac0">{"x":{"description":"","data":{"values":{"Name":["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],"Age":[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],"Field":["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],"Experience":[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"point","encoding":{"color":{"field":"Field","type":"nominal"},"x":{"field":"Experience","type":"quantitative"},"y":{"field":"Age","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section></section>
 <section><section id="sampling" class="titleslide slide level1"><h1>Sampling</h1></section><section id="training" class="slide level2">
 <h1>Training</h1>
@@ -565,8 +565,8 @@ results&lt;-basedata[Age&lt;<span class="dv">100</span>&amp;Age&gt;Experience,]<
 <span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;quantitative&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">encode_color</span>(<span class="st">&quot;Field&quot;</span>, <span class="st">&quot;nominal&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">mark_point</span>()</code></pre></div>
-<div id="htmlwidget-063b37faf1a131ebeb62" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-063b37faf1a131ebeb62">{"x":{"description":"","data":{"values":{"Name":["Steph Locke","Lachlan McLachlan","David Williams","Alex Yates","MKK","Paul Andrew","Rob Sewell","Annette Allen","willy wonka","Stephen","Louis bojko","Andrew Commander","Paul","James Lupolt","Terry McCann","Thomas R","Oz Locke","Ryan Yates","Andy W","Al Eardley","Sam Partridge"],"Age":[28,22,45,29,45,30,44,46,45,36,32,34,37,37,29,45,30,25,42,44,32],"Field":["Analytics","Analytics","DBA","Other","Other","BI","DBA","DBA","DBA","Other","BI","DBA","Analytics","DBA","Analytics","DBA","Other","Other","BI","Other","DBA"],"Experience":[8,1,24,5,18,5,12,16,4,10,8,6,4,15,8,23,0.5,3,1,20,2.5],"Attending.Stats.101.with.Steph.Locke":["Yes","Yes","Yes","No","Yes","No","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","No","Yes","No","Yes","No","No"]}},"mark":"point","encoding":{"color":{"field":"Field","type":"nominal"},"x":{"field":"Experience","type":"quantitative"},"y":{"field":"Age","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d4bc52672612d878cccb" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d4bc52672612d878cccb">{"x":{"description":"","data":{"values":{"Name":["Thomas R","James Lupolt","Alex Yates","Oz Locke","Paul Andrew","brian","Steph Locke","Rob Sewell","Stephen","Dirk Diggler","Terry McCann","MKK","Paul","Al Eardley","Andy W","John","Kathryn","Dammy","Sam Partridge","Ryan Yates","André Melancia"],"Age":[45,37,29,30,30,57,28,44,36,39,29,45,37,44,42,42,30,30,32,25,37],"Field":["DBA","DBA","Other","Other","BI","Other","Analytics","DBA","Other","DBA","Analytics","Other","Analytics","Other","BI","BI","Analytics","BI","DBA","Other","DBA"],"Experience":[23,15,5,0.5,5,20,8,12,10,18,8,18,4,20,1,3,8,4,2.5,3,16],"Attending.Stats.101.with.Steph.Locke":["No","Yes","No","Yes","No","Yes","Yes","No","No","No","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","No","No","Yes"]}},"mark":"point","encoding":{"color":{"field":"Field","type":"nominal"},"x":{"field":"Experience","type":"quantitative"},"y":{"field":"Age","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section><section id="holdout" class="slide level2">
 <h1>Holdout</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vegalite %&gt;%
@@ -575,8 +575,8 @@ results&lt;-basedata[Age&lt;<span class="dv">100</span>&amp;Age&gt;Experience,]<
 <span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;quantitative&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">encode_color</span>(<span class="st">&quot;Field&quot;</span>, <span class="st">&quot;nominal&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">mark_point</span>()</code></pre></div>
-<div id="htmlwidget-2b8917c1dbd79cd6c7d6" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2b8917c1dbd79cd6c7d6">{"x":{"description":"","data":{"values":{"Name":["André Melancia","Dirk Diggler","Dave Green","Kathryn","Dammy","brian","John"],"Age":[37,39,35,30,30,57,42],"Field":["DBA","DBA","Other","Analytics","BI","Other","BI"],"Experience":[16,18,20,8,4,20,3],"Attending.Stats.101.with.Steph.Locke":["Yes","No","Yes","Yes","Yes","Yes","Yes"]}},"mark":"point","encoding":{"color":{"field":"Field","type":"nominal"},"x":{"field":"Experience","type":"quantitative"},"y":{"field":"Age","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9500695e3df7c655eaac" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9500695e3df7c655eaac">{"x":{"description":"","data":{"values":{"Name":["Annette Allen","Andrew Commander","David Williams","Louis bojko","willy wonka","Dave Green","Lachlan McLachlan"],"Age":[46,34,45,32,45,35,22],"Field":["DBA","DBA","DBA","BI","DBA","Other","Analytics"],"Experience":[16,6,24,8,4,20,1],"Attending.Stats.101.with.Steph.Locke":["No","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"point","encoding":{"color":{"field":"Field","type":"nominal"},"x":{"field":"Experience","type":"quantitative"},"y":{"field":"Age","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section></section>
 <section><section id="one-size-fits-all" class="titleslide slide level1"><h1>One size fits all</h1></section><section id="one-size-fits-all-1" class="slide level2">
 <h1>One size fits all</h1>
@@ -597,8 +597,8 @@ knitr::<span class="kw">kable</span>(averages)</code></pre></div>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">36</td>
-<td style="text-align: right;">36</td>
-<td style="text-align: right;">45</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">30</td>
 </tr>
 </tbody>
 </table>
@@ -612,8 +612,8 @@ vegalite %&gt;%
 <span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;quantitative&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">encode_color</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;nominal&quot;</span>)%&gt;%
 <span class="st">  </span><span class="kw">mark_point</span>()</code></pre></div>
-<div id="htmlwidget-b3f0f6a5e89b61b30949" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b3f0f6a5e89b61b30949">{"x":{"description":"","data":{"values":{"Name":["André Melancia","Dirk Diggler","Dave Green","Kathryn","Dammy","brian","John","André Melancia","Dirk Diggler","Dave Green","Kathryn","Dammy","brian","John","André Melancia","Dirk Diggler","Dave Green","Kathryn","Dammy","brian","John","André Melancia","Dirk Diggler","Dave Green","Kathryn","Dammy","brian","John"],"Field":["DBA","DBA","Other","Analytics","BI","Other","BI","DBA","DBA","Other","Analytics","BI","Other","BI","DBA","DBA","Other","Analytics","BI","Other","BI","DBA","DBA","Other","Analytics","BI","Other","BI"],"Experience":[16,18,20,8,4,20,3,16,18,20,8,4,20,3,16,18,20,8,4,20,3,16,18,20,8,4,20,3],"Attending.Stats.101.with.Steph.Locke":["Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes"],"variable":["Age","Age","Age","Age","Age","Age","Age","Mean","Mean","Mean","Mean","Mean","Mean","Mean","Median","Median","Median","Median","Median","Median","Median","Mode","Mode","Mode","Mode","Mode","Mode","Mode"],"value":[37,39,35,30,30,57,42,36,36,36,36,36,36,36,36,36,36,36,36,36,36,45,45,45,45,45,45,45]}},"mark":"point","encoding":{"color":{"field":"variable","type":"nominal"},"x":{"field":"Name","type":"ordinal"},"y":{"field":"value","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e0625274132480307501" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e0625274132480307501">{"x":{"description":"","data":{"values":{"Name":["Annette Allen","Andrew Commander","David Williams","Louis bojko","willy wonka","Dave Green","Lachlan McLachlan","Annette Allen","Andrew Commander","David Williams","Louis bojko","willy wonka","Dave Green","Lachlan McLachlan","Annette Allen","Andrew Commander","David Williams","Louis bojko","willy wonka","Dave Green","Lachlan McLachlan","Annette Allen","Andrew Commander","David Williams","Louis bojko","willy wonka","Dave Green","Lachlan McLachlan"],"Field":["DBA","DBA","DBA","BI","DBA","Other","Analytics","DBA","DBA","DBA","BI","DBA","Other","Analytics","DBA","DBA","DBA","BI","DBA","Other","Analytics","DBA","DBA","DBA","BI","DBA","Other","Analytics"],"Experience":[16,6,24,8,4,20,1,16,6,24,8,4,20,1,16,6,24,8,4,20,1,16,6,24,8,4,20,1],"Attending.Stats.101.with.Steph.Locke":["No","Yes","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes"],"variable":["Age","Age","Age","Age","Age","Age","Age","Mean","Mean","Mean","Mean","Mean","Mean","Mean","Median","Median","Median","Median","Median","Median","Median","Mode","Mode","Mode","Mode","Mode","Mode","Mode"],"value":[46,34,45,32,45,35,22,36,36,36,36,36,36,36,37,37,37,37,37,37,37,30,30,30,30,30,30,30]}},"mark":"point","encoding":{"color":{"field":"variable","type":"nominal"},"x":{"field":"Name","type":"ordinal"},"y":{"field":"value","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section><section id="assessing-results" class="slide level2">
 <h1>Assessing results</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">holdout.lse&lt;-<span class="kw">melt</span>(holdout, <span class="dt">measure.vars =</span> <span class="kw">colnames</span>(averages))
@@ -628,16 +628,16 @@ knitr::<span class="kw">kable</span>(holdout.lse[,.(<span class="dt">LSE=</span>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Mean</td>
-<td style="text-align: right;">560</td>
+<td style="text-align: left;">Median</td>
+<td style="text-align: right;">472</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Median</td>
-<td style="text-align: right;">560</td>
+<td style="text-align: left;">Mean</td>
+<td style="text-align: right;">479</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Mode</td>
-<td style="text-align: right;">803</td>
+<td style="text-align: right;">815</td>
 </tr>
 </tbody>
 </table>
@@ -660,8 +660,8 @@ vegalite %&gt;%
 <span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;quantitative&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">encode_color</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;nominal&quot;</span>)%&gt;%
 <span class="st">  </span><span class="kw">mark_point</span>()</code></pre></div>
-<div id="htmlwidget-40ca93dacb64e95ed845" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-40ca93dacb64e95ed845">{"x":{"description":"","data":{"values":{"Name":["André Melancia","Dirk Diggler","Dave Green","Kathryn","Dammy","brian","John","André Melancia","Dirk Diggler","Dave Green","Kathryn","Dammy","brian","John"],"Field":["DBA","DBA","Other","Analytics","BI","Other","BI","DBA","DBA","Other","Analytics","BI","Other","BI"],"Experience":[16,18,20,8,4,20,3,16,18,20,8,4,20,3],"Attending.Stats.101.with.Steph.Locke":["Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes"],"Mean":[36,36,36,36,36,36,36,36,36,36,36,36,36,36],"Median":[36,36,36,36,36,36,36,36,36,36,36,36,36,36],"Mode":[45,45,45,45,45,45,45,45,45,45,45,45,45,45],"variable":["Age","Age","Age","Age","Age","Age","Age","expLMres","expLMres","expLMres","expLMres","expLMres","expLMres","expLMres"],"value":[37,39,35,30,30,57,42,40.7886822145964,42.1909685034207,43.593254792245,35.1795370592993,32.3749644816507,43.593254792245,31.6738213372385]}},"mark":"point","encoding":{"color":{"field":"variable","type":"nominal"},"x":{"field":"Name","type":"ordinal"},"y":{"field":"value","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-cc66200be388151ec5ae" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cc66200be388151ec5ae">{"x":{"description":"","data":{"values":{"Name":["Annette Allen","Andrew Commander","David Williams","Louis bojko","willy wonka","Dave Green","Lachlan McLachlan","Annette Allen","Andrew Commander","David Williams","Louis bojko","willy wonka","Dave Green","Lachlan McLachlan"],"Field":["DBA","DBA","DBA","BI","DBA","Other","Analytics","DBA","DBA","DBA","BI","DBA","Other","Analytics"],"Experience":[16,6,24,8,4,20,1,16,6,24,8,4,20,1],"Attending.Stats.101.with.Steph.Locke":["No","Yes","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes"],"Mean":[36,36,36,36,36,36,36,36,36,36,36,36,36,36],"Median":[37,37,37,37,37,37,37,37,37,37,37,37,37,37],"Mode":[30,30,30,30,30,30,30,30,30,30,30,30,30,30],"variable":["Age","Age","Age","Age","Age","Age","Age","expLMres","expLMres","expLMres","expLMres","expLMres","expLMres","expLMres"],"value":[46,34,45,32,45,35,22,41.1229249842404,33.8819079638579,46.9157386005463,35.3301113679344,32.4337045597815,44.0193317923934,30.2613994536667]}},"mark":"point","encoding":{"color":{"field":"variable","type":"nominal"},"x":{"field":"Name","type":"ordinal"},"y":{"field":"value","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section><section id="assessing-results-1" class="slide level2">
 <h1>Assessing results</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">holdout.lse&lt;-<span class="kw">melt</span>(holdout, <span class="dt">measure.vars =</span> <span class="kw">c</span>(<span class="st">&quot;expLMres&quot;</span>,<span class="kw">colnames</span>(averages)))
@@ -677,19 +677,19 @@ knitr::<span class="kw">kable</span>(holdout.lse[,.(<span class="dt">LSE=</span>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">expLMres</td>
-<td style="text-align: right;">417.2193</td>
+<td style="text-align: right;">346.0704</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Mean</td>
-<td style="text-align: right;">560.0000</td>
+<td style="text-align: left;">Median</td>
+<td style="text-align: right;">472.0000</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Median</td>
-<td style="text-align: right;">560.0000</td>
+<td style="text-align: left;">Mean</td>
+<td style="text-align: right;">479.0000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Mode</td>
-<td style="text-align: right;">803.0000</td>
+<td style="text-align: right;">815.0000</td>
 </tr>
 </tbody>
 </table>
@@ -708,21 +708,21 @@ knitr::<span class="kw">kable</span>(holdout.lse[,.(<span class="dt">LSE=</span>
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
-## -6.164 -3.308 -1.825  3.177  9.430 
+## -7.499 -3.356 -1.769  3.205 11.231 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  25.9981     2.9273   8.881 1.39e-07 ***
-## Experience    0.5718     0.1879   3.043  0.00775 ** 
-## FieldBI       6.0002     4.2114   1.425  0.17344    
-## FieldDBA      7.6758     3.6623   2.096  0.05235 .  
-## FieldOther    3.4509     3.6432   0.947  0.35762    
+## (Intercept)  25.0052     3.4083   7.337 1.67e-06 ***
+## Experience    0.8564     0.2303   3.719  0.00187 ** 
+## FieldBI       8.2115     4.3338   1.895  0.07634 .  
+## FieldDBA      1.6484     4.2364   0.389  0.70233    
+## FieldOther    3.6356     3.8716   0.939  0.36168    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 5.512 on 16 degrees of freedom
-## Multiple R-squared:  0.587,  Adjusted R-squared:  0.4837 
-## F-statistic: 5.684 on 4 and 16 DF,  p-value: 0.004825</code></pre></div>
+## Residual standard error: 6.006 on 16 degrees of freedom
+## Multiple R-squared:  0.5387, Adjusted R-squared:  0.4234 
+## F-statistic: 4.671 on 4 and 16 DF,  p-value: 0.01089</code></pre></div>
 </section><section id="model-1" class="slide level2">
 <h1>Model</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">training[,fieldLMres:<span class="er">=</span>fieldLM$fitted]
@@ -742,8 +742,8 @@ vegalite %&gt;%
 <span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;quantitative&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">encode_color</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;nominal&quot;</span>)%&gt;%
 <span class="st">  </span><span class="kw">mark_point</span>()</code></pre></div>
-<div id="htmlwidget-e5c1c442f66ab287cf6c" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e5c1c442f66ab287cf6c">{"x":{"description":"","data":{"values":{"Name":["André Melancia","Dirk Diggler","Dave Green","Kathryn","Dammy","brian","John","André Melancia","Dirk Diggler","Dave Green","Kathryn","Dammy","brian","John"],"Field":["DBA","DBA","Other","Analytics","BI","Other","BI","DBA","DBA","Other","Analytics","BI","Other","BI"],"Experience":[16,18,20,8,4,20,3,16,18,20,8,4,20,3],"Attending.Stats.101.with.Steph.Locke":["Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes"],"Mean":[36,36,36,36,36,36,36,36,36,36,36,36,36,36],"Median":[36,36,36,36,36,36,36,36,36,36,36,36,36,36],"Mode":[45,45,45,45,45,45,45,45,45,45,45,45,45,45],"expLMres":[40.7886822145964,42.1909685034207,43.593254792245,35.1795370592993,32.3749644816507,43.593254792245,31.6738213372385,40.7886822145964,42.1909685034207,43.593254792245,35.1795370592993,32.3749644816507,43.593254792245,31.6738213372385],"variable":["Age","Age","Age","Age","Age","Age","Age","fieldLMres","fieldLMres","fieldLMres","fieldLMres","fieldLMres","fieldLMres","fieldLMres"],"value":[37,39,35,30,30,57,42,42.8225970441919,43.9661873464299,40.8848320160096,30.5724366655773,34.285469899254,40.8848320160096,33.713674748135]}},"mark":"point","encoding":{"color":{"field":"variable","type":"nominal"},"x":{"field":"Name","type":"ordinal"},"y":{"field":"value","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7622abc8d58043ddaeb1" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7622abc8d58043ddaeb1">{"x":{"description":"","data":{"values":{"Name":["Annette Allen","Andrew Commander","David Williams","Louis bojko","willy wonka","Dave Green","Lachlan McLachlan","Annette Allen","Andrew Commander","David Williams","Louis bojko","willy wonka","Dave Green","Lachlan McLachlan"],"Field":["DBA","DBA","DBA","BI","DBA","Other","Analytics","DBA","DBA","DBA","BI","DBA","Other","Analytics"],"Experience":[16,6,24,8,4,20,1,16,6,24,8,4,20,1],"Attending.Stats.101.with.Steph.Locke":["No","Yes","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes"],"Mean":[36,36,36,36,36,36,36,36,36,36,36,36,36,36],"Median":[37,37,37,37,37,37,37,37,37,37,37,37,37,37],"Mode":[30,30,30,30,30,30,30,30,30,30,30,30,30,30],"expLMres":[41.1229249842404,33.8819079638579,46.9157386005463,35.3301113679344,32.4337045597815,44.0193317923934,30.2613994536667,41.1229249842404,33.8819079638579,46.9157386005463,35.3301113679344,32.4337045597815,44.0193317923934,30.2613994536667],"variable":["Age","Age","Age","Age","Age","Age","Age","fieldLMres","fieldLMres","fieldLMres","fieldLMres","fieldLMres","fieldLMres","fieldLMres"],"value":[46,34,45,32,45,35,22,40.3559670601825,31.7919645748191,47.2071690484733,40.0679011805477,30.0791640777464,45.7687736831512,25.8615985087819]}},"mark":"point","encoding":{"color":{"field":"variable","type":"nominal"},"x":{"field":"Name","type":"ordinal"},"y":{"field":"value","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section><section id="assessing-results-2" class="slide level2">
 <h1>Assessing results</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">holdout.lse&lt;-<span class="kw">melt</span>(holdout, <span class="dt">measure.vars =</span> <span class="kw">c</span>(<span class="st">&quot;fieldLMres&quot;</span>,<span class="st">&quot;expLMres&quot;</span>,<span class="kw">colnames</span>(averages)))
@@ -759,23 +759,23 @@ knitr::<span class="kw">kable</span>(holdout.lse[,.(<span class="dt">LSE=</span>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">expLMres</td>
-<td style="text-align: right;">417.2193</td>
+<td style="text-align: right;">346.0704</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">fieldLMres</td>
-<td style="text-align: right;">440.2517</td>
+<td style="text-align: right;">460.2029</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Mean</td>
-<td style="text-align: right;">560.0000</td>
+<td style="text-align: left;">Median</td>
+<td style="text-align: right;">472.0000</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Median</td>
-<td style="text-align: right;">560.0000</td>
+<td style="text-align: left;">Mean</td>
+<td style="text-align: right;">479.0000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Mode</td>
-<td style="text-align: right;">803.0000</td>
+<td style="text-align: right;">815.0000</td>
 </tr>
 </tbody>
 </table>
@@ -783,8 +783,8 @@ knitr::<span class="kw">kable</span>(holdout.lse[,.(<span class="dt">LSE=</span>
     </div>
   </div>
 
-  <script src="stats101_files/revealjs/lib/js/head.min.js"></script>
-  <script src="stats101_files/revealjs/js/reveal.js"></script>
+  <script src="stats101_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="stats101_files/reveal.js-3.3.0.1/js/reveal.js"></script>
 
   <script>
 
