@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Steph Locke" />
+  <meta name="dcterms.date" content="2017-09-09" />
+  <title>Data Science Fundamentals</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="datascience101_files/revealjs/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="datascience101_files/revealjs/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="lockedata.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Data Science Fundamentals</h1>
+    <h2 class="author">Steph Locke</h2>
+    <h3 class="date">2017-09-09</h3>
+</section>
+
+<section id="agenda" class="slide level2">
+<h1>Agenda</h1>
+<ul>
+<li>Business challenge</li>
+<li>Process</li>
+<li>Data &amp; EDA</li>
+<li>Sampling</li>
+<li>Modelling</li>
+<li>Evaluation</li>
+<li>Operationalising</li>
+<li>Monitoring</li>
+</ul>
+</section>
+<section id="steph-locke-locke-data" class="slide level2">
+<h1>Steph Locke &amp; Locke Data</h1>
+<ul>
+<li>Steph
+<ul>
+<li>MVP</li>
+<li>I have a book coming out! <a href="">geni.us/</a></li>
+</ul></li>
+<li>Locke Data
+<ul>
+<li>Consultancy focussed on helping organisations get started with data science</li>
+</ul></li>
+</ul>
+<p><span class="citation" data-cites="stefflocke">@stefflocke</span> <span class="citation" data-cites="lockedata">@lockedata</span> <a href="mailto:steph@itsalocke.com">steph@itsalocke.com</a> itsalocke.com</p>
+</section>
+<section><section id="business-challenge" class="titleslide slide level1"><h1>Business Challenge</h1></section><section id="business-challengegoal" class="slide level2">
+<h1>Business Challenge/goal</h1>
+<ul>
+<li>Increase customer profitability</li>
+<li>Increase quantity of customers</li>
+<li>Reduce overheads</li>
+</ul>
+</section><section id="data-science-challenge" class="slide level2">
+<h1>Data science challenge</h1>
+<p>Find the lever you can push on to change behaviours that helps with business goal.</p>
+</section><section id="getting-started" class="slide level2">
+<h1>Getting started</h1>
+<h3 id="tips">Tips</h3>
+<ul>
+<li>Pick something only somewhat important and valuable to begin</li>
+<li>Find many levers</li>
+</ul>
+</section></section>
+<section><section id="process" class="titleslide slide level1"><h1>Process</h1></section><section id="crisp-dm" class="slide level2">
+<h1>CRISP-DM</h1>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/CRISP-DM_Process_Diagram.png" alt="" /></p>
+</section><section id="data-science-routes" class="slide level2">
+<h1>Data science routes</h1>
+<p><img src="https://github.com/stephlocke/lazyCDN/raw/master/RHighlevel.png" alt="" /></p>
+</section><section id="getting-started-1" class="slide level2">
+<h1>Getting started</h1>
+<h3 id="tips-1">Tips</h3>
+<ul>
+<li>Iterate</li>
+<li>Prototype</li>
+</ul>
+<h3 id="next-steps">Next steps</h3>
+<ul>
+<li>Check out <a href="https://medium.com/lean-product-development/kanban-boards-for-hypothesis-driven-development-32f99a70e8ee">Experiment kanban</a></li>
+<li>Check out <a href="https://azure.microsoft.com/en-gb/documentation/learning-paths/data-science-process/">MSFT data science process</a></li>
+</ul>
+</section></section>
+<section><section id="data-eda" class="titleslide slide level1"><h1>Data &amp; EDA</h1></section><section id="data" class="slide level2">
+<h1>Data</h1>
+<ul>
+<li>Do you have enough data?</li>
+<li>What biases are in the data that you might end up reinforcing?</li>
+<li>Have there been changes over time that mean the information means different things?</li>
+<li>Does it actually measure what you think it’s measuring?</li>
+</ul>
+</section><section id="extra-data" class="slide level2">
+<h1>Extra data</h1>
+<ul>
+<li>Where can you get extra information from?</li>
+<li>Do the join criteria work?</li>
+<li>Will you be able to get it for production purposes?</li>
+</ul>
+</section><section id="exploration" class="slide level2">
+<h1>Exploration</h1>
+<ul>
+<li>Analyse the heck out of that data!</li>
+<li>Create extra “features”</li>
+</ul>
+</section><section id="visualisation" class="slide level2">
+<h1>Visualisation</h1>
+<p><img src="datascience101_files/figure-revealjs/unnamed-chunk-1-1.svg" width="768" height="500px" /></p>
+</section><section id="getting-started-2" class="slide level2">
+<h1>Getting started</h1>
+<h3 id="tips-2">Tips</h3>
+<ul>
+<li>Data dictionaries</li>
+<li>Code everything</li>
+</ul>
+<h3 id="next-steps-1">Next steps</h3>
+<ul>
+<li>Read R for Data Science <a href="//geni.us/rfords">geni.us/rfords</a></li>
+<li>Use your existing tools</li>
+</ul>
+</section></section>
+<section><section id="sampling" class="titleslide slide level1"><h1>Sampling</h1></section><section id="sampling-basics" class="slide level2">
+<h1>Sampling basics</h1>
+<ul>
+<li>[OPTIONAL] Dataset for missing data</li>
+<li>Dataset for building your model</li>
+<li>Dataset for testing your model</li>
+</ul>
+</section><section id="considerations" class="slide level2">
+<h1>Considerations</h1>
+<ul>
+<li>Balanced or unbalanced</li>
+<li>Bootstrapping</li>
+</ul>
+</section><section id="getting-started-3" class="slide level2">
+<h1>Getting started</h1>
+<h3 id="tips-3">Tips</h3>
+<ul>
+<li>Make samples reproducible</li>
+<li>Don’t double-dip!</li>
+</ul>
+<h3 id="next-steps-2">Next steps</h3>
+<ul>
+<li>Read about <a href="https://www.khanacademy.org/math/statistics-probability/designing-studies/sampling-methods-stats/a/sampling-methods-review">sampling</a></li>
+</ul>
+</section></section>
+<section><section id="modelling" class="titleslide slide level1"><h1>Modelling</h1></section><section id="models" class="slide level2">
+<h1>Models</h1>
+<ul>
+<li>Supervised vs unsupervised</li>
+<li>Parametric vs non-parametric</li>
+</ul>
+</section><section id="models-1" class="slide level2">
+<h1>Models</h1>
+<ul>
+<li>Regression</li>
+<li>Trees</li>
+<li>Others</li>
+</ul>
+</section><section id="candidate-models" class="slide level2">
+<h1>Candidate models</h1>
+<ul>
+<li>Simple model</li>
+<li>Complex model</li>
+<li>Different model types</li>
+</ul>
+</section><section id="getting-started-4" class="slide level2">
+<h1>Getting started</h1>
+<h3 id="tips-4">Tips</h3>
+<ul>
+<li>Models are cattle not pets</li>
+</ul>
+<h3 id="next-steps-3">Next steps</h3>
+<ul>
+<li>Read BLAH <a href="">geni.us/</a></li>
+<li>Check out BLAH</li>
+</ul>
+</section></section>
+<section><section id="evaluation" class="titleslide slide level1"><h1>Evaluation</h1></section><section id="critical-success-factors" class="slide level2">
+<h1>Critical Success Factors</h1>
+<ul>
+<li>False positives vs false negatives</li>
+<li>Ranking</li>
+<li>Aligns with experts</li>
+</ul>
+</section><section id="data-diving" class="slide level2">
+<h1>Data diving</h1>
+<ul>
+<li>Segments</li>
+<li>Structural weaknesses</li>
+<li>Test data</li>
+</ul>
+</section><section id="getting-started-5" class="slide level2">
+<h1>Getting started</h1>
+<h3 id="tips-5">Tips</h3>
+<ul>
+<li>Don’t just rely on single metric</li>
+</ul>
+<h3 id="next-steps-4">Next steps</h3>
+<ul>
+<li>Read BLAH <a href="">geni.us/</a></li>
+<li>Check out BLAH</li>
+</ul>
+</section></section>
+<section><section id="operationalising" class="titleslide slide level1"><h1>Operationalising</h1></section><section id="features" class="slide level2">
+<h1>Features</h1>
+<ul>
+<li>ETL for new data and calculations</li>
+<li>What data quality stuff had to be done?</li>
+</ul>
+</section><section id="model" class="slide level2">
+<h1>Model</h1>
+<ul>
+<li>How will you store the model?</li>
+<li>Does it need versioning?</li>
+<li>When will it need to be updated and how?</li>
+</ul>
+</section><section id="technology" class="slide level2">
+<h1>Technology</h1>
+<ul>
+<li>What’s the easiest way of getting live?</li>
+<li>What’s the long term way of getting it live?</li>
+<li>What’s your “bus factor”?</li>
+</ul>
+</section><section id="getting-started-6" class="slide level2">
+<h1>Getting started</h1>
+<h3 id="tips-6">Tips</h3>
+<ul>
+<li>KISS</li>
+<li>Operationalising a model often takes longer than the modelling exercise (at least initially)</li>
+</ul>
+<h3 id="next-steps-5">Next steps</h3>
+<ul>
+<li>Read BLAH <a href="">geni.us/</a></li>
+<li>Check out BLAH</li>
+</ul>
+</section></section>
+<section><section id="monitoring" class="titleslide slide level1"><h1>Monitoring</h1></section><section id="logging" class="slide level2">
+<h1>Logging</h1>
+<ul>
+<li>Log results</li>
+<li>Log all the things</li>
+</ul>
+</section><section id="metrics" class="slide level2">
+<h1>Metrics</h1>
+<ul>
+<li>Measure the business lever &amp; other KPIs</li>
+<li>Set tolerances for negative impacts on other metrics</li>
+<li>J-performance</li>
+</ul>
+</section><section id="holdouts" class="slide level2">
+<h1>Holdouts</h1>
+<ul>
+<li>Always have a control group</li>
+</ul>
+</section><section id="getting-started-7" class="slide level2">
+<h1>Getting started</h1>
+<h3 id="tips-7">Tips</h3>
+<ul>
+<li>Plan for monitoring, don’t make it an after-thought</li>
+</ul>
+<h3 id="next-steps-6">Next steps</h3>
+<ul>
+<li>Read BLAH <a href="">geni.us/</a></li>
+<li>Check out BLAH</li>
+</ul>
+</section></section>
+<section><section id="conclusion" class="titleslide slide level1"><h1>Conclusion</h1></section><section id="process-1" class="slide level2">
+<h1>Process</h1>
+</section><section id="tips-8" class="slide level2">
+<h1>Tips</h1>
+<ul>
+<li>Pick something only somewhat important and valuable to begin</li>
+<li>Find many levers</li>
+<li>Iterate</li>
+<li>Prototype</li>
+<li>Data dictionaries</li>
+<li>Code everything</li>
+<li>Make samples reproducible</li>
+<li>Don’t double-dip!</li>
+</ul>
+</section><section id="tips-9" class="slide level2">
+<h1>Tips</h1>
+<ul>
+<li>Models are cattle not pets</li>
+<li>Don’t just rely on single metric</li>
+<li>KISS</li>
+<li>Operationalising a model often takes longer than the modelling exercise (at least initially)</li>
+<li>Plan for monitoring, don’t make it an after-thought</li>
+</ul>
+</section><section id="next-steps-7" class="slide level2">
+<h1>Next steps</h1>
+</section><section id="follow-up" class="slide level2">
+<h1>Follow up</h1>
+<p><span class="citation" data-cites="stefflocke">@stefflocke</span> <span class="citation" data-cites="lockedata">@lockedata</span> <a href="mailto:steph@itsalocke.com">steph@itsalocke.com</a> itsalocke.com</p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="datascience101_files/revealjs/lib/js/head.min.js"></script>
+  <script src="datascience101_files/revealjs/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '1920',
+        height: '1080',
+        // Factor of the display size that should remain empty around the content
+        margin: '0.05',
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

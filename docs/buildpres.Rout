@@ -151,7 +151,7 @@ label: unnamed-chunk-21
 
 output file: stats101.knit.md
 
-/usr/bin/pandoc +RTS -K512m -RTS stats101.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/stats101.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --include-in-header /tmp/RtmpPZTpG4/rmarkdown-str296038bc032e.html --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=stats101_files/revealjs --highlight-style pygments 
+/usr/bin/pandoc +RTS -K512m -RTS stats101.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/stats101.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --include-in-header /tmp/RtmpFN30Dn/rmarkdown-str2652341d92b1.html --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=stats101_files/revealjs --highlight-style pygments 
 
 Output created: docs/stats101.html
 
@@ -436,9 +436,22 @@ label: setup (with options)
 List of 1
  $ include: logi FALSE
 
-Quitting from lines 9-16 (datascience101.Rmd) 
-Error in library(datasauRus) : there is no package called 'datasauRus'
-Calls: render ... withCallingHandlers -> withVisible -> eval -> eval -> library
-In addition: There were 50 or more warnings (use warnings() to see the first 50)
+  |                                                                         |.......................................                          |  60%
+  ordinary text without R code
 
-Execution halted
+  |                                                                         |....................................................             |  80%
+label: unnamed-chunk-1
+  |                                                                         |.................................................................| 100%
+  ordinary text without R code
+
+
+output file: datascience101.knit.md
+
+/usr/bin/pandoc +RTS -K512m -RTS datascience101.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/datascience101.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=datascience101_files/revealjs --highlight-style pygments 
+
+Output created: docs/datascience101.html
+There were 50 or more warnings (use warnings() to see the first 50)
+> 
+> proc.time()
+   user  system elapsed 
+ 24.015   0.684  24.882 
