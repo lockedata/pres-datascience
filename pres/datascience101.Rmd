@@ -51,14 +51,10 @@ Find the lever you can push on to change behaviours that helps with business goa
 - Pick something only somewhat important and valuable to begin
 - Find many levers
 
-### Next steps
-- Read BLAH [geni.us/]()
-- Check out BLAH
-
 # Process
 
 ## CRISP-DM
-![]()
+![](https://upload.wikimedia.org/wikipedia/commons/b/b9/CRISP-DM_Process_Diagram.png)
 
 ## Data science routes
 ![](https://github.com/stephlocke/lazyCDN/raw/master/RHighlevel.png)
@@ -69,8 +65,8 @@ Find the lever you can push on to change behaviours that helps with business goa
 - Prototype
 
 ### Next steps
-- Read BLAH [geni.us/]()
-- Check out BLAH
+- Check out [Experiment kanban](https://medium.com/lean-product-development/kanban-boards-for-hypothesis-driven-development-32f99a70e8ee)
+- Check out [MSFT data science process](https://azure.microsoft.com/en-gb/documentation/learning-paths/data-science-process/)
 
 # Data & EDA
 ## Data
@@ -101,8 +97,8 @@ ggplot(datasaurus_dozen,aes(x,y))+
 - Code everything
 
 ### Next steps
-- Read BLAH [geni.us/]()
-- Check out BLAH
+- Read R for Data Science [geni.us/rfords](//geni.us/rfords)
+- Use your existing tools
 
 # Sampling
 ## Sampling basics
@@ -120,8 +116,7 @@ ggplot(datasaurus_dozen,aes(x,y))+
 - Don't double-dip!
 
 ### Next steps
-- Read BLAH [geni.us/]()
-- Check out BLAH
+- Read about [sampling](https://www.khanacademy.org/math/statistics-probability/designing-studies/sampling-methods-stats/a/sampling-methods-review)
 
 # Modelling
 ## Models
