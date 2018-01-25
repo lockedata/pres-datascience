@@ -26,10 +26,11 @@ gs_auth("googlesheets_token.rds")
 getdata <- function() {
   sheet<-gs_title("About you (Responses)")
   df<-gs_read(sheet) 
-  names(df)<-c("id","focus", "age", "continent","happy","social")
+  names(df)<-c("id","focus", "age", "happy","income")
   df<- df %>% mutate(focus=fct_lump(focus,3),
-                     continent=fct_lump(continent,3),
-                     age=pmin(age,70))
+                    income=fct_lump(income,3),
+                     age=pmin(age,70)) %>% 
+    filter(!is.na(age))
  # df<- tidyr::separate(df,social)
   return(df)
 }
@@ -121,12 +122,12 @@ renderDataTable({
 ))
 ```
 
-### Location
+### Salary
 
 ```{r}
 renderDataTable({
   results() %>% 
-    group_by(continent) %>% 
+    group_by(income) %>% 
     summarise(n=n(), mean = mean(age), sd=sd(age), min=min(age), max=max(age))
 }, options = list(
   bPaginate = FALSE
@@ -150,7 +151,22 @@ Charts
 
 Age
 -----------------------------------------------------------------------
-### Happy with job
+### Happy with job 1
+```{r}
+renderPlot({
+  ggplot(results(), aes(x = age, colour= happy, group=happy)) +
+    geom_density() + 
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    ) +
+    labs(x = "Happy", y = "Age",
+         title = "Age distribution  by happiness") 
+})
+```
+
+### Happy with job 2
 ```{r}
 renderPlot({
   ggplot(results(), aes(x = happy, y= age)) +
@@ -166,6 +182,7 @@ renderPlot({
 })
 ```
 
+<!--
 ### Location
 ```{r}
 renderPlot({
@@ -181,8 +198,24 @@ renderPlot({
          title = "Age distribution  by location") 
 })
 ```
+-->
 
-### Focus
+### Focus 1
+```{r}
+renderPlot({
+  ggplot(results(), aes(x = age, colour= focus, group=focus)) +
+    geom_density() + 
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    ) +
+    labs(x = "Happy", y = "Age",
+         title = "Age distribution  by focus") 
+})
+```
+
+### Focus 2
 ```{r}
 renderPlot({
   ggplot(results(), aes(x = focus, y= age)) +
@@ -198,15 +231,47 @@ renderPlot({
 })
 ```
 
+### Income 1
+```{r}
+renderPlot({
+  ggplot(results(), aes(x = age, colour= income, group=income)) +
+    geom_density() + 
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    ) +
+    labs(x = "Happy", y = "Age",
+         title = "Age distribution  by focus") 
+})
+```
+
+### Income 2
+```{r}
+renderPlot({
+  ggplot(results(), aes(x = income, y= age)) +
+    geom_boxplot(alpha=0, colour="grey")+
+    geom_beeswarm(colour = "#2165B6", size =3) + 
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    ) +
+    labs(x = "Focus", y = "Age",
+         title = "Age distribution by focus") 
+})
+```
 
 Are happy people older?
 =====================================  
 
 Job satisfaction
 -----------------------------------------------------------------------
-Hypothesis: People who are unhappy with their job have are younger than those who are happy with their job.
+Hypothesis: People who are unhappy with their job are younger than those who are happy with their job.
 
-A t-test takes two groups and determines how likely it is for the two values to be generated from the same data i.e. the two groups are not actually different. The smaller the result, the less likely the two groups are actually one group. You want a smaller value.
+A t-test takes two groups and determines how likely it is for the two values to be generated from the same data i.e. the two groups are not actually different. The smaller the result, the less likely the two groups are actually one group. You should set a threshold before hand - commonly 0.05!
+
+Run a t-test in R using the `t.test()` function.
 
 
 ### Age of happy people
@@ -310,17 +375,17 @@ Another option is a decision tree since we have lots of categorical inputs.
 
 ### Using simple measures
 ```{r}
-training<-reactive({sampled()$train})
-testing<-reactive({sampled()$test})
+training<-reactive({as_data_frame(sampled()$train)})
+testing<-reactive({as_data_frame(sampled()$test)})
 ```
 
-The median age is `r reactive({median(results()$age)})`.
+The median age is `r reactive({median(training()$age)})`.
 
-The mean age is `r reactive({round(mean(results()$age),1)})`.
+The mean age is `r reactive({round(mean(training()$age),1)})`.
 
 ```{r}
 renderPlot({
-qplot(data=results(), x=age) + geom_vline(aes(xintercept = median(results()$age)), colour="blue")+ geom_vline(aes(xintercept = mean(results()$age)),colour="red")+
+qplot(data=training(), x=age) + geom_vline(aes(xintercept = median(training()$age)), colour="blue")+ geom_vline(aes(xintercept = mean(training()$age)),colour="red")+
     hrbrthemes::theme_ipsum(
       base_size = 18,
       grid = FALSE,
@@ -331,7 +396,7 @@ qplot(data=results(), x=age) + geom_vline(aes(xintercept = median(results()$age)
 
 ```{r}
 renderPlot({
-qplot(data=results(), x=age) + geom_vline(aes(xintercept = median(results()$age)), colour="blue")+ geom_vline(aes(xintercept = mean(results()$age)),colour="red")+
+qplot(data=training(), x=age) + geom_vline(aes(xintercept = median(training()$age)), colour="blue")+ geom_vline(aes(xintercept = mean(training()$age)),colour="red")+
     hrbrthemes::theme_ipsum(
       base_size = 18,
       grid = FALSE,
@@ -343,22 +408,23 @@ qplot(data=results(), x=age) + geom_vline(aes(xintercept = median(results()$age)
 ### Using a line of best fit
 If we used one variable to predict age, what would our predictions look like?
 
-### Age
+### Happy
+`lm(age~happy, data=training)`
 ```{r}
-happymodel<-reactive({lm(age~happy, data=results())})
+happymodel<-reactive({lm(age~happy, data=training())})
 
 ```
 
 ```{r}
 
 renderPlot({
-  happymodel<-lm(age~happy, data=results())
-results() %>% 
+  happymodel<-lm(age~happy, data=training())
+training() %>% 
   group_by(happy) %>%
   summarise(n=n()) %>% 
-  add_predictions(happymodel(), "age") ->
+  add_predictions(happymodel, "age") ->
   preds
-ggplot(results(), aes(x=happy, y=age))+
+ggplot(training(), aes(x=happy, y=age))+
   geom_point()+
   geom_point(data=preds, colour="blue", size=5)+
    hrbrthemes::theme_ipsum(
@@ -372,17 +438,18 @@ ggplot(results(), aes(x=happy, y=age))+
 ```
 
 ### Focus
+`lm(age~focus, data=training)`
 
 ```{r}
 
 renderPlot({
-  happymodel<-lm(age~focus, data=results())
-results() %>% 
+  focusmodel<-lm(age~focus, data=training())
+training() %>% 
   group_by(focus) %>%
   summarise(n=n()) %>% 
-  add_predictions(happymodel, "age") ->
+  add_predictions(focusmodel, "age") ->
   preds
-ggplot(results(), aes(x=focus, y=age))+
+ggplot(training(), aes(x=focus, y=age))+
   geom_point()+
   geom_point(data=preds, colour="blue", size=5)+
    hrbrthemes::theme_ipsum(
@@ -395,19 +462,46 @@ ggplot(results(), aes(x=focus, y=age))+
 })
 ```
 
-### All the things
-Combining multiple variables
+### Income
+`lm(age~income, data=training)`
 
 ```{r}
 
 renderPlot({
-  happymodel<-lm(age~focus + age + continent, data=results())
-results() %>% 
-  group_by(focus, age, continent) %>%
+  incomemodel<-lm(age~income, data=training())
+training() %>% 
+  group_by(income) %>%
   summarise(n=n()) %>% 
-  add_predictions(happymodel, "age") ->
+  add_predictions(incomemodel, "age") ->
   preds
-ggplot(results(), aes(x=age, y=age))+
+ggplot(training(), aes(x=income, y=age))+
+  geom_point()+
+  geom_point(data=preds, colour="blue", size=5)+
+   hrbrthemes::theme_ipsum(
+      base_size = 18,
+      grid = FALSE,
+      axis = FALSE
+    )+
+    labs(x = "Income", y = "Age",
+         title = "Age distribution  by focus") 
+})
+```
+
+### All the things
+Combining multiple variables
+
+`lm(age~focus + age + income, data=training)`
+
+```{r}
+
+renderPlot({
+  fullmodel<-lm(age~focus + happy + income, data=training())
+training() %>% 
+  group_by(focus, happy, income) %>%
+  summarise(n=n()) %>% 
+  add_predictions(fullmodel, "age") ->
+  preds
+ggplot(training(), aes(x=age, y=age))+
   geom_point()+
   geom_point(data=preds, colour="blue", size=5)+
    hrbrthemes::theme_ipsum(
@@ -418,4 +512,33 @@ ggplot(results(), aes(x=age, y=age))+
     labs(x = "Age", y = "Age",
          title = "Age distribution") 
 })
+```
+
+### Picking a model
+You can pick models by different metrics based on your business success criteria. Here we're going to use the Mean Squared Error (MSE) after making predictions on our test data. Whichever one has the smallest value, that is our most accurate model and we'll use that going forward.
+
+Mean Squared Error is the average value of all the squared differences betweeen predicted and actual values. We square them to make everything positive and to penalise larger errors.
+
+```{r}
+renderDataTable({
+  
+  happymodel<-lm(age~happy, data=training())
+  focusmodel<-lm(age~focus, data=training())
+  incomemodel<-lm(age~income, data=training())
+  fullmodel<-lm(age~happy+focus+income, data=training())
+  
+ testing() %>% 
+  add_predictions(happymodel, "happymodel")%>% 
+  add_predictions(focusmodel, "focusmodel")%>% 
+  add_predictions(incomemodel, "incomemodel")%>% 
+  add_predictions(fullmodel, "fullmodel")%>% 
+  mutate(medianmodel=median(training()$age),
+         meanmodel=round(mean(training()$age),1)) %>% 
+  gather(model, pred_age, ends_with("model")) %>% 
+  mutate(square_error=(pred_age-age)^2) %>% 
+  group_by(model) %>% 
+  summarise(mean(square_error))
+}, options = list(
+  bPaginate = FALSE
+))
 ```
