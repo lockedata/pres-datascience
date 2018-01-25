@@ -29,7 +29,7 @@ library(ggplot2)
 ## Steph Locke & Locke Data
 - Steph
     + MVP
-    + I have a book coming out! [geni.us/workingwithr](//geni.us/workingwithr)
+    + Learn R books: [geni.us/rfundamentals](//geni.us/rfundamentals)
 - Locke Data
     + Consultancy focussed on helping organisations get started with data science
 
@@ -54,7 +54,7 @@ Find the lever you can push on to change behaviours that helps with business goa
 # Process
 
 ## CRISP-DM
-![](https://upload.wikimedia.org/wikipedia/commons/b/b9/CRISP-DM_Process_Diagram.png)
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/CRISP-DM_Process_Diagram.png" height="750px"></img>
 
 ## Data science routes
 ![](https://github.com/stephlocke/lazyCDN/raw/master/RHighlevel.png)
@@ -88,7 +88,8 @@ Find the lever you can push on to change behaviours that helps with business goa
 ```{r}
 ggplot(datasaurus_dozen,aes(x,y))+
   geom_point()+
-  facet_wrap(~dataset)
+  facet_wrap(~dataset) +
+  theme_void()
 ```
 
 ## Getting started
@@ -99,6 +100,51 @@ ggplot(datasaurus_dozen,aes(x,y))+
 ### Next steps
 - Read R for Data Science [geni.us/rfords](//geni.us/rfords)
 - Use your existing tools
+
+## Example code
+```{r echo=TRUE}
+library(DBI)
+library(odbc)
+
+driver   = "ODBC Driver 13 for SQL Server"
+server = "lockedata.westeurope.cloudapp.azure.com"
+database = "datasci"
+uid = "u001"
+pwd = "HBBFSE"
+
+dbConn<-dbConnect(odbc(),
+          driver=driver, server=server,
+          database=database, uid=uid,
+          pwd=pwd)
+```
+
+## Example code
+```{r echo=TRUE}
+library(tidyverse)
+library(dbplyr)
+ 
+flights<-tbl(dbConn,"flights")
+carriers<-tbl(dbConn,"flights_carriers") 
+
+flights %>% 
+  inner_join(carriers)
+```
+
+## Example code
+```{r echo=TRUE, eval=FALSE}
+library(skimr)
+flights %>%
+  collect %>% 
+  skim()
+```
+
+
+```{r eval=TRUE, echo=FALSE}
+library(skimr)
+nycflights13::flights %>%
+  skim()
+```
+
 
 # Sampling
 ## Sampling basics
@@ -117,6 +163,26 @@ ggplot(datasaurus_dozen,aes(x,y))+
 
 ### Next steps
 - Read about [sampling](https://www.khanacademy.org/math/statistics-probability/designing-studies/sampling-methods-stats/a/sampling-methods-review)
+
+## Example code 
+```{r echo=TRUE, eval=FALSE}
+library(modelr)
+flights %>% 
+  resample_partition(c("train"=0.7,"test"=0.3))  ->
+  samples
+
+samples %>% 
+  map(nrow)
+```
+```{r eval=TRUE, echo=FALSE}
+library(modelr)
+nycflights13::flights %>% 
+  resample_partition(c("train"=0.7,"test"=0.3)) ->
+  samples
+
+samples %>% 
+  map(nrow)
+```
 
 # Modelling
 ## Models
@@ -140,6 +206,16 @@ ggplot(datasaurus_dozen,aes(x,y))+
 ### Next steps
 - Check out [setosa.io](http://setosa.io/ev/ordinary-least-squares-regression/)
 
+## Example code
+```{r echo=TRUE}
+samples %>% 
+  pluck("train") %>% 
+  lm(arr_delay ~ as.factor(month) + as.factor(day) + hour , data=.) ->
+  initial_lm
+
+initial_lm
+```
+
 # Evaluation
 ## Critical Success Factors
 - False positives vs false negatives
@@ -155,7 +231,12 @@ ggplot(datasaurus_dozen,aes(x,y))+
 ### Tips
 - Don't just rely on single metric
 
-
+## Example code
+```{r echo=TRUE}
+library(broom)
+initial_lm %>% 
+  glance()
+```
 
 # Operationalising
 ## Features
@@ -223,4 +304,4 @@ ggplot(datasaurus_dozen,aes(x,y))+
 ## Follow up
 - @stefflocke @lockedata
 - steph@itsalocke.com
-- itsalocke.com
+- itsalocke.com/talks

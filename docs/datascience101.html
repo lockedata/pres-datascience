@@ -4,16 +4,53 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Steph Locke" />
-  <meta name="dcterms.date" content="2017-12-30" />
+  <meta name="dcterms.date" content="2018-01-25" />
   <title>Data Science Fundamentals</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="datascience101_files/reveal.js-3.3.0.1/css/reveal.css"/>
+  <link rel="stylesheet" href="D:\sites\superbuild\pres-datascience\docs\datascience101_files/reveal.js-3.3.0.1/css/reveal.css"/>
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
-<link rel="stylesheet" href="datascience101_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="D:\sites\superbuild\pres-datascience\docs\datascience101_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
 
 
   <!-- some tweaks to reveal css -->
@@ -453,11 +490,11 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section>
     <h1 class="title">Data Science Fundamentals</h1>
     <h2 class="author">Steph Locke</h2>
-    <h3 class="date">2017-12-30</h3>
+    <h3 class="date">2018-01-25</h3>
 </section>
 
 <section id="agenda" class="slide level2">
-<h1>Agenda</h1>
+<h2>Agenda</h2>
 <ul>
 <li>Business challenge</li>
 <li>Process</li>
@@ -470,12 +507,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul>
 </section>
 <section id="steph-locke-locke-data" class="slide level2">
-<h1>Steph Locke &amp; Locke Data</h1>
+<h2>Steph Locke &amp; Locke Data</h2>
 <ul>
 <li>Steph
 <ul>
 <li>MVP</li>
-<li>I have a book coming out! <a href="//geni.us/workingwithr">geni.us/workingwithr</a></li>
+<li>Learn R books: <a href="//geni.us/rfundamentals">geni.us/rfundamentals</a></li>
 </ul></li>
 <li>Locke Data
 <ul>
@@ -487,17 +524,17 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul>
 </section>
 <section><section id="business-challenge" class="titleslide slide level1"><h1>Business Challenge</h1></section><section id="business-challengegoal" class="slide level2">
-<h1>Business Challenge/goal</h1>
+<h2>Business Challenge/goal</h2>
 <ul>
 <li>Increase customer profitability</li>
 <li>Increase quantity of customers</li>
 <li>Reduce overheads</li>
 </ul>
 </section><section id="data-science-challenge" class="slide level2">
-<h1>Data science challenge</h1>
+<h2>Data science challenge</h2>
 <p>Find the lever you can push on to change behaviours that helps with business goal.</p>
 </section><section id="getting-started" class="slide level2">
-<h1>Getting started</h1>
+<h2>Getting started</h2>
 <h3 id="tips">Tips</h3>
 <ul>
 <li>Pick something only somewhat important and valuable to begin</li>
@@ -505,13 +542,13 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul>
 </section></section>
 <section><section id="process" class="titleslide slide level1"><h1>Process</h1></section><section id="crisp-dm" class="slide level2">
-<h1>CRISP-DM</h1>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/CRISP-DM_Process_Diagram.png" alt="" /></p>
+<h2>CRISP-DM</h2>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/CRISP-DM_Process_Diagram.png" height="750px"></img></p>
 </section><section id="data-science-routes" class="slide level2">
-<h1>Data science routes</h1>
-<p><img src="https://github.com/stephlocke/lazyCDN/raw/master/RHighlevel.png" alt="" /></p>
+<h2>Data science routes</h2>
+<p><img src="https://github.com/stephlocke/lazyCDN/raw/master/RHighlevel.png" /></p>
 </section><section id="getting-started-1" class="slide level2">
-<h1>Getting started</h1>
+<h2>Getting started</h2>
 <h3 id="tips-1">Tips</h3>
 <ul>
 <li>Iterate</li>
@@ -524,7 +561,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul>
 </section></section>
 <section><section id="data-eda" class="titleslide slide level1"><h1>Data &amp; EDA</h1></section><section id="data" class="slide level2">
-<h1>Data</h1>
+<h2>Data</h2>
 <ul>
 <li>Do you have enough data?</li>
 <li>What biases are in the data that you might end up reinforcing?</li>
@@ -532,23 +569,23 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Does it actually measure what you think it’s measuring?</li>
 </ul>
 </section><section id="extra-data" class="slide level2">
-<h1>Extra data</h1>
+<h2>Extra data</h2>
 <ul>
 <li>Where can you get extra information from?</li>
 <li>Do the join criteria work?</li>
 <li>Will you be able to get it for production purposes?</li>
 </ul>
 </section><section id="exploration" class="slide level2">
-<h1>Exploration</h1>
+<h2>Exploration</h2>
 <ul>
 <li>Analyse the heck out of that data!</li>
 <li>Create extra “features”</li>
 </ul>
 </section><section id="visualisation" class="slide level2">
-<h1>Visualisation</h1>
+<h2>Visualisation</h2>
 <p><img src="datascience101_files/figure-revealjs/unnamed-chunk-1-1.svg" width="768" height="800px" /></p>
 </section><section id="getting-started-2" class="slide level2">
-<h1>Getting started</h1>
+<h2>Getting started</h2>
 <h3 id="tips-2">Tips</h3>
 <ul>
 <li>Data dictionaries</li>
@@ -559,22 +596,122 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Read R for Data Science <a href="//geni.us/rfords">geni.us/rfords</a></li>
 <li>Use your existing tools</li>
 </ul>
+</section><section id="example-code" class="slide level2">
+<h2>Example code</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DBI)
+<span class="kw">library</span>(odbc)
+
+driver   =<span class="st"> &quot;ODBC Driver 13 for SQL Server&quot;</span>
+server =<span class="st"> &quot;lockedata.westeurope.cloudapp.azure.com&quot;</span>
+database =<span class="st"> &quot;datasci&quot;</span>
+uid =<span class="st"> &quot;u001&quot;</span>
+pwd =<span class="st"> &quot;HBBFSE&quot;</span>
+
+dbConn&lt;-<span class="kw">dbConnect</span>(<span class="kw">odbc</span>(),
+          <span class="dt">driver=</span>driver, <span class="dt">server=</span>server,
+          <span class="dt">database=</span>database, <span class="dt">uid=</span>uid,
+          <span class="dt">pwd=</span>pwd)</code></pre></div>
+</section><section id="example-code-1" class="slide level2">
+<h2>Example code</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(dbplyr)
+ 
+flights&lt;-<span class="kw">tbl</span>(dbConn,<span class="st">&quot;flights&quot;</span>)
+carriers&lt;-<span class="kw">tbl</span>(dbConn,<span class="st">&quot;flights_carriers&quot;</span>) 
+
+flights <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">inner_join</span>(carriers)
+## # Source: lazy query [?? x 20]
+## # Database: Microsoft SQL Server 14.00.1000[u001@lockedata/datasci]
+##     year month   day dep_t~ sched_~ dep_d~ arr_~ sched~ arr_d~ carr~ flig~
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;int&gt;
+##  1  2013     1     1    542     540   2.00   923    850  33.0  AA     1141
+##  2  2013     1     1    544     545  -1.00  1004   1022 -18.0  B6      725
+##  3  2013     1     1    554     600  -6.00   812    837 -25.0  DL      461
+##  4  2013     1     1    555     600  -5.00   913    854  19.0  B6      507
+##  5  2013     1     1    557     600  -3.00   709    723 -14.0  EV     5708
+##  6  2013     1     1    557     600  -3.00   838    846 - 8.00 B6       79
+##  7  2013     1     1    558     600  -2.00   753    745   8.00 AA      301
+##  8  2013     1     1    558     600  -2.00   849    851 - 2.00 B6       49
+##  9  2013     1     1    558     600  -2.00   853    856 - 3.00 B6       71
+## 10  2013     1     1    559     600  -1.00   941    910  31.0  AA      707
+## # ... with more rows, and 9 more variables: tailnum &lt;chr&gt;, origin &lt;chr&gt;,
+## #   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
+## #   time_hour &lt;dttm&gt;, n &lt;int&gt;</code></pre></div>
+</section><section id="example-code-2" class="slide level2">
+<h2>Example code</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(skimr)
+flights <span class="op">%&gt;%</span>
+<span class="st">  </span>collect <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">skim</span>()</code></pre></div>
+<pre><code>## Skim summary statistics
+##  n obs: 336776 
+##  n variables: 19 
+## 
+## Variable type: character 
+##  variable missing complete      n min max empty n_unique
+##   carrier       0   336776 336776   2   2     0       16
+##      dest       0   336776 336776   3   3     0      105
+##    origin       0   336776 336776   3   3     0        3
+##   tailnum    2512   334264 336776   5   6     0     4043
+## 
+## Variable type: integer 
+##        variable missing complete      n    mean      sd   p0  p25 median
+##        arr_time    8713   328063 336776 1502.05  533.26    1 1104   1535
+##             day       0   336776 336776   15.71    8.77    1    8     16
+##        dep_time    8255   328521 336776 1349.11  488.28    1  907   1401
+##          flight       0   336776 336776 1971.92 1632.47    1  553   1496
+##           month       0   336776 336776    6.55    3.41    1    4      7
+##  sched_arr_time       0   336776 336776 1536.38  497.46    1 1124   1556
+##  sched_dep_time       0   336776 336776 1344.25  467.34  106  906   1359
+##            year       0   336776 336776 2013       0    2013 2013   2013
+##   p75 p100     hist
+##  1940 2400 &lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2583&gt;&lt;U+2587&gt;&lt;U+2586&gt;&lt;U+2586&gt;&lt;U+2587&gt;&lt;U+2586&gt;
+##    23   31 &lt;U+2587&gt;&lt;U+2587&gt;&lt;U+2587&gt;&lt;U+2587&gt;&lt;U+2586&gt;&lt;U+2587&gt;&lt;U+2587&gt;&lt;U+2587&gt;
+##  1744 2400 &lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2587&gt;&lt;U+2586&gt;&lt;U+2586&gt;&lt;U+2587&gt;&lt;U+2586&gt;&lt;U+2582&gt;
+##  3465 8500 &lt;U+2587&gt;&lt;U+2585&gt;&lt;U+2582&gt;&lt;U+2583&gt;&lt;U+2582&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;
+##    10   12 &lt;U+2587&gt;&lt;U+2585&gt;&lt;U+2587&gt;&lt;U+2583&gt;&lt;U+2585&gt;&lt;U+2587&gt;&lt;U+2585&gt;&lt;U+2587&gt;
+##  1945 2359 &lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2582&gt;&lt;U+2587&gt;&lt;U+2586&gt;&lt;U+2587&gt;&lt;U+2587&gt;&lt;U+2586&gt;
+##  1729 2359 &lt;U+2581&gt;&lt;U+2583&gt;&lt;U+2587&gt;&lt;U+2586&gt;&lt;U+2586&gt;&lt;U+2587&gt;&lt;U+2587&gt;&lt;U+2582&gt;
+##  2013 2013 &lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2587&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;
+## 
+## Variable type: numeric 
+##   variable missing complete      n    mean     sd  p0 p25 median  p75 p100
+##   air_time    9430   327346 336776  150.69  93.69  20  82    129  192  695
+##  arr_delay    9430   327346 336776    6.9   44.63 -86 -17     -5   14 1272
+##  dep_delay    8255   328521 336776   12.64  40.21 -43  -5     -2   11 1301
+##   distance       0   336776 336776 1039.91 733.23  17 502    872 1389 4983
+##       hour       0   336776 336776   13.18   4.66   1   9     13   17   23
+##     minute       0   336776 336776   26.23  19.3    0   8     29   44   59
+##      hist
+##  &lt;U+2587&gt;&lt;U+2587&gt;&lt;U+2582&gt;&lt;U+2583&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;
+##  &lt;U+2587&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;
+##  &lt;U+2587&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;
+##  &lt;U+2586&gt;&lt;U+2587&gt;&lt;U+2582&gt;&lt;U+2582&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;&lt;U+2581&gt;
+##  &lt;U+2581&gt;&lt;U+2583&gt;&lt;U+2587&gt;&lt;U+2586&gt;&lt;U+2585&gt;&lt;U+2587&gt;&lt;U+2587&gt;&lt;U+2582&gt;
+##  &lt;U+2587&gt;&lt;U+2582&gt;&lt;U+2583&gt;&lt;U+2583&gt;&lt;U+2585&gt;&lt;U+2582&gt;&lt;U+2583&gt;&lt;U+2585&gt;
+## 
+## Variable type: POSIXct 
+##   variable missing complete      n        min        max     median
+##  time_hour       0   336776 336776 2013-01-01 2013-12-31 2013-07-03
+##  n_unique
+##      6936</code></pre>
 </section></section>
 <section><section id="sampling" class="titleslide slide level1"><h1>Sampling</h1></section><section id="sampling-basics" class="slide level2">
-<h1>Sampling basics</h1>
+<h2>Sampling basics</h2>
 <ul>
 <li>[OPTIONAL] Dataset for missing data</li>
 <li>Dataset for building your model</li>
 <li>Dataset for testing your model</li>
 </ul>
 </section><section id="considerations" class="slide level2">
-<h1>Considerations</h1>
+<h2>Considerations</h2>
 <ul>
 <li>Balanced or unbalanced</li>
 <li>Bootstrapping</li>
 </ul>
 </section><section id="getting-started-3" class="slide level2">
-<h1>Getting started</h1>
+<h2>Getting started</h2>
 <h3 id="tips-3">Tips</h3>
 <ul>
 <li>Make samples reproducible</li>
@@ -584,29 +721,43 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>Read about <a href="https://www.khanacademy.org/math/statistics-probability/designing-studies/sampling-methods-stats/a/sampling-methods-review">sampling</a></li>
 </ul>
+</section><section id="example-code-3" class="slide level2">
+<h2>Example code</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(modelr)
+flights <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">resample_partition</span>(<span class="kw">c</span>(<span class="st">&quot;train&quot;</span>=<span class="fl">0.7</span>,<span class="st">&quot;test&quot;</span>=<span class="fl">0.3</span>))  -&gt;
+<span class="st">  </span>samples
+
+samples <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">map</span>(nrow)</code></pre></div>
+<pre><code>## $train
+## [1] 235743
+## 
+## $test
+## [1] 101033</code></pre>
 </section></section>
 <section><section id="modelling" class="titleslide slide level1"><h1>Modelling</h1></section><section id="models" class="slide level2">
-<h1>Models</h1>
+<h2>Models</h2>
 <ul>
 <li>Supervised vs unsupervised</li>
 <li>Parametric vs non-parametric</li>
 </ul>
 </section><section id="models-1" class="slide level2">
-<h1>Models</h1>
+<h2>Models</h2>
 <ul>
 <li>Regression</li>
 <li>Trees</li>
 <li>Others</li>
 </ul>
 </section><section id="candidate-models" class="slide level2">
-<h1>Candidate models</h1>
+<h2>Candidate models</h2>
 <ul>
 <li>Simple model</li>
 <li>Complex model</li>
 <li>Different model types</li>
 </ul>
 </section><section id="getting-started-4" class="slide level2">
-<h1>Getting started</h1>
+<h2>Getting started</h2>
 <h3 id="tips-4">Tips</h3>
 <ul>
 <li>Models are cattle not pets</li>
@@ -615,50 +766,103 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>Check out <a href="http://setosa.io/ev/ordinary-least-squares-regression/">setosa.io</a></li>
 </ul>
+</section><section id="example-code-4" class="slide level2">
+<h2>Example code</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">samples <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pluck</span>(<span class="st">&quot;train&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(month) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(day) <span class="op">+</span><span class="st"> </span>hour , <span class="dt">data=</span>.) -&gt;
+<span class="st">  </span>initial_lm
+
+initial_lm
+## 
+## Call:
+## lm(formula = arr_delay ~ as.factor(month) + as.factor(day) + 
+##     hour, data = .)
+## 
+## Coefficients:
+##        (Intercept)   as.factor(month)2   as.factor(month)3  
+##          -15.10317            -0.55685            -0.28891  
+##  as.factor(month)4   as.factor(month)5   as.factor(month)6  
+##            4.94476            -2.48567            10.22022  
+##  as.factor(month)7   as.factor(month)8   as.factor(month)9  
+##           10.48877            -0.08676            -9.82314  
+## as.factor(month)10  as.factor(month)11  as.factor(month)12  
+##           -6.35928            -5.84981             8.40230  
+##    as.factor(day)2     as.factor(day)3     as.factor(day)4  
+##           -0.15527            -3.39222            -9.02261  
+##    as.factor(day)5     as.factor(day)6     as.factor(day)7  
+##           -7.17502            -9.04903             2.56574  
+##    as.factor(day)8     as.factor(day)9    as.factor(day)10  
+##           12.03501             1.12110             7.32895  
+##   as.factor(day)11    as.factor(day)12    as.factor(day)13  
+##            2.92186             3.67965             2.26204  
+##   as.factor(day)14    as.factor(day)15    as.factor(day)16  
+##           -4.10830            -9.09814            -3.51027  
+##   as.factor(day)17    as.factor(day)18    as.factor(day)19  
+##            2.51373             2.45856             2.47417  
+##   as.factor(day)20    as.factor(day)21    as.factor(day)22  
+##           -6.01715            -4.41390            10.26361  
+##   as.factor(day)23    as.factor(day)24    as.factor(day)25  
+##            9.16404             2.62311             2.53322  
+##   as.factor(day)26    as.factor(day)27    as.factor(day)28  
+##           -3.77815            -4.24423             0.76647  
+##   as.factor(day)29    as.factor(day)30    as.factor(day)31  
+##           -7.81428            -6.65325            -4.46799  
+##               hour  
+##            1.65689</code></pre></div>
 </section></section>
 <section><section id="evaluation" class="titleslide slide level1"><h1>Evaluation</h1></section><section id="critical-success-factors" class="slide level2">
-<h1>Critical Success Factors</h1>
+<h2>Critical Success Factors</h2>
 <ul>
 <li>False positives vs false negatives</li>
 <li>Ranking</li>
 <li>Aligns with experts</li>
 </ul>
 </section><section id="data-diving" class="slide level2">
-<h1>Data diving</h1>
+<h2>Data diving</h2>
 <ul>
 <li>Segments</li>
 <li>Structural weaknesses</li>
 <li>Test data</li>
 </ul>
 </section><section id="getting-started-5" class="slide level2">
-<h1>Getting started</h1>
+<h2>Getting started</h2>
 <h3 id="tips-5">Tips</h3>
 <ul>
 <li>Don’t just rely on single metric</li>
 </ul>
+</section><section id="example-code-5" class="slide level2">
+<h2>Example code</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)
+initial_lm <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">glance</span>()
+##    r.squared adj.r.squared   sigma statistic p.value df   logLik     AIC
+## 1 0.06691902    0.06674795 42.8951  391.1792       0 43 -1186328 2372745
+##       BIC  deviance df.residual
+## 1 2373200 421512092      229084</code></pre></div>
 </section></section>
 <section><section id="operationalising" class="titleslide slide level1"><h1>Operationalising</h1></section><section id="features" class="slide level2">
-<h1>Features</h1>
+<h2>Features</h2>
 <ul>
 <li>ETL for new data and calculations</li>
 <li>What data quality stuff had to be done?</li>
 </ul>
 </section><section id="model" class="slide level2">
-<h1>Model</h1>
+<h2>Model</h2>
 <ul>
 <li>How will you store the model?</li>
 <li>Does it need versioning?</li>
 <li>When will it need to be updated and how?</li>
 </ul>
 </section><section id="technology" class="slide level2">
-<h1>Technology</h1>
+<h2>Technology</h2>
 <ul>
 <li>What’s the easiest way of getting live?</li>
 <li>What’s the long term way of getting it live?</li>
 <li>What’s your “bus factor”?</li>
 </ul>
 </section><section id="getting-started-6" class="slide level2">
-<h1>Getting started</h1>
+<h2>Getting started</h2>
 <h3 id="tips-6">Tips</h3>
 <ul>
 <li>KISS</li>
@@ -671,35 +875,35 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul>
 </section></section>
 <section><section id="monitoring" class="titleslide slide level1"><h1>Monitoring</h1></section><section id="logging" class="slide level2">
-<h1>Logging</h1>
+<h2>Logging</h2>
 <ul>
 <li>Log results</li>
 <li>Log all the things</li>
 </ul>
 </section><section id="metrics" class="slide level2">
-<h1>Metrics</h1>
+<h2>Metrics</h2>
 <ul>
 <li>Measure the business lever &amp; other KPIs</li>
 <li>Set tolerances for negative impacts on other metrics</li>
 <li>J-performance</li>
 </ul>
 </section><section id="holdouts" class="slide level2">
-<h1>Holdouts</h1>
+<h2>Holdouts</h2>
 <ul>
 <li>Always have a control group</li>
 </ul>
 </section><section id="getting-started-7" class="slide level2">
-<h1>Getting started</h1>
+<h2>Getting started</h2>
 <h3 id="tips-7">Tips</h3>
 <ul>
 <li>Plan for monitoring, don’t make it an after-thought</li>
 </ul>
 </section></section>
 <section><section id="conclusion" class="titleslide slide level1"><h1>Conclusion</h1></section><section id="process-1" class="slide level2">
-<h1>Process</h1>
-<p><img src="https://github.com/stephlocke/lazyCDN/raw/master/RHighlevel.png" alt="" /></p>
+<h2>Process</h2>
+<p><img src="https://github.com/stephlocke/lazyCDN/raw/master/RHighlevel.png" /></p>
 </section><section id="tips-8" class="slide level2">
-<h1>Tips</h1>
+<h2>Tips</h2>
 <ul>
 <li>Pick something only somewhat important and valuable to begin</li>
 <li>Find many levers</li>
@@ -711,7 +915,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Don’t double-dip!</li>
 </ul>
 </section><section id="tips-9" class="slide level2">
-<h1>Tips</h1>
+<h2>Tips</h2>
 <ul>
 <li>Models are cattle not pets</li>
 <li>Don’t just rely on single metric</li>
@@ -720,18 +924,18 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Plan for monitoring, don’t make it an after-thought</li>
 </ul>
 </section><section id="follow-up" class="slide level2">
-<h1>Follow up</h1>
+<h2>Follow up</h2>
 <ul>
 <li><span class="citation" data-cites="stefflocke">@stefflocke</span> <span class="citation" data-cites="lockedata">@lockedata</span></li>
 <li><a href="mailto:steph@itsalocke.com">steph@itsalocke.com</a></li>
-<li>itsalocke.com</li>
+<li>itsalocke.com/talks</li>
 </ul>
 </section></section>
     </div>
   </div>
 
-  <script src="datascience101_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
-  <script src="datascience101_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+  <script src="D:\sites\superbuild\pres-datascience\docs\datascience101_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="D:\sites\superbuild\pres-datascience\docs\datascience101_files/reveal.js-3.3.0.1/js/reveal.js"></script>
 
   <script>
 
