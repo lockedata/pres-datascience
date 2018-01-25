@@ -781,35 +781,35 @@ initial_lm
 ## 
 ## Coefficients:
 ##        (Intercept)   as.factor(month)2   as.factor(month)3  
-##          -15.10317            -0.55685            -0.28891  
+##          -15.28463            -0.81240            -0.11731  
 ##  as.factor(month)4   as.factor(month)5   as.factor(month)6  
-##            4.94476            -2.48567            10.22022  
+##            4.40661            -2.49110            10.46290  
 ##  as.factor(month)7   as.factor(month)8   as.factor(month)9  
-##           10.48877            -0.08676            -9.82314  
+##           10.53468            -0.09916            -9.92022  
 ## as.factor(month)10  as.factor(month)11  as.factor(month)12  
-##           -6.35928            -5.84981             8.40230  
+##           -6.02781            -5.64951             8.71773  
 ##    as.factor(day)2     as.factor(day)3     as.factor(day)4  
-##           -0.15527            -3.39222            -9.02261  
+##           -0.94169            -3.31940            -9.11113  
 ##    as.factor(day)5     as.factor(day)6     as.factor(day)7  
-##           -7.17502            -9.04903             2.56574  
+##           -6.55287            -8.87207             2.02679  
 ##    as.factor(day)8     as.factor(day)9    as.factor(day)10  
-##           12.03501             1.12110             7.32895  
+##           11.16844             1.72884             7.07820  
 ##   as.factor(day)11    as.factor(day)12    as.factor(day)13  
-##            2.92186             3.67965             2.26204  
+##            3.19050             3.19297             2.20512  
 ##   as.factor(day)14    as.factor(day)15    as.factor(day)16  
-##           -4.10830            -9.09814            -3.51027  
+##           -4.11497            -9.07249            -3.58548  
 ##   as.factor(day)17    as.factor(day)18    as.factor(day)19  
-##            2.51373             2.45856             2.47417  
+##            1.84259             2.82169             2.48053  
 ##   as.factor(day)20    as.factor(day)21    as.factor(day)22  
-##           -6.01715            -4.41390            10.26361  
+##           -6.24390            -4.83978            10.21620  
 ##   as.factor(day)23    as.factor(day)24    as.factor(day)25  
-##            9.16404             2.62311             2.53322  
+##            9.46657             3.37368             2.71522  
 ##   as.factor(day)26    as.factor(day)27    as.factor(day)28  
-##           -3.77815            -4.24423             0.76647  
+##           -4.20106            -3.86400             0.53802  
 ##   as.factor(day)29    as.factor(day)30    as.factor(day)31  
-##           -7.81428            -6.65325            -4.46799  
+##           -7.59542            -6.91899            -4.44925  
 ##               hour  
-##            1.65689</code></pre></div>
+##            1.67308</code></pre></div>
 </section></section>
 <section><section id="evaluation" class="titleslide slide level1"><h1>Evaluation</h1></section><section id="critical-success-factors" class="slide level2">
 <h2>Critical Success Factors</h2>
@@ -836,10 +836,10 @@ initial_lm
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)
 initial_lm <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">glance</span>()
-##    r.squared adj.r.squared   sigma statistic p.value df   logLik     AIC
-## 1 0.06691902    0.06674795 42.8951  391.1792       0 43 -1186328 2372745
+##    r.squared adj.r.squared    sigma statistic p.value df   logLik     AIC
+## 1 0.06632623     0.0661551 43.16081  387.5659       0 43 -1188044 2376176
 ##       BIC  deviance df.residual
-## 1 2373200 421512092      229084</code></pre></div>
+## 1 2376631 426858378      229142</code></pre></div>
 </section></section>
 <section><section id="operationalising" class="titleslide slide level1"><h1>Operationalising</h1></section><section id="features" class="slide level2">
 <h2>Features</h2>

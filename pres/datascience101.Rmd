@@ -2,7 +2,8 @@
 title: "Data Science Fundamentals"
 author: "Steph Locke"
 date:  "`r Sys.Date()`"
-output: revealjs::revealjs_presentation
+output: 
+  revealjs::revealjs_presentation
 ---
 
 ```{r setup, include=FALSE}
