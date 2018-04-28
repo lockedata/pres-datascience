@@ -1,5 +1,5 @@
 
-R version 3.4.4 (2017-01-27) -- "Someone to Lean On"
+R version 3.5.0 (2017-01-27) -- "Joy in Playing"
 Copyright (C) 2017 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -151,7 +151,7 @@ label: unnamed-chunk-21
 
 output file: stats101.knit.md
 
-/usr/bin/pandoc +RTS -K512m -RTS stats101.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/stats101.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --include-in-header /tmp/RtmpsyRxbJ/rmarkdown-str4b3544f3bc94.html --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=stats101_files/reveal.js-3.3.0.1 --highlight-style pygments 
+/usr/bin/pandoc +RTS -K512m -RTS stats101.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/stats101.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --include-in-header /tmp/Rtmp9gMLdc/rmarkdown-str800724e196ee.html --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=stats101_files/reveal.js-3.3.0.1 --highlight-style pygments 
 
 Output created: docs/stats101.html
 
@@ -355,103 +355,8 @@ label: unnamed-chunk-14 (with options)
 List of 1
  $ echo: logi TRUE
 
-  |                                                                         |..............................................................   |  96%
-  ordinary text without R code
-
-  |                                                                         |................................................................ |  98%
-label: unnamed-chunk-15 (with options) 
-List of 1
- $ echo: logi TRUE
-
-  |                                                                         |.................................................................| 100%
-  ordinary text without R code
-
-
-output file: logisticregressions.knit.md
-
-/usr/bin/pandoc +RTS -K512m -RTS logisticregressions.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/logisticregressions.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable height=1080 --variable width=1920 --variable margin=0.05 --css lockedata.css --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --variable revealjs-url=logisticregressions_files/reveal.js-3.3.0.1 --highlight-style pygments 
-
-Output created: docs/logisticregressions.html
-
-
-processing file: glmworkshop.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |....                                                             |   7%
-   inline R code fragments
-
-  |                                                                         |.........                                                        |  13%
-label: rnorm (with options) 
-List of 1
- $ echo: logi FALSE
-
-  |                                                                         |.............                                                    |  20%
-  ordinary text without R code
-
-  |                                                                         |.................                                                |  27%
-label: rbinom (with options) 
-List of 1
- $ echo: logi FALSE
-
-  |                                                                         |......................                                           |  33%
-  ordinary text without R code
-
-  |                                                                         |..........................                                       |  40%
-label: probs
-  |                                                                         |..............................                                   |  47%
-  ordinary text without R code
-
-  |                                                                         |...................................                              |  53%
-label: odds
-  |                                                                         |.......................................                          |  60%
-  ordinary text without R code
-
-  |                                                                         |...........................................                      |  67%
-label: logodds
-  |                                                                         |................................................                 |  73%
-  ordinary text without R code
-
-  |                                                                         |....................................................             |  80%
-label: logittransform
-  |                                                                         |........................................................         |  87%
-  ordinary text without R code
-
-  |                                                                         |.............................................................    |  93%
-label: transformcode
-  |                                                                         |.................................................................| 100%
-  ordinary text without R code
-
-
-output file: glmworkshop.knit.md
-
-/usr/bin/pandoc +RTS -K512m -RTS glmworkshop.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /home/travis/build/lockedata/pres-datascience/docs/glmworkshop.html --smart --email-obfuscation none --template /home/travis/R/Library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=glmworkshop_files/reveal.js-3.3.0.1 --highlight-style pygments 
-
-Output created: docs/glmworkshop.html
-
-
-processing file: datascience101.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |...                                                              |   5%
-   inline R code fragments
-
-  |                                                                         |......                                                           |  10%
-label: setup (with options) 
-List of 1
- $ include: logi FALSE
-
-  |                                                                         |..........                                                       |  15%
-  ordinary text without R code
-
-  |                                                                         |.............                                                    |  20%
-label: unnamed-chunk-1
-  |                                                                         |................                                                 |  25%
-  ordinary text without R code
-
-  |                                                                         |....................                                             |  30%
-label: unnamed-chunk-2 (with options) 
-List of 1
- $ echo: logi TRUE
-
-Quitting from lines 107-120 (datascience101.Rmd) 
-Error in library(DBI) : there is no package called 'DBI'
-Calls: render ... withCallingHandlers -> withVisible -> eval -> eval -> library
+Quitting from lines 313-315 (logisticregressions.Rmd) 
+Error: `data` and `reference` should be factors with the same levels.
 In addition: There were 50 or more warnings (use warnings() to see the first 50)
 
 Execution halted
