@@ -108,10 +108,11 @@ library(DBI)
 library(odbc)
 
 driver   = "ODBC Driver 13 for SQL Server"
-server = "lockedata.westeurope.cloudapp.azure.com"
+server = "lockedata2.westeurope.cloudapp.azure.com"
 database = "datasci"
-uid = "u001"
-pwd = "HBBFSE"
+uid = "lockedata"
+pwd = "zll+.?=g8JA11111"
+
 
 dbConn<-dbConnect(odbc(),
           driver=driver, server=server,

@@ -5,11 +5,11 @@
   <meta name="generator" content="pandoc">
   <meta name="author" content="Steph Locke" />
   <meta name="dcterms.date" content="2018-06-28" />
-  <title>Data Science Fundamentals</title>
+  <title>Modern R Data Science</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="T:\sites\superbuild\pres-datascience\docs\datascience101_files/reveal.js-3.3.0.1/css/reveal.css"/>
+  <link rel="stylesheet" href="T:\sites\superbuild\pres-datascience\docs\moderndatascience_files/reveal.js-3.3.0.1/css/reveal.css"/>
 
 
 <style type="text/css">
@@ -50,7 +50,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="T:\sites\superbuild\pres-datascience\docs\datascience101_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="T:\sites\superbuild\pres-datascience\docs\moderndatascience_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
 
 
   <!-- some tweaks to reveal css -->
@@ -488,7 +488,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <div class="slides">
 
 <section>
-    <h1 class="title">Data Science Fundamentals</h1>
+    <h1 class="title">Modern R Data Science</h1>
     <h2 class="author">Steph Locke</h2>
     <h3 class="date">2018-06-28</h3>
 </section>
@@ -496,14 +496,11 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section id="agenda" class="slide level2">
 <h2>Agenda</h2>
 <ul>
-<li>Business challenge</li>
-<li>Process</li>
 <li>Data &amp; EDA</li>
 <li>Sampling</li>
+<li>Feature Engineering and Reduction</li>
 <li>Modelling</li>
 <li>Evaluation</li>
-<li>Operationalising</li>
-<li>Monitoring</li>
 </ul>
 </section>
 <section id="steph-locke-locke-data" class="slide level2">
@@ -523,130 +520,25 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>itsalocke.com</li>
 </ul>
 </section>
-<section><section id="business-challenge" class="titleslide slide level1"><h1>Business Challenge</h1></section><section id="business-challengegoal" class="slide level2">
-<h2>Business Challenge/goal</h2>
-<ul>
-<li>Increase customer profitability</li>
-<li>Increase quantity of customers</li>
-<li>Reduce overheads</li>
-</ul>
-</section><section id="data-science-challenge" class="slide level2">
-<h2>Data science challenge</h2>
-<p>Find the lever you can push on to change behaviours that helps with business goal.</p>
-</section><section id="getting-started" class="slide level2">
-<h2>Getting started</h2>
-<h3 id="tips">Tips</h3>
-<ul>
-<li>Pick something only somewhat important and valuable to begin</li>
-<li>Find many levers</li>
-</ul>
-</section></section>
-<section><section id="process" class="titleslide slide level1"><h1>Process</h1></section><section id="crisp-dm" class="slide level2">
-<h2>CRISP-DM</h2>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/CRISP-DM_Process_Diagram.png" height="750px"></img></p>
-</section><section id="data-science-routes" class="slide level2">
-<h2>Data science routes</h2>
-<p><img src="https://github.com/stephlocke/lazyCDN/raw/master/RHighlevel.png" /></p>
-</section><section id="getting-started-1" class="slide level2">
-<h2>Getting started</h2>
-<h3 id="tips-1">Tips</h3>
-<ul>
-<li>Iterate</li>
-<li>Prototype</li>
-</ul>
-<h3 id="next-steps">Next steps</h3>
-<ul>
-<li>Check out <a href="https://medium.com/lean-product-development/kanban-boards-for-hypothesis-driven-development-32f99a70e8ee">Experiment kanban</a></li>
-<li>Check out <a href="https://azure.microsoft.com/en-gb/documentation/learning-paths/data-science-process/">MSFT data science process</a></li>
-</ul>
-</section></section>
-<section><section id="data-eda" class="titleslide slide level1"><h1>Data &amp; EDA</h1></section><section id="data" class="slide level2">
-<h2>Data</h2>
-<ul>
-<li>Do you have enough data?</li>
-<li>What biases are in the data that you might end up reinforcing?</li>
-<li>Have there been changes over time that mean the information means different things?</li>
-<li>Does it actually measure what you think it’s measuring?</li>
-</ul>
-</section><section id="extra-data" class="slide level2">
-<h2>Extra data</h2>
-<ul>
-<li>Where can you get extra information from?</li>
-<li>Do the join criteria work?</li>
-<li>Will you be able to get it for production purposes?</li>
-</ul>
-</section><section id="exploration" class="slide level2">
+<section><section id="data-eda" class="titleslide slide level1"><h1>Data &amp; EDA</h1></section><section id="exploration" class="slide level2">
 <h2>Exploration</h2>
 <ul>
-<li>Analyse the heck out of that data!</li>
-<li>Create extra “features”</li>
+<li>tidyverse</li>
+<li>DataExplorer</li>
 </ul>
 </section><section id="visualisation" class="slide level2">
 <h2>Visualisation</h2>
-<p><img src="datascience101_files/figure-revealjs/unnamed-chunk-1-1.svg" width="768" height="800px" /></p>
-</section><section id="getting-started-2" class="slide level2">
-<h2>Getting started</h2>
-<h3 id="tips-2">Tips</h3>
-<ul>
-<li>Data dictionaries</li>
-<li>Code everything</li>
-</ul>
-<h3 id="next-steps-1">Next steps</h3>
-<ul>
-<li>Read R for Data Science <a href="//geni.us/rfords">geni.us/rfords</a></li>
-<li>Use your existing tools</li>
-</ul>
-</section><section id="example-code" class="slide level2">
-<h2>Example code</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DBI)
-<span class="kw">library</span>(odbc)
-
-driver   =<span class="st"> &quot;ODBC Driver 13 for SQL Server&quot;</span>
-server =<span class="st"> &quot;lockedata2.westeurope.cloudapp.azure.com&quot;</span>
-database =<span class="st"> &quot;datasci&quot;</span>
-uid =<span class="st"> &quot;lockedata&quot;</span>
-pwd =<span class="st"> &quot;zll+.?=g8JA11111&quot;</span>
-
-
-dbConn&lt;-<span class="kw">dbConnect</span>(<span class="kw">odbc</span>(),
-          <span class="dt">driver=</span>driver, <span class="dt">server=</span>server,
-          <span class="dt">database=</span>database, <span class="dt">uid=</span>uid,
-          <span class="dt">pwd=</span>pwd)</code></pre></div>
-</section><section id="example-code-1" class="slide level2">
-<h2>Example code</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(dbplyr)
- 
-flights&lt;-<span class="kw">tbl</span>(dbConn,<span class="st">&quot;flights&quot;</span>)
-carriers&lt;-<span class="kw">tbl</span>(dbConn,<span class="st">&quot;flights_carriers&quot;</span>) 
-
-flights <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">inner_join</span>(carriers)
-## # Source:   lazy query [?? x 20]
-## # Database: Microsoft SQL Server 14.00.3015[dbo@lockedata2/datasci]
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     5    30     1434           1435        -1     1545
-##  2  2013     5    30     1441           1445        -4     1546
-##  3  2013     5    30     1448           1455        -7     1607
-##  4  2013     5    30     1455           1459        -4     1614
-##  5  2013     5    30     1455           1459        -4     1609
-##  6  2013     5    30     1521           1530        -9     1735
-##  7  2013     5    30     1529           1530        -1     1832
-##  8  2013     5    30     1551           1600        -9     1652
-##  9  2013     5    30     1604           1610        -6     1749
-## 10  2013     5    30     1604           1608        -4     1727
-## # ... with more rows, and 13 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, name &lt;chr&gt;</code></pre></div>
-</section><section id="example-code-2" class="slide level2">
-<h2>Example code</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(datasaurus_dozen,<span class="kw">aes</span>(x,y))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>dataset) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_void</span>()</code></pre></div>
+<p><img src="moderndatascience_files/figure-revealjs/unnamed-chunk-1-1.svg" width="768" height="800px" /></p>
+</section><section id="skimr" class="slide level2">
+<h2>skimr</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(skimr)
 flights <span class="op">%&gt;%</span>
-<span class="st">  </span>collect <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">skim</span>()</code></pre></div>
-<pre><code>## Skim summary statistics
+<span class="st">  </span><span class="kw">skim</span>()
+## Skim summary statistics
 ##  n obs: 336776 
 ##  n variables: 19 
 ## 
@@ -697,81 +589,62 @@ flights <span class="op">%&gt;%</span>
 ##   variable missing complete      n        min        max     median
 ##  time_hour       0   336776 336776 2013-01-01 2013-12-31 2013-07-03
 ##  n_unique
-##      6936</code></pre>
+##      6936</code></pre></div>
+</section><section id="dataexplorer" class="slide level2">
+<h2>DataExplorer</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DataExplorer<span class="op">::</span><span class="kw">create_report</span>(who)</code></pre></div>
 </section></section>
-<section><section id="sampling" class="titleslide slide level1"><h1>Sampling</h1></section><section id="sampling-basics" class="slide level2">
-<h2>Sampling basics</h2>
-<ul>
-<li>[OPTIONAL] Dataset for missing data</li>
-<li>Dataset for building your model</li>
-<li>Dataset for testing your model</li>
-</ul>
-</section><section id="considerations" class="slide level2">
-<h2>Considerations</h2>
-<ul>
-<li>Balanced or unbalanced</li>
-<li>Bootstrapping</li>
-</ul>
-</section><section id="getting-started-3" class="slide level2">
-<h2>Getting started</h2>
-<h3 id="tips-3">Tips</h3>
-<ul>
-<li>Make samples reproducible</li>
-<li>Don’t double-dip!</li>
-</ul>
-<h3 id="next-steps-2">Next steps</h3>
-<ul>
-<li>Read about <a href="https://www.khanacademy.org/math/statistics-probability/designing-studies/sampling-methods-stats/a/sampling-methods-review">sampling</a></li>
-</ul>
-</section><section id="example-code-3" class="slide level2">
-<h2>Example code</h2>
+<section><section id="sampling" class="titleslide slide level1"><h1>Sampling</h1></section><section id="modelr" class="slide level2">
+<h2>modelr</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(modelr)
 flights <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">resample_partition</span>(<span class="kw">c</span>(<span class="st">&quot;train&quot;</span>=<span class="fl">0.7</span>,<span class="st">&quot;test&quot;</span>=<span class="fl">0.3</span>))  -&gt;
 <span class="st">  </span>samples
 
 samples <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">map</span>(nrow)</code></pre></div>
-<pre><code>## $train
-## [1] 235743
-## 
-## $test
-## [1] 101033</code></pre>
-</section></section>
-<section><section id="modelling" class="titleslide slide level1"><h1>Modelling</h1></section><section id="models" class="slide level2">
-<h2>Models</h2>
-<ul>
-<li>Supervised vs unsupervised</li>
-<li>Parametric vs non-parametric</li>
-</ul>
-</section><section id="models-1" class="slide level2">
-<h2>Models</h2>
-<ul>
-<li>Regression</li>
-<li>Trees</li>
-<li>Others</li>
-</ul>
-</section><section id="candidate-models" class="slide level2">
-<h2>Candidate models</h2>
-<ul>
-<li>Simple model</li>
-<li>Complex model</li>
-<li>Different model types</li>
-</ul>
-</section><section id="getting-started-4" class="slide level2">
-<h2>Getting started</h2>
-<h3 id="tips-4">Tips</h3>
-<ul>
-<li>Models are cattle not pets</li>
-</ul>
-<h3 id="next-steps-3">Next steps</h3>
-<ul>
-<li>Check out <a href="http://setosa.io/ev/ordinary-least-squares-regression/">setosa.io</a></li>
-</ul>
-</section><section id="example-code-4" class="slide level2">
-<h2>Example code</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">samples <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">pluck</span>(<span class="st">&quot;train&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">as_data_frame</span>()-&gt;
+<span class="st">  </span>train
+
+samples <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pluck</span>(<span class="st">&quot;test&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">as_data_frame</span>()-&gt;
+<span class="st">  </span>test</code></pre></div>
+</section></section>
+<section><section id="feature-engineering-and-reduction" class="titleslide slide level1"><h1>Feature engineering and reduction</h1></section><section id="recipes" class="slide level2">
+<h2>recipes</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(recipes)
+
+train <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">recipe</span>(arr_delay<span class="op">~</span>.) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">step_rm</span>(dep_delay, year, time_hour) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">step_center</span>(<span class="kw">all_numeric</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">step_scale</span>(<span class="kw">all_numeric</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">step_nzv</span>(<span class="kw">all_nominal</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">prep</span>() -&gt;
+<span class="st">  </span>fe_cleaner
+
+(train_cleaned&lt;-<span class="kw">bake</span>(fe_cleaner, train))
+## # A tibble: 235,743 x 16
+##    month   day dep_time sched_dep_time arr_time sched_arr_time arr_delay
+##    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;     &lt;dbl&gt;
+##  1 -1.62 -1.68    -1.70          -1.77   -1.26           -1.44    0.0908
+##  2 -1.62 -1.68    -1.67          -1.74   -1.22           -1.42    0.292 
+##  3 -1.62 -1.68    -1.65          -1.72   -1.09           -1.38    0.582 
+##  4 -1.62 -1.68    -1.65          -1.71   -0.934          -1.03   -0.556 
+##  5 -1.62 -1.68    -1.63          -1.59   -1.29           -1.41   -0.712 
+##  6 -1.62 -1.68    -1.63          -1.68   -1.43           -1.62    0.113 
+##  7 -1.62 -1.68    -1.63          -1.59   -1.10           -1.37    0.269 
+##  8 -1.62 -1.68    -1.62          -1.59   -1.49           -1.63   -0.467 
+##  9 -1.62 -1.68    -1.62          -1.59   -1.24           -1.39   -0.333 
+## 10 -1.62 -1.68    -1.62          -1.59   -1.40           -1.59    0.0239
+## # ... with 235,733 more rows, and 9 more variables: carrier &lt;fct&gt;,
+## #   flight &lt;dbl&gt;, tailnum &lt;fct&gt;, origin &lt;fct&gt;, dest &lt;fct&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;</code></pre></div>
+</section></section>
+<section><section id="modelling" class="titleslide slide level1"><h1>Modelling</h1></section><section id="purrr" class="slide level2">
+<h2>purrr</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">train_cleaned <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(month) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(day) <span class="op">+</span><span class="st"> </span>hour , <span class="dt">data=</span>.) -&gt;
 <span class="st">  </span>initial_lm
 
@@ -782,149 +655,133 @@ initial_lm
 ##     hour, data = .)
 ## 
 ## Coefficients:
-##        (Intercept)   as.factor(month)2   as.factor(month)3  
-##           -15.4549             -0.7358             -0.1639  
-##  as.factor(month)4   as.factor(month)5   as.factor(month)6  
-##             5.0051             -2.4762             10.6554  
-##  as.factor(month)7   as.factor(month)8   as.factor(month)9  
-##            10.9202              0.4878             -9.8382  
-## as.factor(month)10  as.factor(month)11  as.factor(month)12  
-##            -6.1675             -5.6043              8.8604  
-##    as.factor(day)2     as.factor(day)3     as.factor(day)4  
-##            -1.2522             -3.5498             -9.4108  
-##    as.factor(day)5     as.factor(day)6     as.factor(day)7  
-##            -7.5698             -9.2946              1.6011  
-##    as.factor(day)8     as.factor(day)9    as.factor(day)10  
-##            11.8283              0.7988              7.2486  
-##   as.factor(day)11    as.factor(day)12    as.factor(day)13  
-##             2.6242              3.7184              1.6765  
-##   as.factor(day)14    as.factor(day)15    as.factor(day)16  
-##            -4.2501             -9.5330             -4.0620  
-##   as.factor(day)17    as.factor(day)18    as.factor(day)19  
-##             2.5303              1.8933              2.4178  
-##   as.factor(day)20    as.factor(day)21    as.factor(day)22  
-##            -6.4650             -5.3038              9.6782  
-##   as.factor(day)23    as.factor(day)24    as.factor(day)25  
-##             9.0755              2.9176              2.3482  
-##   as.factor(day)26    as.factor(day)27    as.factor(day)28  
-##            -4.3912             -3.6001              0.7508  
-##   as.factor(day)29    as.factor(day)30    as.factor(day)31  
-##            -8.2250             -7.2595             -5.0375  
-##               hour  
-##             1.7013</code></pre></div>
+##                        (Intercept)    as.factor(month)-1.3308086776434  
+##                          -0.011878                           -0.014738  
+##  as.factor(month)-1.03799276036195  as.factor(month)-0.745176843080504  
+##                          -0.001690                            0.109320  
+## as.factor(month)-0.452360925799058  as.factor(month)-0.159545008517611  
+##                          -0.050316                            0.236474  
+##  as.factor(month)0.133270908763835   as.factor(month)0.426086826045281  
+##                           0.248475                            0.001451  
+##  as.factor(month)0.718902743326728    as.factor(month)1.01171866060817  
+##                          -0.215225                           -0.138231  
+##   as.factor(month)1.30453457788962    as.factor(month)1.59735049517107  
+##                          -0.128862                            0.199274  
+##    as.factor(day)-1.56383435934161     as.factor(day)-1.44976868304271  
+##                          -0.016852                           -0.076931  
+##    as.factor(day)-1.33570300674381     as.factor(day)-1.22163733044491  
+##                          -0.190287                           -0.150111  
+##    as.factor(day)-1.10757165414602    as.factor(day)-0.993505977847119  
+##                          -0.199892                            0.058558  
+##   as.factor(day)-0.879440301548221    as.factor(day)-0.765374625249323  
+##                           0.268316                            0.043021  
+##   as.factor(day)-0.651308948950426    as.factor(day)-0.537243272651528  
+##                           0.176642                            0.073110  
+##    as.factor(day)-0.42317759635263    as.factor(day)-0.309111920053733  
+##                           0.091979                            0.053273  
+##   as.factor(day)-0.195046243754835   as.factor(day)-0.0809805674559373  
+##                          -0.087065                           -0.190389  
+##   as.factor(day)0.0330851088429604     as.factor(day)0.147150785141858  
+##                          -0.078493                            0.057616  
+##    as.factor(day)0.261216461440756     as.factor(day)0.375282137739653  
+##                           0.059708                            0.064327  
+##    as.factor(day)0.489347814038551     as.factor(day)0.603413490337449  
+##                          -0.134410                           -0.106594  
+##    as.factor(day)0.717479166636346     as.factor(day)0.831544842935244  
+##                           0.234162                            0.217685  
+##    as.factor(day)0.945610519234142      as.factor(day)1.05967619553304  
+##                           0.071889                            0.059449  
+##     as.factor(day)1.17374187183194      as.factor(day)1.28780754813083  
+##                          -0.087400                           -0.084998  
+##     as.factor(day)1.40187322442973      as.factor(day)1.51593890072863  
+##                           0.019862                           -0.166579  
+##     as.factor(day)1.63000457702753      as.factor(day)1.74407025332643  
+##                          -0.156455                           -0.094414  
+##                               hour  
+##                           0.172427
+
+flights <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">bake</span>(fe_cleaner,.) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>modelr<span class="op">::</span><span class="kw">bootstrap</span>(<span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pluck</span>(<span class="st">&quot;strap&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">map</span>(<span class="op">~</span><span class="kw">lm</span>(arr_delay<span class="op">~</span>hour<span class="op">+</span>day<span class="op">+</span>month, <span class="dt">data=</span>.)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">map_df</span>(tidy, <span class="dt">.id=</span><span class="st">&quot;bootstrap&quot;</span>)
+##    bootstrap        term      estimate   std.error     statistic
+## 1          1 (Intercept)  2.014164e-03 0.001701352   1.183860514
+## 2          1        hour  1.759828e-01 0.001699410 103.555238516
+## 3          1         day -1.334608e-03 0.001701837  -0.784215957
+## 4          1       month -1.816617e-02 0.001702491 -10.670348471
+## 5          2 (Intercept) -1.017874e-05 0.001704749  -0.005970811
+## 6          2        hour  1.734226e-01 0.001706318 101.635550547
+## 7          2         day -1.331318e-03 0.001703895  -0.781338229
+## 8          2       month -1.831095e-02 0.001706264 -10.731602970
+## 9          3 (Intercept)  1.139743e-03 0.001707681   0.667421500
+## 10         3        hour  1.735111e-01 0.001709142 101.519415048
+## 11         3         day  1.630973e-03 0.001702844   0.957793407
+## 12         3       month -1.536658e-02 0.001706903  -9.002613108
+## 13         4 (Intercept) -3.488387e-04 0.001704622  -0.204642836
+## 14         4        hour  1.732851e-01 0.001706107 101.567594274
+## 15         4         day -2.967159e-03 0.001703953  -1.741338704
+## 16         4       month -1.439320e-02 0.001705295  -8.440299704
+## 17         5 (Intercept) -1.022823e-03 0.001703918  -0.600276979
+## 18         5        hour  1.705698e-01 0.001706344  99.962161013
+## 19         5         day -3.215056e-04 0.001703606  -0.188720635
+## 20         5       month -1.641398e-02 0.001703460  -9.635674012
+##         p.value
+## 1  2.364691e-01
+## 2  0.000000e+00
+## 3  4.329140e-01
+## 4  1.415181e-26
+## 5  9.952360e-01
+## 6  0.000000e+00
+## 7  4.346042e-01
+## 8  7.307973e-27
+## 9  5.045034e-01
+## 10 0.000000e+00
+## 11 3.381677e-01
+## 12 2.215435e-19
+## 13 8.378513e-01
+## 14 0.000000e+00
+## 15 8.162516e-02
+## 16 3.177883e-17
+## 17 5.483221e-01
+## 18 0.000000e+00
+## 19 8.503119e-01
+## 20 5.690120e-22</code></pre></div>
+</section><section id="keras-and-tensorflow" class="slide level2">
+<h2>keras (and tensorflow)</h2>
+<p>Let’s looks at a vignette!</p>
+</section><section id="h2o.ai" class="slide level2">
+<h2>h2o.ai</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(h2o)
+<span class="kw">h2o.init</span>()
+h_train&lt;-<span class="kw">as.h2o</span>(train_cleaned)
+h_test&lt;-<span class="kw">as.h2o</span>(<span class="kw">bake</span>(fe_cleaner, test))
+<span class="kw">h2o.automl</span>(<span class="dt">y=</span> <span class="st">&quot;arr_delay&quot;</span>,
+           <span class="dt">training_frame =</span> h_train, 
+           <span class="dt">validation_frame =</span> h_test,
+           <span class="dt">max_runtime_secs =</span> <span class="dv">60</span>)</code></pre></div>
 </section></section>
-<section><section id="evaluation" class="titleslide slide level1"><h1>Evaluation</h1></section><section id="critical-success-factors" class="slide level2">
-<h2>Critical Success Factors</h2>
-<ul>
-<li>False positives vs false negatives</li>
-<li>Ranking</li>
-<li>Aligns with experts</li>
-</ul>
-</section><section id="data-diving" class="slide level2">
-<h2>Data diving</h2>
-<ul>
-<li>Segments</li>
-<li>Structural weaknesses</li>
-<li>Test data</li>
-</ul>
-</section><section id="getting-started-5" class="slide level2">
-<h2>Getting started</h2>
-<h3 id="tips-5">Tips</h3>
-<ul>
-<li>Don’t just rely on single metric</li>
-</ul>
-</section><section id="example-code-5" class="slide level2">
-<h2>Example code</h2>
+<section><section id="evaluation" class="titleslide slide level1"><h1>Evaluation</h1></section><section id="broom" class="slide level2">
+<h2>broom</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)
 initial_lm <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">glance</span>()
-##    r.squared adj.r.squared    sigma statistic p.value df   logLik     AIC
-## 1 0.06915259      0.068982 43.04348  405.3825       0 43 -1187638 2375364
-##       BIC  deviance df.residual
-## 1 2375819 424618625      229184</code></pre></div>
+##    r.squared adj.r.squared    sigma statistic p.value df    logLik
+## 1 0.06665367    0.06648259 0.966187  389.6193       0 43 -317297.2
+##        AIC      BIC deviance df.residual
+## 1 634682.5 635137.5 213909.9      229144</code></pre></div>
+</section><section id="yardstick" class="slide level2">
+<h2>yardstick</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">bake</span>(fe_cleaner, .) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">add_predictions</span>(initial_lm) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>yardstick<span class="op">::</span><span class="kw">rmse</span>(arr_delay, pred)
+## [1] 0.9517545</code></pre></div>
 </section></section>
-<section><section id="operationalising" class="titleslide slide level1"><h1>Operationalising</h1></section><section id="features" class="slide level2">
-<h2>Features</h2>
-<ul>
-<li>ETL for new data and calculations</li>
-<li>What data quality stuff had to be done?</li>
-</ul>
-</section><section id="model" class="slide level2">
-<h2>Model</h2>
-<ul>
-<li>How will you store the model?</li>
-<li>Does it need versioning?</li>
-<li>When will it need to be updated and how?</li>
-</ul>
-</section><section id="technology" class="slide level2">
-<h2>Technology</h2>
-<ul>
-<li>What’s the easiest way of getting live?</li>
-<li>What’s the long term way of getting it live?</li>
-<li>What’s your “bus factor”?</li>
-</ul>
-</section><section id="getting-started-6" class="slide level2">
-<h2>Getting started</h2>
-<h3 id="tips-6">Tips</h3>
-<ul>
-<li>KISS</li>
-<li>Operationalising a model often takes longer than the modelling exercise (at least initially)</li>
-</ul>
-<h3 id="next-steps-4">Next steps</h3>
-<ul>
-<li>Check out R in SQL Server</li>
-<li>Check out Azure ML</li>
-</ul>
-</section></section>
-<section><section id="monitoring" class="titleslide slide level1"><h1>Monitoring</h1></section><section id="logging" class="slide level2">
-<h2>Logging</h2>
-<ul>
-<li>Log results</li>
-<li>Log all the things</li>
-</ul>
-</section><section id="metrics" class="slide level2">
-<h2>Metrics</h2>
-<ul>
-<li>Measure the business lever &amp; other KPIs</li>
-<li>Set tolerances for negative impacts on other metrics</li>
-<li>J-performance</li>
-</ul>
-</section><section id="holdouts" class="slide level2">
-<h2>Holdouts</h2>
-<ul>
-<li>Always have a control group</li>
-</ul>
-</section><section id="getting-started-7" class="slide level2">
-<h2>Getting started</h2>
-<h3 id="tips-7">Tips</h3>
-<ul>
-<li>Plan for monitoring, don’t make it an after-thought</li>
-</ul>
-</section></section>
-<section><section id="conclusion" class="titleslide slide level1"><h1>Conclusion</h1></section><section id="process-1" class="slide level2">
+<section><section id="conclusion" class="titleslide slide level1"><h1>Conclusion</h1></section><section id="process" class="slide level2">
 <h2>Process</h2>
 <p><img src="https://github.com/stephlocke/lazyCDN/raw/master/RHighlevel.png" /></p>
-</section><section id="tips-8" class="slide level2">
-<h2>Tips</h2>
-<ul>
-<li>Pick something only somewhat important and valuable to begin</li>
-<li>Find many levers</li>
-<li>Iterate</li>
-<li>Prototype</li>
-<li>Data dictionaries</li>
-<li>Code everything</li>
-<li>Make samples reproducible</li>
-<li>Don’t double-dip!</li>
-</ul>
-</section><section id="tips-9" class="slide level2">
-<h2>Tips</h2>
-<ul>
-<li>Models are cattle not pets</li>
-<li>Don’t just rely on single metric</li>
-<li>KISS</li>
-<li>Operationalising a model often takes longer than the modelling exercise (at least initially)</li>
-<li>Plan for monitoring, don’t make it an after-thought</li>
-</ul>
 </section><section id="follow-up" class="slide level2">
 <h2>Follow up</h2>
 <ul>
@@ -936,8 +793,8 @@ initial_lm <span class="op">%&gt;%</span><span class="st"> </span>
     </div>
   </div>
 
-  <script src="T:\sites\superbuild\pres-datascience\docs\datascience101_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
-  <script src="T:\sites\superbuild\pres-datascience\docs\datascience101_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+  <script src="T:\sites\superbuild\pres-datascience\docs\moderndatascience_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="T:\sites\superbuild\pres-datascience\docs\moderndatascience_files/reveal.js-3.3.0.1/js/reveal.js"></script>
 
   <script>
 

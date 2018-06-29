@@ -1,0 +1,163 @@
+---
+title: "Modern R Data Science"
+author: "Steph Locke"
+date:  "`r Sys.Date()`"
+output: 
+  html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, dev="svg",
+     out.height = "800px",  strip.white=TRUE
+     ,collapse = TRUE, dev.args = list(bg="transparent")
+)
+library(tidyverse)
+library(nycflights13)
+library(datasauRus)
+```
+
+## Agenda
+- Data & EDA
+- Sampling
+- Feature Engineering and Reduction
+- Modelling
+- Evaluation
+
+## Steph Locke & Locke Data
+- Steph
+    + MVP
+    + Learn R books: [geni.us/rfundamentals](//geni.us/rfundamentals)
+- Locke Data
+    + Consultancy focussed on helping organisations get started with data science
+
+- @stefflocke @lockedata
+- steph@itsalocke.com
+- itsalocke.com
+
+
+# Data & EDA
+
+## Exploration
+- tidyverse
+- DataExplorer
+
+
+## Visualisation
+```{r}
+ggplot(datasaurus_dozen,aes(x,y))+
+  geom_point()+
+  facet_wrap(~dataset) +
+  theme_void()
+```
+
+
+
+## skimr
+```{r eval=TRUE}
+library(skimr)
+flights %>%
+  skim()
+```
+
+## DataExplorer
+```{r eval=FALSE}
+DataExplorer::create_report(who)
+```
+
+# Sampling
+
+## modelr
+```{r }
+library(modelr)
+flights %>% 
+  resample_partition(c("train"=0.7,"test"=0.3))  ->
+  samples
+
+samples %>% 
+  pluck("train") %>% 
+  as_data_frame()->
+  train
+
+samples %>% 
+  pluck("test") %>% 
+  as_data_frame()->
+  test
+```
+
+# Feature engineering and reduction
+## recipes
+```{r}
+library(recipes)
+
+train %>% 
+  recipe(arr_delay~.) %>% 
+  step_rm(dep_delay, year, time_hour) %>% 
+  step_center(all_numeric()) %>% 
+  step_scale(all_numeric()) %>% 
+  step_nzv(all_nominal()) %>% 
+  prep() ->
+  fe_cleaner
+
+(train_cleaned<-bake(fe_cleaner, train))
+```
+
+# Modelling
+## purrr
+```{r echo=TRUE}
+train_cleaned %>% 
+  lm(arr_delay ~ as.factor(month) + as.factor(day) + hour , data=.) ->
+  initial_lm
+
+initial_lm
+
+flights %>% 
+  bake(fe_cleaner,.) %>% 
+  modelr::bootstrap(5) %>% 
+  pluck("strap") %>% 
+  map(~lm(arr_delay~hour+day+month, data=.)) %>% 
+  map_df(tidy, .id="bootstrap")
+```
+
+## keras (and tensorflow)
+Let's looks at a vignette!
+
+## h2o.ai
+```{r eval=FALSE}
+library(h2o)
+h2o.init()
+h_train<-as.h2o(train_cleaned)
+h_test<-as.h2o(bake(fe_cleaner, test))
+h2o.automl(y= "arr_delay",
+           training_frame = h_train, 
+           validation_frame = h_test,
+           max_runtime_secs = 60)
+```
+
+# Evaluation
+
+## broom
+```{r echo=TRUE}
+library(broom)
+initial_lm %>% 
+  glance()
+```
+
+## yardstick
+```{r}
+test %>% 
+  bake(fe_cleaner, .) %>% 
+  add_predictions(initial_lm) %>% 
+  yardstick::rmse(arr_delay, pred)
+```
+
+
+
+# Conclusion
+## Process
+![](https://github.com/stephlocke/lazyCDN/raw/master/RHighlevel.png)
+
+
+## Follow up
+- @stefflocke @lockedata
+- steph@itsalocke.com
+- itsalocke.com/talks
