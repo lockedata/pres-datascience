@@ -4,6 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: scroll
+    css: flexdashboard.css
 runtime: shiny
 ---
 
@@ -14,27 +15,33 @@ library(shiny)
 library(DT)
 library(flexdashboard)
 library(ggplot2)
-library(ggthemes)
-library(hrbrthemes)
 library(googlesheets)
 library(skimr)
 library(modelr)
 library(ggbeeswarm)
 library(forcats)
+library(stringr)
 gs_auth("googlesheets_token.rds")
 
 getdata <- function() {
   sheet<-gs_title("About you (Responses)")
   df<-gs_read(sheet) 
   names(df)<-c("id","focus", "age", "happy","income")
-  df<- df %>% mutate(focus=fct_lump(focus,3),
-                    income=fct_lump(income,3),
-                     age=pmin(age,70)) %>% 
-    filter(!is.na(age))
- # df<- tidyr::separate(df,social)
+ df<- df %>%
+     mutate(happy=happy=="Yes",
+            age=coalesce(as.numeric(age),45),
+            focus=fct_lump(focus, n=3)) %>%
+   mutate(age=ifelse(age<10|age>70,70,age))
   return(df)
 }
 
+summarise_tbl<-function(df, col, sum){
+    quo_col <- enquo(col)
+    df %>% 
+    group_by(!! quo_col) %>% 
+    summarise(n=n(),median =median(age),mean = mean(age), sd=sd(age), min=min(age), max=max(age)) %>% 
+    mutate_if(is.numeric,round, 2)
+}
 ```
 
 
@@ -50,10 +57,11 @@ results <- reactive({
 Intro
 ===================================== 
 
+Agenda
+-----------------------------------------------------------------------
+**Welcome!**
 
-Welcome!
-
-Please fill out [bit.ly/stats101survey](bit.ly/stats101survey)
+Please fill out [bit.ly/stats101survey](http://bit.ly/stats101survey)
 
 Agenda
 
@@ -62,15 +70,22 @@ Agenda
 - Comparing groups
 - Predicting values
 
+About me
+-----------------------------------------------------------------------
+
 About Me
 
-- Own a data science consultancy
-- Microsoft Data Platform MVP
+- Data science consultant
+- Microsoft AI MVP
 - Lots of community stuff
 - itsalocke.com
-- @stefflocke @lockedata
+    + itsalocke.com/talks
+- @theStephLocke @lockedata
 
-![](https://itsalocke.com/img/ChibiSteph.svg)
+Img {data-width=400}
+-----------------------------------------------------------------------
+
+<img src="https://itsalocke.com/img/ChibiSteph.svg" width="600px"></img>
 
 
 Data
@@ -103,20 +118,14 @@ Tables
  ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1)) + ylab("") +
   scale_y_continuous(breaks = NULL)+ 
-    hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    )
+    theme_minimal(base_size=18)
 ```
 
 ### Happy 
 
 ```{r}
 renderDataTable({
-  results() %>% 
-    group_by(happy) %>% 
-    summarise(n=n(),median =median(age),mean = mean(age), sd=sd(age), min=min(age), max=max(age))
+  summarise_tbl(results() , happy)
 }, options = list(
   bPaginate = FALSE
 ))
@@ -126,9 +135,7 @@ renderDataTable({
 
 ```{r}
 renderDataTable({
-  results() %>% 
-    group_by(income) %>% 
-    summarise(n=n(), mean = mean(age), sd=sd(age), min=min(age), max=max(age))
+  summarise_tbl(results() , income)
 }, options = list(
   bPaginate = FALSE
 ))
@@ -138,9 +145,7 @@ renderDataTable({
 
 ```{r}
 renderDataTable({
-  results() %>% 
-    group_by(focus) %>% 
-    summarise(n=n(), mean = mean(age), sd=sd(age), min=min(age), max=max(age))
+  summarise_tbl(results() , focus)
 }, options = list(
   bPaginate = FALSE
 ))
@@ -156,11 +161,7 @@ Age
 renderPlot({
   ggplot(results(), aes(x = age, colour= happy, group=happy)) +
     geom_density() + 
-    hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    ) +
+    theme_minimal(base_size=18) +
     labs(x = "Happy", y = "Age",
          title = "Age distribution  by happiness") 
 })
@@ -172,44 +173,19 @@ renderPlot({
   ggplot(results(), aes(x = happy, y= age)) +
     geom_boxplot(alpha=0, colour="grey")+
     geom_beeswarm(colour = "#2165B6", size =3) + 
-    hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    ) +
+    theme_minimal(base_size=18) +
     labs(x = "Happy", y = "Age",
          title = "Age distribution  by happiness") 
 })
 ```
 
-<!--
-### Location
-```{r}
-renderPlot({
-  ggplot(results(), aes(x = continent, y= age)) +
-    geom_boxplot(alpha=0, colour="grey")+
-    geom_beeswarm(colour = "#2165B6", size =3) + 
-    hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    ) +
-    labs(x = "Location", y = "Age",
-         title = "Age distribution  by location") 
-})
-```
--->
 
 ### Focus 1
 ```{r}
 renderPlot({
   ggplot(results(), aes(x = age, colour= focus, group=focus)) +
     geom_density() + 
-    hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    ) +
+    theme_minimal(base_size=18) +
     labs(x = "Happy", y = "Age",
          title = "Age distribution  by focus") 
 })
@@ -221,11 +197,7 @@ renderPlot({
   ggplot(results(), aes(x = focus, y= age)) +
     geom_boxplot(alpha=0, colour="grey")+
     geom_beeswarm(colour = "#2165B6", size =3) + 
-    hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    ) +
+    theme_minimal(base_size=18) +
     labs(x = "Focus", y = "Age",
          title = "Age distribution by focus") 
 })
@@ -236,13 +208,9 @@ renderPlot({
 renderPlot({
   ggplot(results(), aes(x = age, colour= income, group=income)) +
     geom_density() + 
-    hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    ) +
+    theme_minimal(base_size=18) +
     labs(x = "Happy", y = "Age",
-         title = "Age distribution  by focus") 
+         title = "Age distribution by income") 
 })
 ```
 
@@ -252,13 +220,9 @@ renderPlot({
   ggplot(results(), aes(x = income, y= age)) +
     geom_boxplot(alpha=0, colour="grey")+
     geom_beeswarm(colour = "#2165B6", size =3) + 
-    hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    ) +
+    theme_minimal(base_size=18) +
     labs(x = "Focus", y = "Age",
-         title = "Age distribution by focus") 
+         title = "Age distribution by income") 
 })
 ```
 
@@ -267,7 +231,7 @@ Are happy people older?
 
 Job satisfaction
 -----------------------------------------------------------------------
-Hypothesis: People who are unhappy with their job are younger than those who are happy with their job.
+Hypothesis: People who are unhappy with their job are older than those who are happy with their job.
 
 A t-test takes two groups and determines how likely it is for the two values to be generated from the same data i.e. the two groups are not actually different. The smaller the result, the less likely the two groups are actually one group. You should set a threshold before hand - commonly 0.05!
 
@@ -278,7 +242,7 @@ Run a t-test in R using the `t.test()` function.
 ```{r}
 renderValueBox({
   results() %>% 
-    filter( happy == "Yes") %>% 
+    filter( happy) %>% 
     summarise(mean=mean(age)) ->
     yes.mean
   p<-round(yes.mean$mean,1)
@@ -290,7 +254,7 @@ renderValueBox({
 ```{r}
 renderValueBox({
   results() %>% 
-    filter( happy == "No") %>% 
+    filter( !happy) %>% 
     summarise(mean=mean(age)) ->
     no.mean
   p<-round(no.mean$mean,1)
@@ -386,22 +350,14 @@ The mean age is `r reactive({round(mean(training()$age),1)})`.
 ```{r}
 renderPlot({
 qplot(data=training(), x=age) + geom_vline(aes(xintercept = median(training()$age)), colour="blue")+ geom_vline(aes(xintercept = mean(training()$age)),colour="red")+
-    hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    )
+    theme_minimal(base_size=18)
 })
 ```
 
 ```{r}
 renderPlot({
 qplot(data=training(), x=age) + geom_vline(aes(xintercept = median(training()$age)), colour="blue")+ geom_vline(aes(xintercept = mean(training()$age)),colour="red")+
-    hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    )
+    theme_minimal(base_size=18)
 })
 ```
 
@@ -427,11 +383,7 @@ training() %>%
 ggplot(training(), aes(x=happy, y=age))+
   geom_point()+
   geom_point(data=preds, colour="blue", size=5)+
-   hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    )+
+   theme_minimal(base_size=18)+
     labs(x = "Happy", y = "Age",
          title = "Age distribution  by happiness") 
 })
@@ -452,11 +404,7 @@ training() %>%
 ggplot(training(), aes(x=focus, y=age))+
   geom_point()+
   geom_point(data=preds, colour="blue", size=5)+
-   hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    )+
+   theme_minimal(base_size=18)+
     labs(x = "Focus", y = "Age",
          title = "Age distribution  by focus") 
 })
@@ -477,11 +425,7 @@ training() %>%
 ggplot(training(), aes(x=income, y=age))+
   geom_point()+
   geom_point(data=preds, colour="blue", size=5)+
-   hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    )+
+   theme_minimal(base_size=18)+
     labs(x = "Income", y = "Age",
          title = "Age distribution  by focus") 
 })
@@ -490,7 +434,7 @@ ggplot(training(), aes(x=income, y=age))+
 ### All the things
 Combining multiple variables
 
-`lm(age~focus + age + income, data=training)`
+`lm(age~focus + happy + income, data=training)`
 
 ```{r}
 
@@ -504,21 +448,25 @@ training() %>%
 ggplot(training(), aes(x=age, y=age))+
   geom_point()+
   geom_point(data=preds, colour="blue", size=5)+
-   hrbrthemes::theme_ipsum(
-      base_size = 18,
-      grid = FALSE,
-      axis = FALSE
-    )+
+   theme_minimal(base_size=18)+
     labs(x = "Age", y = "Age",
          title = "Age distribution") 
 })
 ```
 
 ### Picking a model
-You can pick models by different metrics based on your business success criteria. Here we're going to use the Mean Squared Error (MSE) after making predictions on our test data. Whichever one has the smallest value, that is our most accurate model and we'll use that going forward.
+You can pick models by different metrics based on your business success criteria. Here we're going to use the Root Mean Squared Error (RMSE) after making predictions on our test data. Whichever one has the smallest value, that is our most accurate model and we'll use that going forward.
 
-Mean Squared Error is the average value of all the squared differences betweeen predicted and actual values. We square them to make everything positive and to penalise larger errors.
+Root Mean Squared Error is:
 
+1. The difference between the predicted value and the actual value
+2. Square this value to make every number positive (so they don't cancel out!) and to make big errors matter more
+3. Take the average of these values
+4. Use the root of the average to bring the value back down to absolute errors that are on the same scale as the predictions
+
+The model that has the lowest RMSE typically has a lower about error than the other models.
+
+### Results
 ```{r}
 renderDataTable({
   
@@ -526,19 +474,39 @@ renderDataTable({
   focusmodel<-lm(age~focus, data=training())
   incomemodel<-lm(age~income, data=training())
   fullmodel<-lm(age~happy+focus+income, data=training())
-  
- testing() %>% 
-  add_predictions(happymodel, "happymodel")%>% 
-  add_predictions(focusmodel, "focusmodel")%>% 
-  add_predictions(incomemodel, "incomemodel")%>% 
-  add_predictions(fullmodel, "fullmodel")%>% 
+
+ testing() %>%
+  add_predictions(happymodel, "happymodel")%>%
+  add_predictions(focusmodel, "focusmodel")%>%
+  add_predictions(incomemodel, "incomemodel")%>%
+  add_predictions(fullmodel, "fullmodel")%>%
   mutate(medianmodel=median(training()$age),
-         meanmodel=round(mean(training()$age),1)) %>% 
-  gather(model, pred_age, ends_with("model")) %>% 
-  mutate(square_error=(pred_age-age)^2) %>% 
-  group_by(model) %>% 
-  summarise(mean(square_error))
+         meanmodel=round(mean(training()$age),1)) %>%
+  gather(model, pred_age, ends_with("model")) %>%
+  mutate(square_error=(pred_age-age)^2) %>%
+  group_by(model) %>%
+  summarise(RMSE=round(mean(square_error)^0.5,1))
+  
 }, options = list(
   bPaginate = FALSE
 ))
+```
+
+# Can we predict happiness?
+
+### Decision trees
+Decision trees build a flowchart for arriving at an outcome. It determines this flowchart iteratively, based on what improves the split(s) between outcomes the most from all the remaining columns.
+
+`FFTrees()`
+
+### Result
+```{r}
+library(FFTrees) 
+renderPlot({
+training() %>% 
+  FFTrees(happy~age+income+focus, 
+          data=.,
+          data.test = testing()) %>% 
+  plot(data="test")
+})
 ```
