@@ -34,7 +34,7 @@ library(ggplot2)
 - Locke Data
     + Consultancy focussed on helping organisations get started with data science
 
-- @stefflocke @lockedata
+- @thestephlocke @lockedata
 - steph@itsalocke.com
 - itsalocke.com
 
@@ -57,8 +57,11 @@ Find the lever you can push on to change behaviours that helps with business goa
 ## CRISP-DM
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/CRISP-DM_Process_Diagram.png" height="750px"></img>
 
+## Team Data Science process
+![](https://docs.microsoft.com/en-us/azure/machine-learning/team-data-science-process/media/overview/tdsp-lifecycle2.png)
+
 ## Data science routes
-![](https://github.com/stephlocke/lazyCDN/raw/master/RHighlevel.png)
+![](https://d33wubrfki0l68.cloudfront.net/db7d9d2c2e56fdb8eaf4eba8bdb7f119170664e7/1da38/images/flowcharts/flowchart/flowchart.002.png)
 
 ## Getting started
 ### Tips
@@ -85,12 +88,14 @@ Find the lever you can push on to change behaviours that helps with business goa
 - Analyse the heck out of that data!
 - Create extra "features"
 
+
 ## Visualisation
 ```{r}
-ggplot(datasaurus_dozen,aes(x,y))+
+plotly::ggplotly({
+  ggplot(datasaurus_dozen,aes(x,y))+
   geom_point()+
-  facet_wrap(~dataset) +
-  theme_void()
+  facet_wrap(~dataset) 
+})
 ```
 
 ## Getting started
@@ -134,17 +139,10 @@ flights %>%
 
 ## Example code
 ```{r echo=TRUE, eval=FALSE}
-library(skimr)
+library(DataExplorer)
 flights %>%
   collect %>% 
-  skim()
-```
-
-
-```{r eval=TRUE, echo=FALSE}
-library(skimr)
-nycflights13::flights %>%
-  skim()
+  create_report()
 ```
 
 
@@ -168,22 +166,23 @@ nycflights13::flights %>%
 
 ## Example code 
 ```{r echo=TRUE, eval=FALSE}
-library(modelr)
+library(rsample)
 flights %>% 
-  resample_partition(c("train"=0.7,"test"=0.3))  ->
+  initial_split()  ->
   samples
 
-samples %>% 
-  map(nrow)
+nrow(training(samples))
+nrow(testing(samples))
 ```
+
 ```{r eval=TRUE, echo=FALSE}
-library(modelr)
+library(rsample)
 nycflights13::flights %>% 
-  resample_partition(c("train"=0.7,"test"=0.3)) ->
+  initial_split()  ->
   samples
 
-samples %>% 
-  map(nrow)
+nrow(training(samples))
+nrow(testing(samples))
 ```
 
 # Modelling
@@ -211,7 +210,7 @@ samples %>%
 ## Example code
 ```{r echo=TRUE}
 samples %>% 
-  pluck("train") %>% 
+  training() %>% 
   lm(arr_delay ~ as.factor(month) + as.factor(day) + hour , data=.) ->
   initial_lm
 
@@ -284,7 +283,7 @@ initial_lm %>%
 
 # Conclusion
 ## Process
-![](https://github.com/stephlocke/lazyCDN/raw/master/RHighlevel.png)
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/CRISP-DM_Process_Diagram.png" height="750px"></img>
 
 ## Tips
 - Pick something only somewhat important and valuable to begin
@@ -304,6 +303,6 @@ initial_lm %>%
 - Plan for monitoring, don't make it an after-thought
 
 ## Follow up
-- @stefflocke @lockedata
+- @thestephlocke @lockedata
 - steph@itsalocke.com
 - itsalocke.com/talks
