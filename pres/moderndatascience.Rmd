@@ -43,7 +43,7 @@ library(datasauRus)
 
 
 ## Visualisation
-```{r}
+```{r moderndatascience-1}
 ggplot(datasaurus_dozen,aes(x,y))+
   geom_point()+
   facet_wrap(~dataset) +
@@ -86,7 +86,7 @@ samples %>%
 
 # Feature engineering and reduction
 ## recipes
-```{r}
+```{r moderndatascience-2}
 library(recipes)
 
 train %>% 
@@ -143,7 +143,7 @@ initial_lm %>%
 ```
 
 ## yardstick
-```{r}
+```{r moderndatascience-3}
 test %>% 
   bake(fe_cleaner, .) %>% 
   add_predictions(initial_lm) %>% 

@@ -90,7 +90,7 @@ Find the lever you can push on to change behaviours that helps with business goa
 
 
 ## Visualisation
-```{r}
+```{r datascience101-1}
 plotly::ggplotly({
   ggplot(datasaurus_dozen,aes(x,y))+
   geom_point()+

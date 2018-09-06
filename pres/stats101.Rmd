@@ -48,7 +48,7 @@ myFile<-"Predicting Age.xlsx"
 
 ## Our data
 We have the results from our survey.
-```{r}
+```{r stats101-1}
 basedata<-setDT(read_excel(myFile))
 results<-basedata[Age<100&Age>Experience,]
 ```
@@ -64,14 +64,14 @@ DT::datatable(results,style="bootstrap",options=list(dom = "lftir" ))
 ```
 
 ## Age Distribution
-```{r}
+```{r stats101-2}
 ggplot(results)+ggopts+
   aes(x = Age, y=..count..)+
   geom_histogram(bins = 10, fill="white", colour="white")
 ```
 
 ## Experience Distribution
-```{r}
+```{r stats101-3}
 vegalite %>%
   add_data(results) %>%
   encode_x("Experience","quantitative") %>%
@@ -80,7 +80,7 @@ vegalite %>%
 ```
 
 ## Field Distribution
-```{r}
+```{r stats101-4}
 vegalite %>%
   add_data(results) %>%
   encode_x("Field","ordinal") %>%
@@ -90,7 +90,7 @@ vegalite %>%
 
 
 ## All data
-```{r}
+```{r stats101-5}
 vegalite %>%
   add_data(results) %>%
   encode_x("Experience","quantitative") %>%
@@ -102,7 +102,7 @@ vegalite %>%
 
 # Sampling
 
-```{r}
+```{r stats101-6}
 testPer<-.75
 inTest<-sample(1:nrow(results),nrow(results)*testPer)
 training<-results[inTest,]
@@ -110,7 +110,7 @@ holdout<-results[!inTest,]
 ```
 
 ## Training
-```{r}
+```{r stats101-7}
 vegalite %>%
   add_data(training) %>%
   encode_x("Experience","quantitative") %>%
@@ -120,7 +120,7 @@ vegalite %>%
 ```
 
 ## Holdout
-```{r}
+```{r stats101-8}
 vegalite %>%
   add_data(holdout) %>%
   encode_x("Experience","quantitative") %>%
@@ -134,7 +134,7 @@ vegalite %>%
 ## One size fits all
 We could take some measure of central tendency to predict the age of attendees.
 
-```{r}
+```{r stats101-9}
 averages<-training[,.(Mean=floor(mean(Age))
                       ,Median=floor(median(Age))
                       ,Mode=Mode(Age)
@@ -143,7 +143,7 @@ knitr::kable(averages)
 ```
 
 ## Results
-```{r}
+```{r stats101-10}
 holdout[,colnames(averages):=averages]
 holdout.m<-melt(holdout, measure.vars = c("Age",colnames(averages)))
 vegalite %>%
@@ -155,7 +155,7 @@ vegalite %>%
 ```
 
 ## Assessing results
-```{r}
+```{r stats101-11}
 holdout.lse<-melt(holdout, measure.vars = colnames(averages))
 holdout.lse[,Error:=(Age-value)^2]
 knitr::kable(holdout.lse[,.(LSE=sum(Error)), variable][order(LSE)])
@@ -164,13 +164,13 @@ knitr::kable(holdout.lse[,.(LSE=sum(Error)), variable][order(LSE)])
 # Line of best fit
 $y=mx+c$
 
-```{r}
+```{r stats101-12}
 expLM<-lm(Age~Experience, training)
 summary(expLM)
 ```
 
 ## Model
-```{r}
+```{r stats101-13}
 training[,expLMres:=expLM$fitted]
 ggplot(training, aes(x=Experience, y=Age))+
   geom_point()+
@@ -179,7 +179,7 @@ ggplot(training, aes(x=Experience, y=Age))+
 ```
 
 ## Results
-```{r}
+```{r stats101-14}
 holdout[,expLMres:=predict(expLM,holdout)]
 holdout.m<-melt(holdout, measure.vars = c("Age","expLMres"))
 vegalite %>%
@@ -191,7 +191,7 @@ vegalite %>%
 ```
 
 ## Assessing results
-```{r}
+```{r stats101-15}
 holdout.lse<-melt(holdout, measure.vars = c("expLMres",colnames(averages)))
 holdout.lse[,Error:=(Age-value)^2]
 knitr::kable(holdout.lse[,.(LSE=sum(Error)), variable][order(LSE)])
@@ -202,13 +202,13 @@ knitr::kable(holdout.lse[,.(LSE=sum(Error)), variable][order(LSE)])
 - $y=m_1 x_1 +...+ m_n x_n +c$
 - Contrasts
 
-```{r}
+```{r stats101-16}
 fieldLM<-lm(Age~Experience + Field, training)
 summary(fieldLM)
 ```
 
 ## Model
-```{r}
+```{r stats101-17}
 training[,fieldLMres:=fieldLM$fitted]
 ggplot(training, aes(x=Experience, y=Age, group=Field, colour=Field))+
   geom_point()+
@@ -218,7 +218,7 @@ ggplot(training, aes(x=Experience, y=Age, group=Field, colour=Field))+
 ```
 
 ## Results
-```{r}
+```{r stats101-18}
 holdout[,fieldLMres:=predict(fieldLM,holdout)]
 holdout.m<-melt(holdout, measure.vars = c("Age","fieldLMres"))
 vegalite %>%
@@ -230,7 +230,7 @@ vegalite %>%
 ```
 
 ## Assessing results
-```{r}
+```{r stats101-19}
 holdout.lse<-melt(holdout, measure.vars = c("fieldLMres","expLMres",colnames(averages)))
 holdout.lse[,Error:=(Age-value)^2]
 knitr::kable(holdout.lse[,.(LSE=sum(Error)), variable][order(LSE)])

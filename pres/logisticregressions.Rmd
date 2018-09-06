@@ -207,7 +207,7 @@ summary(x_s)
 ## Scaling variables
 Use `caret` to scale multiple variables simultaneously and get a reusable scaling model for applying to test data, and eventually production data.
 
-```{r, echo=TRUE}
+```{r logisticregressions-1, echo=TRUE}
 transformations<-preProcess(training_x)
 scaledVars<-predict(transformations,training_x)
 knitr::kable(t(summary(scaledVars)))
@@ -265,7 +265,7 @@ summary(steppedmodel)
 ## `broom`
 Use `broom` to make tidy versions of model outputs.
 
-```{r}
+```{r logisticregressions-2}
 library(broom)
 
 # Coefficients
@@ -275,7 +275,7 @@ knitr::kable(tidy(steppedmodel))
 ## `broom`
 Use `broom` to make tidy versions of model outputs.
 
-```{r}
+```{r logisticregressions-3}
 # Fitted data
 knitr::kable(head(augment(steppedmodel)))
 ```
@@ -283,7 +283,7 @@ knitr::kable(head(augment(steppedmodel)))
 ## `broom`
 Use `broom` to make tidy versions of model outputs.
 
-```{r}
+```{r logisticregressions-4}
 # Key statistics
 knitr::kable(glance(steppedmodel))
 ```
