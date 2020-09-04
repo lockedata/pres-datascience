@@ -551,8 +551,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section><section id="results" class="slide level2">
 <h2>Results</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">DT<span class="op">::</span><span class="kw">datatable</span>(results)</a></code></pre></div>
-<div id="htmlwidget-c4c1af0382625f52a2e4" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c4c1af0382625f52a2e4">{"x":{"style":"bootstrap","filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"],["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]],"container":"<table class=\"table table-striped table-hover\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Name<\/th>\n      <th>Age<\/th>\n      <th>Field<\/th>\n      <th>Experience<\/th>\n      <th>Attending Stats 101 with Steph Locke<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"lftir","columnDefs":[{"className":"dt-right","targets":[2,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ebd3b3d625fa89c10774" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ebd3b3d625fa89c10774">{"x":{"style":"bootstrap","filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"],["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]],"container":"<table class=\"table table-striped table-hover\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Name<\/th>\n      <th>Age<\/th>\n      <th>Field<\/th>\n      <th>Experience<\/th>\n      <th>Attending Stats 101 with Steph Locke<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"lftir","columnDefs":[{"className":"dt-right","targets":[2,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </section><section id="age-distribution" class="slide level2">
 <h2>Age Distribution</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">ggplot</span>(results)<span class="op">+</span>ggopts<span class="op">+</span></a>
@@ -566,8 +566,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">encode_x</span>(<span class="st">&quot;Experience&quot;</span>,<span class="st">&quot;quantitative&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;*&quot;</span>, <span class="st">&quot;quantitative&quot;</span>, <span class="dt">aggregate=</span><span class="st">&quot;count&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw">bin_x</span>(<span class="dt">maxbins=</span><span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">mark_bar</span>()</a></code></pre></div>
-<div id="htmlwidget-da1cb61449e5cf0a3eeb" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-da1cb61449e5cf0a3eeb">{"x":{"description":"","data":{"values":{"Name":["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],"Age":[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],"Field":["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],"Experience":[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"bar","encoding":{"color":{"legend":{"orient":"left"}},"x":{"field":"Experience","type":"quantitative","bin":{"maxbins":10}},"y":{"field":"*","type":"quantitative","aggregate":"count"}},"config":{"cell":{"width":700,"height":500}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-493a86bdb4b9892a4888" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-493a86bdb4b9892a4888">{"x":{"description":"","data":{"values":{"Name":["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],"Age":[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],"Field":["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],"Experience":[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"bar","encoding":{"color":{"legend":{"orient":"left"}},"x":{"field":"Experience","type":"quantitative","bin":{"maxbins":10}},"y":{"field":"*","type":"quantitative","aggregate":"count"}},"config":{"cell":{"width":700,"height":500}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section><section id="field-distribution" class="slide level2">
 <h2>Field Distribution</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">vegalite <span class="op">%&gt;%</span></a>
@@ -575,8 +575,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw">encode_x</span>(<span class="st">&quot;Field&quot;</span>,<span class="st">&quot;ordinal&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;*&quot;</span>, <span class="st">&quot;quantitative&quot;</span>, <span class="dt">aggregate=</span><span class="st">&quot;count&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">  </span><span class="kw">mark_bar</span>()</a></code></pre></div>
-<div id="htmlwidget-1a4f2e624638110118e5" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1a4f2e624638110118e5">{"x":{"description":"","data":{"values":{"Name":["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],"Age":[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],"Field":["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],"Experience":[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"bar","encoding":{"color":{"legend":{"orient":"left"}},"x":{"field":"Field","type":"ordinal"},"y":{"field":"*","type":"quantitative","aggregate":"count"}},"config":{"cell":{"width":700,"height":500}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d0b5dc7416ec1a3a2341" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d0b5dc7416ec1a3a2341">{"x":{"description":"","data":{"values":{"Name":["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],"Age":[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],"Field":["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],"Experience":[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"bar","encoding":{"color":{"legend":{"orient":"left"}},"x":{"field":"Field","type":"ordinal"},"y":{"field":"*","type":"quantitative","aggregate":"count"}},"config":{"cell":{"width":700,"height":500}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section><section id="all-data" class="slide level2">
 <h2>All data</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">vegalite <span class="op">%&gt;%</span></a>
@@ -585,8 +585,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;quantitative&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">  </span><span class="kw">encode_color</span>(<span class="st">&quot;Field&quot;</span>, <span class="st">&quot;nominal&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span><span class="kw">mark_point</span>()</a></code></pre></div>
-<div id="htmlwidget-23797444a045e14f7457" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-23797444a045e14f7457">{"x":{"description":"","data":{"values":{"Name":["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],"Age":[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],"Field":["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],"Experience":[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"point","encoding":{"color":{"field":"Field","type":"nominal"},"x":{"field":"Experience","type":"quantitative"},"y":{"field":"Age","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-08e6af219ea29ced358e" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-08e6af219ea29ced358e">{"x":{"description":"","data":{"values":{"Name":["Thomas R","Annette Allen","Ryan Yates","André Melancia","Alex Yates","Andrew Commander","Sam Partridge","David Williams","Terry McCann","Paul Andrew","Dirk Diggler","Steph Locke","Stephen","Rob Sewell","Oz Locke","Al Eardley","Louis bojko","willy wonka","MKK","Dave Green","Kathryn","Lachlan McLachlan","Dammy","brian","John","Andy W","Paul","James Lupolt"],"Age":[45,46,25,37,29,34,32,45,29,30,39,28,36,44,30,44,32,45,45,35,30,22,30,57,42,42,37,37],"Field":["DBA","DBA","Other","DBA","Other","DBA","DBA","DBA","Analytics","BI","DBA","Analytics","Other","DBA","Other","Other","BI","DBA","Other","Other","Analytics","Analytics","BI","Other","BI","BI","Analytics","DBA"],"Experience":[23,16,3,16,5,6,2.5,24,8,5,18,8,10,12,0.5,20,8,4,18,20,8,1,4,20,3,1,4,15],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","No","No","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes"]}},"mark":"point","encoding":{"color":{"field":"Field","type":"nominal"},"x":{"field":"Experience","type":"quantitative"},"y":{"field":"Age","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section></section>
 <section><section id="sampling" class="title-slide slide level1"><h1>Sampling</h1></section><section id="training" class="slide level2">
 <h2>Training</h2>
@@ -596,8 +596,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;quantitative&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-5" data-line-number="5"><span class="st">  </span><span class="kw">encode_color</span>(<span class="st">&quot;Field&quot;</span>, <span class="st">&quot;nominal&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-6" data-line-number="6"><span class="st">  </span><span class="kw">mark_point</span>()</a></code></pre></div>
-<div id="htmlwidget-de70d019f20027216493" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-de70d019f20027216493">{"x":{"description":"","data":{"values":{"Name":["Alex Yates","Annette Allen","Al Eardley","André Melancia","Ryan Yates","brian","MKK","Dammy","James Lupolt","Paul Andrew","Andrew Commander","Andy W","Dirk Diggler","Oz Locke","Steph Locke","Louis bojko","Kathryn","Sam Partridge","Terry McCann","Paul","Lachlan McLachlan"],"Age":[29,46,44,37,25,57,45,30,37,30,34,42,39,30,28,32,30,32,29,37,22],"Field":["Other","DBA","Other","DBA","Other","Other","Other","BI","DBA","BI","DBA","BI","DBA","Other","Analytics","BI","Analytics","DBA","Analytics","Analytics","Analytics"],"Experience":[5,16,20,16,3,20,18,4,15,5,6,1,18,0.5,8,8,8,2.5,8,4,1],"Attending.Stats.101.with.Steph.Locke":["No","No","No","Yes","No","Yes","Yes","Yes","Yes","No","Yes","Yes","No","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes"]}},"mark":"point","encoding":{"color":{"field":"Field","type":"nominal"},"x":{"field":"Experience","type":"quantitative"},"y":{"field":"Age","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2b8e8f2df9600b1e019a" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2b8e8f2df9600b1e019a">{"x":{"description":"","data":{"values":{"Name":["Steph Locke","Dave Green","Paul","Dammy","Andrew Commander","Paul Andrew","Annette Allen","David Williams","John","Sam Partridge","Andy W","Dirk Diggler","Terry McCann","Al Eardley","Thomas R","brian","Alex Yates","MKK","André Melancia","Lachlan McLachlan","Rob Sewell"],"Age":[28,35,37,30,34,30,46,45,42,32,42,39,29,44,45,57,29,45,37,22,44],"Field":["Analytics","Other","Analytics","BI","DBA","BI","DBA","DBA","BI","DBA","BI","DBA","Analytics","Other","DBA","Other","Other","Other","DBA","Analytics","DBA"],"Experience":[8,20,4,4,6,5,16,24,3,2.5,1,18,8,20,23,20,5,18,16,1,12],"Attending.Stats.101.with.Steph.Locke":["Yes","Yes","Yes","Yes","Yes","No","No","Yes","Yes","No","Yes","No","Yes","No","No","Yes","No","Yes","Yes","Yes","No"]}},"mark":"point","encoding":{"color":{"field":"Field","type":"nominal"},"x":{"field":"Experience","type":"quantitative"},"y":{"field":"Age","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section><section id="holdout" class="slide level2">
 <h2>Holdout</h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">vegalite <span class="op">%&gt;%</span></a>
@@ -606,8 +606,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;quantitative&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span><span class="kw">encode_color</span>(<span class="st">&quot;Field&quot;</span>, <span class="st">&quot;nominal&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-6" data-line-number="6"><span class="st">  </span><span class="kw">mark_point</span>()</a></code></pre></div>
-<div id="htmlwidget-d8fe325f50076885b69d" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d8fe325f50076885b69d">{"x":{"description":"","data":{"values":{"Name":["Thomas R","David Williams","Stephen","Rob Sewell","willy wonka","Dave Green","John"],"Age":[45,45,36,44,45,35,42],"Field":["DBA","DBA","Other","DBA","DBA","Other","BI"],"Experience":[23,24,10,12,4,20,3],"Attending.Stats.101.with.Steph.Locke":["No","Yes","No","No","Yes","Yes","Yes"]}},"mark":"point","encoding":{"color":{"field":"Field","type":"nominal"},"x":{"field":"Experience","type":"quantitative"},"y":{"field":"Age","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-879a0cc2e8af068aa381" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-879a0cc2e8af068aa381">{"x":{"description":"","data":{"values":{"Name":["Ryan Yates","Stephen","Oz Locke","Louis bojko","willy wonka","Kathryn","James Lupolt"],"Age":[25,36,30,32,45,30,37],"Field":["Other","Other","Other","BI","DBA","Analytics","DBA"],"Experience":[3,10,0.5,8,4,8,15],"Attending.Stats.101.with.Steph.Locke":["No","No","Yes","Yes","Yes","Yes","Yes"]}},"mark":"point","encoding":{"color":{"field":"Field","type":"nominal"},"x":{"field":"Experience","type":"quantitative"},"y":{"field":"Age","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section></section>
 <section><section id="one-size-fits-all" class="title-slide slide level1"><h1>One size fits all</h1></section><section id="one-size-fits-all-1" class="slide level2">
 <h2>One size fits all</h2>
@@ -627,9 +627,9 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">35</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: right;">30</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">45</td>
 </tr>
 </tbody>
 </table>
@@ -643,8 +643,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <a class="sourceLine" id="cb10-6" data-line-number="6"><span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;quantitative&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb10-7" data-line-number="7"><span class="st">  </span><span class="kw">encode_color</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;nominal&quot;</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">  </span><span class="kw">mark_point</span>()</a></code></pre></div>
-<div id="htmlwidget-f92d7d1e50246747867a" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f92d7d1e50246747867a">{"x":{"description":"","data":{"values":{"Name":["Thomas R","David Williams","Stephen","Rob Sewell","willy wonka","Dave Green","John","Thomas R","David Williams","Stephen","Rob Sewell","willy wonka","Dave Green","John","Thomas R","David Williams","Stephen","Rob Sewell","willy wonka","Dave Green","John","Thomas R","David Williams","Stephen","Rob Sewell","willy wonka","Dave Green","John"],"Field":["DBA","DBA","Other","DBA","DBA","Other","BI","DBA","DBA","Other","DBA","DBA","Other","BI","DBA","DBA","Other","DBA","DBA","Other","BI","DBA","DBA","Other","DBA","DBA","Other","BI"],"Experience":[23,24,10,12,4,20,3,23,24,10,12,4,20,3,23,24,10,12,4,20,3,23,24,10,12,4,20,3],"Attending.Stats.101.with.Steph.Locke":["No","Yes","No","No","Yes","Yes","Yes","No","Yes","No","No","Yes","Yes","Yes","No","Yes","No","No","Yes","Yes","Yes","No","Yes","No","No","Yes","Yes","Yes"],"variable":["Age","Age","Age","Age","Age","Age","Age","Mean","Mean","Mean","Mean","Mean","Mean","Mean","Median","Median","Median","Median","Median","Median","Median","Mode","Mode","Mode","Mode","Mode","Mode","Mode"],"value":[45,45,36,44,45,35,42,35,35,35,35,35,35,35,32,32,32,32,32,32,32,30,30,30,30,30,30,30]}},"mark":"point","encoding":{"color":{"field":"variable","type":"nominal"},"x":{"field":"Name","type":"ordinal"},"y":{"field":"value","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b9bf88d458bbc58ef1a4" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b9bf88d458bbc58ef1a4">{"x":{"description":"","data":{"values":{"Name":["Ryan Yates","Stephen","Oz Locke","Louis bojko","willy wonka","Kathryn","James Lupolt","Ryan Yates","Stephen","Oz Locke","Louis bojko","willy wonka","Kathryn","James Lupolt","Ryan Yates","Stephen","Oz Locke","Louis bojko","willy wonka","Kathryn","James Lupolt","Ryan Yates","Stephen","Oz Locke","Louis bojko","willy wonka","Kathryn","James Lupolt"],"Field":["Other","Other","Other","BI","DBA","Analytics","DBA","Other","Other","Other","BI","DBA","Analytics","DBA","Other","Other","Other","BI","DBA","Analytics","DBA","Other","Other","Other","BI","DBA","Analytics","DBA"],"Experience":[3,10,0.5,8,4,8,15,3,10,0.5,8,4,8,15,3,10,0.5,8,4,8,15,3,10,0.5,8,4,8,15],"Attending.Stats.101.with.Steph.Locke":["No","No","Yes","Yes","Yes","Yes","Yes","No","No","Yes","Yes","Yes","Yes","Yes","No","No","Yes","Yes","Yes","Yes","Yes","No","No","Yes","Yes","Yes","Yes","Yes"],"variable":["Age","Age","Age","Age","Age","Age","Age","Mean","Mean","Mean","Mean","Mean","Mean","Mean","Median","Median","Median","Median","Median","Median","Median","Mode","Mode","Mode","Mode","Mode","Mode","Mode"],"value":[25,36,30,32,45,30,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,45,45,45,45,45,45,45]}},"mark":"point","encoding":{"color":{"field":"variable","type":"nominal"},"x":{"field":"Name","type":"ordinal"},"y":{"field":"value","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section><section id="assessing-results" class="slide level2">
 <h2>Assessing results</h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">holdout.lse&lt;-<span class="kw">melt</span>(holdout, <span class="dt">measure.vars =</span> <span class="kw">colnames</span>(averages))</a>
@@ -660,15 +660,15 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Mean</td>
-<td style="text-align: right;">431</td>
+<td style="text-align: right;">332</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Median</td>
-<td style="text-align: right;">776</td>
+<td style="text-align: right;">332</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Mode</td>
-<td style="text-align: right;">1076</td>
+<td style="text-align: right;">1164</td>
 </tr>
 </tbody>
 </table>
@@ -691,8 +691,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <a class="sourceLine" id="cb13-6" data-line-number="6"><span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;quantitative&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb13-7" data-line-number="7"><span class="st">  </span><span class="kw">encode_color</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;nominal&quot;</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb13-8" data-line-number="8"><span class="st">  </span><span class="kw">mark_point</span>()</a></code></pre></div>
-<div id="htmlwidget-db51678aad4aaa70ab65" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-db51678aad4aaa70ab65">{"x":{"description":"","data":{"values":{"Name":["Thomas R","David Williams","Stephen","Rob Sewell","willy wonka","Dave Green","John","Thomas R","David Williams","Stephen","Rob Sewell","willy wonka","Dave Green","John"],"Field":["DBA","DBA","Other","DBA","DBA","Other","BI","DBA","DBA","Other","DBA","DBA","Other","BI"],"Experience":[23,24,10,12,4,20,3,23,24,10,12,4,20,3],"Attending.Stats.101.with.Steph.Locke":["No","Yes","No","No","Yes","Yes","Yes","No","Yes","No","No","Yes","Yes","Yes"],"Mean":[35,35,35,35,35,35,35,35,35,35,35,35,35,35],"Median":[32,32,32,32,32,32,32,32,32,32,32,32,32,32],"Mode":[30,30,30,30,30,30,30,30,30,30,30,30,30,30],"variable":["Age","Age","Age","Age","Age","Age","Age","expLMres","expLMres","expLMres","expLMres","expLMres","expLMres","expLMres"],"value":[45,45,36,44,45,35,42,47.7293533638145,48.6324493794905,35.9891051600261,37.7952971913782,30.57052906597,45.0200653167864,29.6674330502939]}},"mark":"point","encoding":{"color":{"field":"variable","type":"nominal"},"x":{"field":"Name","type":"ordinal"},"y":{"field":"value","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9b9f5d3c2d67a06e1fdb" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9b9f5d3c2d67a06e1fdb">{"x":{"description":"","data":{"values":{"Name":["Ryan Yates","Stephen","Oz Locke","Louis bojko","willy wonka","Kathryn","James Lupolt","Ryan Yates","Stephen","Oz Locke","Louis bojko","willy wonka","Kathryn","James Lupolt"],"Field":["Other","Other","Other","BI","DBA","Analytics","DBA","Other","Other","Other","BI","DBA","Analytics","DBA"],"Experience":[3,10,0.5,8,4,8,15,3,10,0.5,8,4,8,15],"Attending.Stats.101.with.Steph.Locke":["No","No","Yes","Yes","Yes","Yes","Yes","No","No","Yes","Yes","Yes","Yes","Yes"],"Mean":[37,37,37,37,37,37,37,37,37,37,37,37,37,37],"Median":[37,37,37,37,37,37,37,37,37,37,37,37,37,37],"Mode":[45,45,45,45,45,45,45,45,45,45,45,45,45,45],"variable":["Age","Age","Age","Age","Age","Age","Age","expLMres","expLMres","expLMres","expLMres","expLMres","expLMres","expLMres"],"value":[25,36,30,32,45,30,37,32.1641660652562,36.9214114787101,30.4651498461655,35.5621985034375,32.8437725528925,35.5621985034375,40.3194439168914]}},"mark":"point","encoding":{"color":{"field":"variable","type":"nominal"},"x":{"field":"Name","type":"ordinal"},"y":{"field":"value","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section><section id="assessing-results-1" class="slide level2">
 <h2>Assessing results</h2>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">holdout.lse&lt;-<span class="kw">melt</span>(holdout, <span class="dt">measure.vars =</span> <span class="kw">c</span>(<span class="st">&quot;expLMres&quot;</span>,<span class="kw">colnames</span>(averages)))</a>
@@ -707,20 +707,20 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Mean</td>
-<td style="text-align: right;">431.0000</td>
+<td style="text-align: left;">expLMres</td>
+<td style="text-align: right;">254.8105</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">expLMres</td>
-<td style="text-align: right;">519.8461</td>
+<td style="text-align: left;">Mean</td>
+<td style="text-align: right;">332.0000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Median</td>
-<td style="text-align: right;">776.0000</td>
+<td style="text-align: right;">332.0000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Mode</td>
-<td style="text-align: right;">1076.0000</td>
+<td style="text-align: right;">1164.0000</td>
 </tr>
 </tbody>
 </table>
@@ -738,22 +738,22 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <a class="sourceLine" id="cb15-5" data-line-number="5">## lm(formula = Age ~ Experience + Field, data = training)</a>
 <a class="sourceLine" id="cb15-6" data-line-number="6">## </a>
 <a class="sourceLine" id="cb15-7" data-line-number="7">## Residuals:</a>
-<a class="sourceLine" id="cb15-8" data-line-number="8">##    Min     1Q Median     3Q    Max </a>
-<a class="sourceLine" id="cb15-9" data-line-number="9">## -6.153 -3.607 -2.253  2.051 11.609 </a>
+<a class="sourceLine" id="cb15-8" data-line-number="8">##     Min      1Q  Median      3Q     Max </a>
+<a class="sourceLine" id="cb15-9" data-line-number="9">## -9.2272 -4.1098 -0.6952  4.8902 12.7728 </a>
 <a class="sourceLine" id="cb15-10" data-line-number="10">## </a>
 <a class="sourceLine" id="cb15-11" data-line-number="11">## Coefficients:</a>
 <a class="sourceLine" id="cb15-12" data-line-number="12">##             Estimate Std. Error t value Pr(&gt;|t|)    </a>
-<a class="sourceLine" id="cb15-13" data-line-number="13">## (Intercept)  24.0482     2.9145   8.251  3.7e-07 ***</a>
-<a class="sourceLine" id="cb15-14" data-line-number="14">## Experience    0.8882     0.2225   3.993  0.00105 ** </a>
-<a class="sourceLine" id="cb15-15" data-line-number="15">## FieldBI       5.4547     3.9306   1.388  0.18423    </a>
-<a class="sourceLine" id="cb15-16" data-line-number="16">## FieldDBA      2.5708     3.8183   0.673  0.51037    </a>
-<a class="sourceLine" id="cb15-17" data-line-number="17">## FieldOther    4.4405     3.7285   1.191  0.25104    </a>
+<a class="sourceLine" id="cb15-13" data-line-number="13">## (Intercept)  25.5610     3.4897   7.325 1.71e-06 ***</a>
+<a class="sourceLine" id="cb15-14" data-line-number="14">## Experience    0.6551     0.2590   2.530   0.0223 *  </a>
+<a class="sourceLine" id="cb15-15" data-line-number="15">## FieldBI       8.3101     4.5747   1.817   0.0881 .  </a>
+<a class="sourceLine" id="cb15-16" data-line-number="16">## FieldDBA      5.0679     4.6333   1.094   0.2902    </a>
+<a class="sourceLine" id="cb15-17" data-line-number="17">## FieldOther    5.5651     5.2184   1.066   0.3021    </a>
 <a class="sourceLine" id="cb15-18" data-line-number="18">## ---</a>
 <a class="sourceLine" id="cb15-19" data-line-number="19">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</a>
 <a class="sourceLine" id="cb15-20" data-line-number="20">## </a>
-<a class="sourceLine" id="cb15-21" data-line-number="21">## Residual standard error: 5.843 on 16 degrees of freedom</a>
-<a class="sourceLine" id="cb15-22" data-line-number="22">## Multiple R-squared:  0.6018, Adjusted R-squared:  0.5022 </a>
-<a class="sourceLine" id="cb15-23" data-line-number="23">## F-statistic: 6.045 on 4 and 16 DF,  p-value: 0.003676</a></code></pre></div>
+<a class="sourceLine" id="cb15-21" data-line-number="21">## Residual standard error: 6.428 on 16 degrees of freedom</a>
+<a class="sourceLine" id="cb15-22" data-line-number="22">## Multiple R-squared:  0.5224, Adjusted R-squared:  0.403 </a>
+<a class="sourceLine" id="cb15-23" data-line-number="23">## F-statistic: 4.376 on 4 and 16 DF,  p-value: 0.01402</a></code></pre></div>
 </section><section id="model-1" class="slide level2">
 <h2>Model</h2>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">training[,fieldLMres<span class="op">:</span><span class="er">=</span>fieldLM<span class="op">$</span>fitted]</a>
@@ -773,8 +773,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <a class="sourceLine" id="cb17-6" data-line-number="6"><span class="st">  </span><span class="kw">encode_y</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;quantitative&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb17-7" data-line-number="7"><span class="st">  </span><span class="kw">encode_color</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;nominal&quot;</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb17-8" data-line-number="8"><span class="st">  </span><span class="kw">mark_point</span>()</a></code></pre></div>
-<div id="htmlwidget-f21fd4c5e29df3c2d714" style="width:768px;height:500px;" class="vegalite html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f21fd4c5e29df3c2d714">{"x":{"description":"","data":{"values":{"Name":["Thomas R","David Williams","Stephen","Rob Sewell","willy wonka","Dave Green","John","Thomas R","David Williams","Stephen","Rob Sewell","willy wonka","Dave Green","John"],"Field":["DBA","DBA","Other","DBA","DBA","Other","BI","DBA","DBA","Other","DBA","DBA","Other","BI"],"Experience":[23,24,10,12,4,20,3,23,24,10,12,4,20,3],"Attending.Stats.101.with.Steph.Locke":["No","Yes","No","No","Yes","Yes","Yes","No","Yes","No","No","Yes","Yes","Yes"],"Mean":[35,35,35,35,35,35,35,35,35,35,35,35,35,35],"Median":[32,32,32,32,32,32,32,32,32,32,32,32,32,32],"Mode":[30,30,30,30,30,30,30,30,30,30,30,30,30,30],"expLMres":[47.7293533638145,48.6324493794905,35.9891051600261,37.7952971913782,30.57052906597,45.0200653167864,29.6674330502939,47.7293533638145,48.6324493794905,35.9891051600261,37.7952971913782,30.57052906597,45.0200653167864,29.6674330502939],"variable":["Age","Age","Age","Age","Age","Age","Age","fieldLMres","fieldLMres","fieldLMres","fieldLMres","fieldLMres","fieldLMres","fieldLMres"],"value":[45,45,36,44,45,35,42,47.0486012127654,47.9368431860459,37.3710711956128,37.2779395066799,30.1720037204358,46.2534909284178,32.1676370400792]}},"mark":"point","encoding":{"color":{"field":"variable","type":"nominal"},"x":{"field":"Name","type":"ordinal"},"y":{"field":"value","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-dc0f8c5b1aeac5ec2634" style="width:768px;height:500px;" class="vegalite html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dc0f8c5b1aeac5ec2634">{"x":{"description":"","data":{"values":{"Name":["Ryan Yates","Stephen","Oz Locke","Louis bojko","willy wonka","Kathryn","James Lupolt","Ryan Yates","Stephen","Oz Locke","Louis bojko","willy wonka","Kathryn","James Lupolt"],"Field":["Other","Other","Other","BI","DBA","Analytics","DBA","Other","Other","Other","BI","DBA","Analytics","DBA"],"Experience":[3,10,0.5,8,4,8,15,3,10,0.5,8,4,8,15],"Attending.Stats.101.with.Steph.Locke":["No","No","Yes","Yes","Yes","Yes","Yes","No","No","Yes","Yes","Yes","Yes","Yes"],"Mean":[37,37,37,37,37,37,37,37,37,37,37,37,37,37],"Median":[37,37,37,37,37,37,37,37,37,37,37,37,37,37],"Mode":[45,45,45,45,45,45,45,45,45,45,45,45,45,45],"expLMres":[32.1641660652562,36.9214114787101,30.4651498461655,35.5621985034375,32.8437725528925,35.5621985034375,40.3194439168914,32.1641660652562,36.9214114787101,30.4651498461655,35.5621985034375,32.8437725528925,35.5621985034375,40.3194439168914],"variable":["Age","Age","Age","Age","Age","Age","Age","fieldLMres","fieldLMres","fieldLMres","fieldLMres","fieldLMres","fieldLMres","fieldLMres"],"value":[25,36,30,32,45,30,37,33.0912392100378,37.6766307931066,31.4535993589419,39.1115157170824,33.2490896365647,30.8014038362056,40.454704981387]}},"mark":"point","encoding":{"color":{"field":"variable","type":"nominal"},"x":{"field":"Name","type":"ordinal"},"y":{"field":"value","type":"quantitative"}},"config":{"cell":{"width":700,"height":500},"mark":{"shape":"circle"}},"embed":{"renderer":"svg","actions":{"export":false,"source":false,"editor":false}}},"evals":[],"jsHooks":[]}</script>
 </section><section id="assessing-results-2" class="slide level2">
 <h2>Assessing results</h2>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">holdout.lse&lt;-<span class="kw">melt</span>(holdout, <span class="dt">measure.vars =</span> <span class="kw">c</span>(<span class="st">&quot;fieldLMres&quot;</span>,<span class="st">&quot;expLMres&quot;</span>,<span class="kw">colnames</span>(averages)))</a>
@@ -789,24 +789,24 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Mean</td>
-<td style="text-align: right;">431.0000</td>
+<td style="text-align: left;">expLMres</td>
+<td style="text-align: right;">254.8105</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">fieldLMres</td>
-<td style="text-align: right;">503.0736</td>
+<td style="text-align: right;">271.6270</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">expLMres</td>
-<td style="text-align: right;">519.8461</td>
+<td style="text-align: left;">Mean</td>
+<td style="text-align: right;">332.0000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Median</td>
-<td style="text-align: right;">776.0000</td>
+<td style="text-align: right;">332.0000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Mode</td>
-<td style="text-align: right;">1076.0000</td>
+<td style="text-align: right;">1164.0000</td>
 </tr>
 </tbody>
 </table>
